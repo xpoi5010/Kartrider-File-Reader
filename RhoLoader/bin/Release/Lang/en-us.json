@@ -1,0 +1,86 @@
+{
+    "LanguageName": "en-us",
+    "DisplayName": "English",
+    "StringBags": [
+        {
+            "Name": "menu_file",
+            "Value": "File"
+        },
+        {
+            "Name": "menu_export",
+            "Value": "Export"
+        },
+        {
+            "Name": "menu_about",
+            "Value": "About"
+        },
+        {
+            "Name": "menu_open",
+            "Value": "Open"
+        },
+        {
+            "Name": "menu_save",
+            "Value": "Save (Is unsupport now)"
+        },
+        {
+            "Name": "menu_saveas",
+            "Value": "SaveAs (Is unsupport now)"
+        },
+        {
+            "Name": "menu_exit",
+            "Value": "Exit"
+        },
+        {
+            "Name": "menu_exportall",
+            "Value": "Export All"
+        },
+        {
+            "Name": "col_name",
+            "Value": "Name"
+        },
+        {
+            "Name": "col_index",
+            "Value": "Index"
+        },
+        {
+            "Name": "col_type",
+            "Value": "Type"
+        },
+        {
+            "Name": "msg_PlzOpenJMDFileFirst",
+            "Value": "Please do this after opening JMDFile."
+        },
+        {
+            "Name": "listview_item2_file",
+            "Value": "File"
+        },
+        {
+            "Name": "listview_item2_folder",
+            "Value": "Folder"
+        },
+        {
+            "Name": "title",
+            "Value": "Rho Loader"
+        },
+        {
+            "Name": "menu_Languages",
+            "Value": "Languages"
+        },
+        {
+            "Name":"filemenu_exportfile",
+            "Value":"Export This File"
+        },
+        {
+            "Name":"filemenu_convertPng",
+            "Value":"Convert this file To PNG File"
+        },
+        {
+            "Name":"menu_exportnow",
+            "Value":"Export This Floder"
+        },
+        {
+            "Name":"msg_cancelExport",
+            "Value":"Do you want to cancel export?\r\nPress [Yes] to cancel\r\nPress [No] to continue."
+        }
+    ]
+}

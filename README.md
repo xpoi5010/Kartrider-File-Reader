@@ -3,14 +3,17 @@ Rho Reader
 Info
 ------
 Rho Reader is a tool for reading kartrider game file.
+
 If you have some issue while executing this program, you can submit your issue on the github page of this program.
+
 Thank you for using.
 
 
 Version Info
 ------
-Version: Dev 21.1.3
-License: GPL 3.0
+: Version: Dev 21.1.3
+
+: License: GPL 3.0
 
 
 資訊

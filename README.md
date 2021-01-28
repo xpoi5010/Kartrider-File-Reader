@@ -11,9 +11,9 @@ Thank you for using.
 
 Version Info
 ------
-: Version: Dev 21.1.3
+* Version: Dev 21.1.3
 
-: License: GPL 3.0
+* License: GPL 3.0
 
 
 資訊

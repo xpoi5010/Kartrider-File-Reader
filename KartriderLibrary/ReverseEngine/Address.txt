@@ -1,0 +1,15 @@
+﻿// 跑跑卡丁車 台服 版本: 2021/10/05 1.33350.0.0
+Encryption Functions
+	ExtendKey Function: at DE0DC0
+	GetVector Function: at DDF770
+
+string.h functions:
+	// By Rh layer string.
+	strncmp Function at 00EC633D
+	
+// 跑跑卡丁車 台服 版本: 2021/10/05 1.33365.0.0
+zlib
+	Adler32 Function: at EA4E60
+
+rho5
+	RefreshKey Function: at 4BDE30

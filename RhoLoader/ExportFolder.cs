@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using KartRider.File;
 using System.IO;
+using Pfim;
+using System.Runtime.InteropServices;
+using System.Drawing.Imaging;
 
 namespace RhoLoader
 {
@@ -20,128 +23,109 @@ namespace RhoLoader
         }
 
 
-        public void ExportNowFolder(string TargetPath, bool IncludeSubFolder, RhoFile file)
+        public void ExportNowFolder(string TargetPath, bool IncludeSubFolder, Rho file, RhoDirectory curDir, bool ConvertBML = false, bool ConvertDDS = false)
         {
             this.Show();
             Task task = new Task(() =>
             {
-                ExportNowFolder_bg(TargetPath,IncludeSubFolder, file);
+                ExportFolder_bg(TargetPath,IncludeSubFolder, file, curDir, ConvertBML, ConvertDDS);
             });
             task.Start();
         }
 
-        public void ExportAllFolder(string TargetPath, bool IncludeSubFolder, RhoFile file)
+        public void ExportAllFolder(string TargetPath, bool IncludeSubFolder, Rho file, bool ConvertBML = false, bool ConvertDDS = false)
         {
             this.Show();
             Task task = new Task(() =>
             {
-                ExportAllFolder_bg(TargetPath, IncludeSubFolder, file);
+                ExportFolder_bg(TargetPath, IncludeSubFolder, file, file.RootDirectory, ConvertBML, ConvertDDS);
             });
             task.Start();
         }
 
         bool Canceled = false;
 
-        private void ExportNowFolder_bg(string outputPath, bool IncludeSubFolder,RhoFile file)
+        private void ExportFolder_bg(string outputPath, bool IncludeSubFolder,Rho file,RhoDirectory curDir, bool ConvertBML = false, bool ConvertDDS = false, bool ConvertKSV = false)
         {
-            IPackedObject[] ipos = file.NowFolderContent;
-            Stack<ExportProcessor> Stack = new Stack<ExportProcessor>();
+            Queue<ExportProcessor> processQueue = new Queue<ExportProcessor>();
             if (!Directory.Exists(outputPath))
                 throw new Exception("");
-            string StartPath = file.NowPath=="/"?"": file.NowPath;
-            Stack.Push(new ExportProcessor
+            int _outputCounter = 0;
+            processQueue.Enqueue(new ExportProcessor()
             {
-                Path = StartPath,
-                ipos = ipos
-            }) ;
-            while(Stack.Count > 0 && !Canceled)
-            {
-                ExportProcessor ep = Stack.Pop();
-                string outPath = outputPath + (StartPath=="" ? ep.Path : ep.Path.Replace(StartPath, ""));
-                foreach (IPackedObject ipo in ep.ipos)
-                {
-                    
-                    if(ipo.Type == ObjectType.Folder && IncludeSubFolder)
-                    {
-                        RhoPackedFolderInfo jpfi = (RhoPackedFolderInfo)ipo;
-                        ExportProcessor nep = new ExportProcessor
-                        {
-                            Path = ep.Path + $"\\{jpfi.FolderName}",
-                            ipos = RhoPackedFilesInfoDecoder.GetRhoPackedFileInfos(file.GetStreamData(jpfi.Index), file.HeaderKey, jpfi.Index)
-                        };
-                        Stack.Push(nep);
-                        if (!Directory.Exists($"{outPath}\\{((RhoPackedFolderInfo)ipo).FolderName}"))
-                        {
-                            Directory.CreateDirectory($"{outPath}\\{((RhoPackedFolderInfo)ipo).FolderName}");
-                        }
-                        continue;
-                    }
-                    if(ipo.Type == ObjectType.File)
-                    {
-                        RhoPackedFileInfo jfi = (RhoPackedFileInfo)ipo;
-                        ChangeText(label5, $"Outputing: {ep.Path}\\{jfi.FileName}.{jfi.Extension}");
-                        FileStream fs = new FileStream($"{outPath}\\{jfi.FileName}.{jfi.Extension}", FileMode.Create);
-                        byte[] data = file.GetPackedFile(jfi);
-                        fs.Write(data, 0, data.Length);
-                        fs.Close();
-                        data = null;
-                    }
-                }
-                
-            }
-            CloseWindow();
-
-
-        }
-
-        private void ExportAllFolder_bg(string outputPath, bool IncludeSubFolder, RhoFile file)
-        {
-            IPackedObject[] ipos = RhoPackedFilesInfoDecoder.GetRhoPackedFileInfos(file.GetStreamData(0xFFFFFFFF), file.HeaderKey, 0xFFFFFFFF);
-            Stack<ExportProcessor> Stack = new Stack<ExportProcessor>();
-            if (!Directory.Exists(outputPath))
-                throw new Exception("");
-            string StartPath = "";
-            Stack.Push(new ExportProcessor
-            {
-                Path = StartPath,
-                ipos = ipos
+                Directories = curDir.Directories,
+                Path = "\\",
+                Files = curDir.Files 
             });
-            while (Stack.Count > 0 && !Canceled)
+            while(processQueue.Count > 0 && !Canceled)
             {
-                ExportProcessor ep = Stack.Pop();
-                string outPath = outputPath + (StartPath == "" ? ep.Path : ep.Path.Replace(StartPath, ""));
-                foreach (IPackedObject ipo in ep.ipos)
+                ExportProcessor curProc = processQueue.Dequeue();
+                _outputCounter = 0;
+                foreach (RhoDirectory dir in curProc.Directories)
                 {
-
-                    if (ipo.Type == ObjectType.Folder && IncludeSubFolder)
+                    string fullOutPath = $"{curProc.Path}\\{dir.DirectoryName}";
+                    if (!Directory.Exists($"{outputPath}{fullOutPath}"))
+                        Directory.CreateDirectory($"{outputPath}{fullOutPath}");
+                    processQueue.Enqueue(new ExportProcessor()
                     {
-                        RhoPackedFolderInfo jpfi = (RhoPackedFolderInfo)ipo;
-                        ExportProcessor nep = new ExportProcessor
-                        {
-                            Path = ep.Path + $"\\{jpfi.FolderName}",
-                            ipos = RhoPackedFilesInfoDecoder.GetRhoPackedFileInfos(file.GetStreamData(jpfi.Index), file.HeaderKey, jpfi.Index)
-                        };
-                        Stack.Push(nep);
-                        if (!Directory.Exists($"{outPath}\\{((RhoPackedFolderInfo)ipo).FolderName}"))
-                        {
-                            Directory.CreateDirectory($"{outPath}\\{((RhoPackedFolderInfo)ipo).FolderName}");
-                        }
-                        continue;
-                    }
-                    if (ipo.Type == ObjectType.File)
-                    {
-                        RhoPackedFileInfo jfi = (RhoPackedFileInfo)ipo;
-                        ChangeText(label5, $"Outputing: {ep.Path}\\{jfi.FileName}.{jfi.Extension}");
-                        FileStream fs = new FileStream($"{outPath}\\{jfi.FileName}.{jfi.Extension}", FileMode.Create);
-                        byte[] data = file.GetPackedFile(jfi);
-                        fs.Write(data, 0, data.Length);
-                        fs.Close();
-                        data = null;
-                    }
-                    if (Canceled)
-                        break;
+                        Directories = dir.Directories,
+                        Path = fullOutPath,
+                        Files = dir.Files
+                    });
                 }
-
+                foreach(RhoFileInfo fileInfo in curProc.Files)
+                {
+                    byte[] data = fileInfo.GetData();
+                    string fileName = fileInfo.FullFileName;
+                    if (ConvertBML && fileInfo.Extension == "bml")
+                    {
+                        KartRider.Xml.BinaryXmlDocument bxd = new KartRider.Xml.BinaryXmlDocument();
+                        bxd.Read(Encoding.GetEncoding("UTF-16"), data);
+                        KartRider.Xml.BinaryXmlTag bxt = bxd.RootTag;
+                        string xmlData = bxt.ToString();
+                        data = Encoding.UTF8.GetBytes(xmlData);
+                        fileName = fileName.Replace(".bml", ".xml");
+                    }
+                    else if (ConvertDDS && fileInfo.Extension == "dds")
+                    {
+                        var stream = new MemoryStream(data);
+                        IImage image = Pfim.Pfim.FromStream(stream);
+                        var handle = GCHandle.Alloc(image.Data, GCHandleType.Pinned);
+                        var d = Marshal.UnsafeAddrOfPinnedArrayElement(image.Data, 0);
+                        PixelFormat pf;
+                        switch (image.Format)
+                        {
+                            case Pfim.ImageFormat.Rgba32:
+                                pf = PixelFormat.Format32bppArgb;
+                                break;
+                            case Pfim.ImageFormat.Rgba16:
+                                pf = PixelFormat.Format16bppArgb1555;
+                                break;
+                            case Pfim.ImageFormat.Rgb8:
+                                pf = PixelFormat.Format8bppIndexed;
+                                break;
+                            case Pfim.ImageFormat.Rgb24:
+                                pf = PixelFormat.Format24bppRgb;
+                                break;
+                            default:
+                                throw new Exception("");
+                        }
+                        stream.Dispose();
+                        stream = new MemoryStream();
+                        Bitmap bmp = new Bitmap(image.Width, image.Height, image.Stride, pf, d);
+                        bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                        handle.Free();
+                        fileName = fileName.Replace(".dds", ".png");
+                        data = stream.ToArray();
+                        stream.Dispose();
+                    }
+                    if ((_outputCounter % 5) == 0)
+                        ChangeText(statusText, $"{curProc.Path}\\{fileName}");
+                    FileStream fs = new FileStream($"{outputPath}{curProc.Path}\\{fileName}",FileMode.Create);
+                    fs.Write(data,0, data.Length);
+                    fs.Close();
+                    _outputCounter++;
+                }
             }
             CloseWindow();
 
@@ -184,7 +168,9 @@ namespace RhoLoader
         {
             public string Path;
 
-            public IPackedObject[] ipos;
+            public IEnumerable<RhoFileInfo> Files;
+
+            public IEnumerable<RhoDirectory> Directories;
         }
 
         private void button1_Click(object sender, EventArgs e)

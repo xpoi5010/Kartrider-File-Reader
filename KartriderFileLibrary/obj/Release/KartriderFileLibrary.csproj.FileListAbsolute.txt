@@ -1,8 +1,0 @@
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\bin\Release\KartriderFileLibrary.dll
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\bin\Release\KartriderFileLibrary.pdb
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\bin\Release\Zlib.Portable.dll
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\bin\Release\Zlib.Portable.xml
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\obj\Release\KartriderFileLibrary.csproj.CoreCompileInputs.cache
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\obj\Release\KartriderFileLibrary.csproj.CopyComplete
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\obj\Release\KartriderFileLibrary.dll
-C:\Users\xpoi5\OneDrive\SourceCode\NewRhoReader\KartriderFileLibrary\obj\Release\KartriderFileLibrary.pdb

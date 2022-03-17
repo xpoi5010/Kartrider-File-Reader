@@ -1,0 +1,95 @@
+{
+  "LanguageName": "zh-cn",
+  "DisplayName": "简体中文",
+  "Author": "eP Studio",
+  "StringBags": [
+    {
+      "Name": "menu_file",
+      "Value": "文件"
+    },
+    {
+      "Name": "menu_export",
+      "Value": "输出"
+    },
+    {
+      "Name": "menu_about",
+      "Value": "关于"
+    },
+    {
+      "Name": "menu_open",
+      "Value": "开启"
+    },
+    {
+      "Name": "menu_save",
+      "Value": "储存文件(现在不支援)"
+    },
+    {
+      "Name": "menu_saveas",
+      "Value": "另存为(现在不支援)"
+    },
+    {
+      "Name": "menu_exit",
+      "Value": "离开"
+    },
+    {
+      "Name": "menu_exportall",
+      "Value": "输出全部文件"
+    },
+    {
+      "Name": "col_name",
+      "Value": "名称"
+    },
+    {
+      "Name": "col_size",
+      "Value": "文件大小"
+    },
+    {
+      "Name": "col_type",
+      "Value": "类型"
+    },
+    {
+      "Name": "msg_PlzOpenRhoFileFirst",
+      "Value": "请先开启Rho文件，才可进行此操作"
+    },
+    {
+      "Name": "listview_item2_file",
+      "Value": "文件"
+    },
+    {
+      "Name": "listview_item2_folder",
+      "Value": "文件夹"
+    },
+    {
+      "Name": "title",
+      "Value": "Rho载入器"
+    },
+    {
+      "Name": "menu_Languages",
+      "Value": "语言"
+    },
+    {
+      "Name": "filemenu_exportfile",
+      "Value": "输出这个文件"
+    },
+    {
+      "Name": "filemenu_convertPng",
+      "Value": "转换这个文件至PNG文件"
+    },
+    {
+      "Name": "menu_exportnow",
+      "Value": "输出这个文件夹"
+    },
+    {
+      "Name": "msg_cancelExport",
+      "Value": "您确定要取消输出吗??\r\n按[是] 以取消。\r\n按[否]以继续。"
+    },
+    {
+      "Name": "filemenu_convertXML",
+      "Value": "转换此文件至XML格式文件"
+    },
+	{
+	  "Name": "msg_newVersionReleased",
+	  "Value": "新版本 ({0}) 已发布。\r\n您想要现在下载吗?"
+	}
+  ]
+}

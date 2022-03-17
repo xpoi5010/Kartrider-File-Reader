@@ -32,6 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.version = new System.Windows.Forms.Label();
+            this.checkUpdateStatus = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -77,12 +78,26 @@
             this.version.TabIndex = 4;
             this.version.Text = "Version : 1.0";
             // 
+            // checkUpdateStatus
+            // 
+            this.checkUpdateStatus.AutoSize = true;
+            this.checkUpdateStatus.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkUpdateStatus.Font = new System.Drawing.Font("Bahnschrift Light", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkUpdateStatus.ForeColor = System.Drawing.Color.OrangeRed;
+            this.checkUpdateStatus.Location = new System.Drawing.Point(220, 47);
+            this.checkUpdateStatus.Name = "checkUpdateStatus";
+            this.checkUpdateStatus.Size = new System.Drawing.Size(229, 13);
+            this.checkUpdateStatus.TabIndex = 5;
+            this.checkUpdateStatus.Text = "New Version Released, Clicking for updating.";
+            this.checkUpdateStatus.Click += new System.EventHandler(this.checkUpdateStatus_Click);
+            // 
             // AboutMe
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(635, 164);
+            this.ClientSize = new System.Drawing.Size(635, 173);
+            this.Controls.Add(this.checkUpdateStatus);
             this.Controls.Add(this.version);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button1);
@@ -102,5 +117,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label version;
+        private System.Windows.Forms.Label checkUpdateStatus;
     }
 }

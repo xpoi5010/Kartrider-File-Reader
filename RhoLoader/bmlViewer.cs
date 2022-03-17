@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Kartrider.Xml;
+using KartRider.Xml;
 using System.IO;
+using System.Diagnostics;
+using RhoLoader.XML;
 
 namespace RhoLoader
 {
@@ -16,15 +18,13 @@ namespace RhoLoader
     {
         string ConvertedXml="";
         string FileName = "";
+        byte[] data;
+        public bool Initized { get; set; } = false;
         public bmlViewer(byte[] data,string FileName)
         {
             InitializeComponent();
-            BinaryXmlDocument bxd = new BinaryXmlDocument();
-            bxd.Read(Encoding.GetEncoding("UTF-16"), data);
-            ConvertedXml = bxd.RootTag.ToString();
-            ucXmlRichTextBox1.Xml = ConvertedXml;
-            ucXmlRichTextBox1.Select(0, 0);
             this.FileName = FileName;
+            this.data = data;
         }
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -39,6 +39,26 @@ namespace RhoLoader
                 fs.Write(data, 0, data.Length);
                 fs.Close();
             }
+        }
+
+        private void bmlViewer_Load(object sender, EventArgs e)
+        {
+            BinaryXmlDocument bxd = new BinaryXmlDocument();
+            bxd.Read(Encoding.GetEncoding("UTF-16"), data);
+            DateTime dt = DateTime.Now;
+            ConvertedXml = bxd.RootTag.ToString();
+            TimeSpan time1 = DateTime.Now - dt;
+            dt = DateTime.Now;
+            bxd.RootTag.ApplyToRichTextBox(richTextBox1);
+            richTextBox1.Select(0, 0);
+            TimeSpan time2 = DateTime.Now - dt;
+            Debug.Print($"DEBUG: {time1.TotalMilliseconds} || {time2.TotalMilliseconds}");
+            Initized = true;
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

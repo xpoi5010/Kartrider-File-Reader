@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31717.71
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KartriderFileLibrary", "KartriderFileLibrary\KartriderFileLibrary.csproj", "{114E7A30-D86E-4DE5-B855-C28A76333FA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhoLoader", "RhoLoader\RhoLoader.csproj", "{A865DD21-6BDD-4E8A-9580-3FBA9E00AAEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RhoLoader", "RhoLoader\RhoLoader.csproj", "{828F4C34-9E13-4B62-BB0A-C49434A53953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KartriderLibrary", "KartriderLibrary\KartriderLibrary.csproj", "{D051B18F-40F5-4824-8D29-668356D728CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{114E7A30-D86E-4DE5-B855-C28A76333FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{114E7A30-D86E-4DE5-B855-C28A76333FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{114E7A30-D86E-4DE5-B855-C28A76333FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{114E7A30-D86E-4DE5-B855-C28A76333FA1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{828F4C34-9E13-4B62-BB0A-C49434A53953}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{828F4C34-9E13-4B62-BB0A-C49434A53953}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{828F4C34-9E13-4B62-BB0A-C49434A53953}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{828F4C34-9E13-4B62-BB0A-C49434A53953}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A865DD21-6BDD-4E8A-9580-3FBA9E00AAEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A865DD21-6BDD-4E8A-9580-3FBA9E00AAEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A865DD21-6BDD-4E8A-9580-3FBA9E00AAEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A865DD21-6BDD-4E8A-9580-3FBA9E00AAEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D051B18F-40F5-4824-8D29-668356D728CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D051B18F-40F5-4824-8D29-668356D728CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D051B18F-40F5-4824-8D29-668356D728CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D051B18F-40F5-4824-8D29-668356D728CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

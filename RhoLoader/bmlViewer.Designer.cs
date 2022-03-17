@@ -32,21 +32,27 @@ namespace RhoLoader
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.poweredByMicrosoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ucXmlRichTextBox1 = new CustomXmlViewer.ucXmlRichTextBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.saveAsToolStripMenuItem,
-            this.poweredByMicrosoftToolStripMenuItem});
+            this.saveAsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(933, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // saveAsToolStripMenuItem
             // 
@@ -55,42 +61,63 @@ namespace RhoLoader
             this.saveAsToolStripMenuItem.Text = "Convert To XML";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
-            // poweredByMicrosoftToolStripMenuItem
+            // richTextBox1
             // 
-            this.poweredByMicrosoftToolStripMenuItem.Enabled = false;
-            this.poweredByMicrosoftToolStripMenuItem.Name = "poweredByMicrosoftToolStripMenuItem";
-            this.poweredByMicrosoftToolStripMenuItem.Size = new System.Drawing.Size(135, 20);
-            this.poweredByMicrosoftToolStripMenuItem.Text = "Powered By Microsoft";
+            this.richTextBox1.BackColor = System.Drawing.Color.White;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richTextBox1.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 24);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
+            this.richTextBox1.Size = new System.Drawing.Size(933, 495);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.WordWrap = false;
             // 
-            // ucXmlRichTextBox1
+            // contextMenuStrip1
             // 
-            this.ucXmlRichTextBox1.BackColor = System.Drawing.Color.White;
-            this.ucXmlRichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ucXmlRichTextBox1.DetectUrls = false;
-            this.ucXmlRichTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucXmlRichTextBox1.Font = new System.Drawing.Font("Consolas", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ucXmlRichTextBox1.Location = new System.Drawing.Point(0, 24);
-            this.ucXmlRichTextBox1.Name = "ucXmlRichTextBox1";
-            this.ucXmlRichTextBox1.ReadOnly = true;
-            this.ucXmlRichTextBox1.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
-            this.ucXmlRichTextBox1.Size = new System.Drawing.Size(800, 426);
-            this.ucXmlRichTextBox1.TabIndex = 1;
-            this.ucXmlRichTextBox1.Text = "";
-            this.ucXmlRichTextBox1.WordWrap = false;
-            this.ucXmlRichTextBox1.Xml = "";
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.copyToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(123, 54);
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.selectAllToolStripMenuItem.Text = "Select All";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(119, 6);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
             // 
             // bmlViewer
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ucXmlRichTextBox1);
+            this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "bmlViewer";
             this.Text = "bmlViewer";
+            this.Load += new System.EventHandler(this.bmlViewer_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,7 +127,11 @@ namespace RhoLoader
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem poweredByMicrosoftToolStripMenuItem;
-        private CustomXmlViewer.ucXmlRichTextBox ucXmlRichTextBox1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem selectAllToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
     }
 }

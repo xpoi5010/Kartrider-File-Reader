@@ -177,19 +177,20 @@ namespace KartRider.Encrypt
             return key;
         }
 
-        public static byte[] ExtendKey(uint originalKey)
+        public static unsafe byte[] ExtendKey(uint originalKey)
         {
-            using (MemoryStream ms = new MemoryStream())
+            byte[] outArray = new byte[64];
+            fixed(byte* wPtr = outArray)
             {
-                BinaryWriter bw = new BinaryWriter(ms);
+                uint *writePtr = (uint*)wPtr;
                 uint curData = originalKey ^ 0x8473fbc1;
                 for (int i = 0; i < 16; i++)
                 {
-                    bw.Write(curData);
+                    writePtr[i] = curData;
                     curData -= 0x7b8c043f;
                 }
-                return ms.ToArray();
             }
+            return outArray;
         }
 
         public static uint GetVector(uint value)

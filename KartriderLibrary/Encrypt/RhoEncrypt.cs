@@ -67,27 +67,27 @@ namespace KartRider.Encrypt
         /// <param name="Data"></param>
         /// <param name="Key"></param>
         /// <returns></returns>
-        public static byte[] DecryptHeaderInfo(byte[] Data,uint Key)
+        public static unsafe byte[] DecryptHeaderInfo(byte[] Data,uint Key)
         {
-            uint curKey = Key;
+            uint currentKey = Key;
             uint a = 0;
             byte[] output = new byte[Data.Length];
-            using (MemoryStream rs = new MemoryStream(Data), ws = new MemoryStream())
+            fixed(byte *wPtr = output, rPtr = Data)
             {
-                BinaryReader br = new BinaryReader(rs);
-                BinaryWriter bw = new BinaryWriter(ws);
-                for (int i = 0; i < Data.Length; i +=4)
+                uint* writePtr = (uint*)wPtr;
+                uint* readPtr = (uint*)rPtr;
+                for(int i =0;i< Data.Length >> 2; i++)
                 {
-                    uint vector = RhoKey.GetVector(curKey);
-                    uint curData = br.ReadUInt32();
+                    uint vector = RhoKey.GetVector(currentKey);
+                    uint curData = readPtr[i];
                     curData ^= vector;
                     curData ^= a;
-                    bw.Write(curData);
+                    writePtr[i] = curData;
                     a += curData;
-                    curKey++;
+                    currentKey++;
                 }
-                return ws.ToArray();
             }
+            return output;
         }
 
         public static byte[] DecryptBlockInfoOld(byte[] Data,byte[] key)

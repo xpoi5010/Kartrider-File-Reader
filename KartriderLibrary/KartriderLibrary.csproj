@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <RootNamespace>KartRider</RootNamespace>
     <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <Version>22.3.2.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

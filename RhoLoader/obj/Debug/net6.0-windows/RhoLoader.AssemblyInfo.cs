@@ -13,11 +13,11 @@ using System.Reflection;
 
 [assembly: System.Reflection.AssemblyCompanyAttribute("RhoLoader")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("22.3.1.2")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("22.3.1.2")]
+[assembly: System.Reflection.AssemblyFileVersionAttribute("22.3.2.2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("22.3.2.2")]
 [assembly: System.Reflection.AssemblyProductAttribute("RhoLoader")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RhoLoader")]
-[assembly: System.Reflection.AssemblyVersionAttribute("22.3.1.2")]
+[assembly: System.Reflection.AssemblyVersionAttribute("22.3.2.2")]
 [assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0")]
 [assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")]
 

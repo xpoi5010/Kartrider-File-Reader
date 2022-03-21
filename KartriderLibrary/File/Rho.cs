@@ -103,7 +103,6 @@ namespace KartRider.File
             RootDirectory.DirIndex = 0xFFFFFFFF;
             Queue<RhoDirectory> processQueue = new Queue<RhoDirectory>();
             processQueue.Enqueue(RootDirectory);
-            int[] tempAAr = new int[30];
             while(processQueue.Count > 0)
             {
                 RhoDirectory curDir = processQueue.Dequeue();
@@ -115,30 +114,6 @@ namespace KartRider.File
                     processQueue.Enqueue(subdir);
                 }
             }
-            foreach(var xaa in RootDirectory.Files)
-            {
-                tempAAr[0] += (int)xaa.FileBlockIndex;
-            }
-            foreach (var xaa in Blocks)
-            {
-                tempAAr[1] += (int)xaa.Hash;
-                tempAAr[2] += (int)xaa.Index;
-            }
-            /*
-            for(int ts = 0;ts < baseStream.Length; ts++)
-            {
-                for(int te = ts+1;te < baseStream.Length; te++)
-                {
-                    baseStream.Seek(ts, SeekOrigin.Begin);
-                    byte[] encData = new byte[te-ts];
-                    baseStream.Read(encData, 0, encData.Length);
-                    uint testHash = Adler.Adler32(0, encData, 0, encData.Length);
-                    if (testHash == 2519818464)
-                        System.Diagnostics.Debug.Print($"{ts}:{te} Hash = {testHash}");
-                }
-            }
-            
-            */
         }
         public uint GetFileKey()
         {

@@ -5,7 +5,7 @@
   },
   "projects": {
     "C:\\Users\\xpoi5\\OneDrive\\SourceCode\\LifeGame\\OpenSourcePool\\Kartrider-File-Reader\\KartriderLibrary\\KartriderLibrary.csproj": {
-      "version": "1.0.0",
+      "version": "22.3.2.1",
       "restore": {
         "projectUniqueName": "C:\\Users\\xpoi5\\OneDrive\\SourceCode\\LifeGame\\OpenSourcePool\\Kartrider-File-Reader\\KartriderLibrary\\KartriderLibrary.csproj",
         "projectName": "KartriderLibrary",
@@ -69,12 +69,12 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
         }
       }
     },
     "C:\\Users\\xpoi5\\OneDrive\\SourceCode\\LifeGame\\OpenSourcePool\\Kartrider-File-Reader\\RhoLoader\\RhoLoader.csproj": {
-      "version": "22.3.1.2",
+      "version": "22.3.2.2",
       "restore": {
         "projectUniqueName": "C:\\Users\\xpoi5\\OneDrive\\SourceCode\\LifeGame\\OpenSourcePool\\Kartrider-File-Reader\\RhoLoader\\RhoLoader.csproj",
         "projectName": "RhoLoader",
@@ -145,7 +145,7 @@
               "privateAssets": "none"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -29,7 +29,7 @@
           "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid/Zlib.Portable.dll": {}
         }
       },
-      "KartriderLibrary/1.0.0": {
+      "KartriderLibrary/22.3.2.1": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
@@ -98,7 +98,7 @@
         "zlib.portable.signed.nuspec"
       ]
     },
-    "KartriderLibrary/1.0.0": {
+    "KartriderLibrary/22.3.2.1": {
       "type": "project",
       "path": "../KartriderLibrary/KartriderLibrary.csproj",
       "msbuildProject": "../KartriderLibrary/KartriderLibrary.csproj"
@@ -106,7 +106,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0-windows7.0": [
-      "KartriderLibrary >= 1.0.0",
+      "KartriderLibrary >= 22.3.2.1",
       "Newtonsoft.Json >= 13.0.1",
       "Pfim >= 0.10.2"
     ]
@@ -116,7 +116,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "22.3.1.2",
+    "version": "22.3.2.2",
     "restore": {
       "projectUniqueName": "C:\\Users\\xpoi5\\OneDrive\\SourceCode\\LifeGame\\OpenSourcePool\\Kartrider-File-Reader\\RhoLoader\\RhoLoader.csproj",
       "projectName": "RhoLoader",
@@ -187,7 +187,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
       }
     }
   },

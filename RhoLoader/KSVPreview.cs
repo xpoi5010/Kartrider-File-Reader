@@ -26,6 +26,7 @@ namespace RhoLoader
             infoBox.Items.Add(new ListViewItem(new string[] { "Contest Type", ksvinfo.ContestType.ToString() }));
             infoBox.Items.Add(new ListViewItem(new string[] { "Map Name", ksvinfo.MapName.ToString() }));
             infoBox.Items.Add(new ListViewItem(new string[] { "Description", ksvinfo.Description }));
+            infoBox.Items.Add(new ListViewItem(new string[] { "Record Time", ksvinfo.RecordTime.ToString("yyyy/MM/dd HH:mm") }));
             foreach (PlayerInfo pi in ksvinfo.Players)
             {
                 ListViewItem lvi = new ListViewItem(pi.PlayerName);

@@ -75,7 +75,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.0",
+    "version": "22.3.2.1",
     "restore": {
       "projectUniqueName": "C:\\Users\\xpoi5\\OneDrive\\SourceCode\\LifeGame\\OpenSourcePool\\Kartrider-File-Reader\\KartriderLibrary\\KartriderLibrary.csproj",
       "projectName": "KartriderLibrary",
@@ -139,7 +139,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300-preview.22154.4\\RuntimeIdentifierGraph.json"
       }
     }
   },

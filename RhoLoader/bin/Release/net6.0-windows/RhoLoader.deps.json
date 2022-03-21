@@ -6,9 +6,9 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "RhoLoader/22.3.1.2": {
+      "RhoLoader/22.3.2.2": {
         "dependencies": {
-          "KartriderLibrary": "1.0.0",
+          "KartriderLibrary": "22.3.2.1",
           "Newtonsoft.Json": "13.0.1",
           "Pfim": "0.10.2"
         },
@@ -40,7 +40,7 @@
           }
         }
       },
-      "KartriderLibrary/1.0.0": {
+      "KartriderLibrary/22.3.2.1": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.1",
           "Zlib.Portable.Signed": "1.11.0"
@@ -52,7 +52,7 @@
     }
   },
   "libraries": {
-    "RhoLoader/22.3.1.2": {
+    "RhoLoader/22.3.2.2": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -78,7 +78,7 @@
       "path": "zlib.portable.signed/1.11.0",
       "hashPath": "zlib.portable.signed.1.11.0.nupkg.sha512"
     },
-    "KartriderLibrary/1.0.0": {
+    "KartriderLibrary/22.3.2.1": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

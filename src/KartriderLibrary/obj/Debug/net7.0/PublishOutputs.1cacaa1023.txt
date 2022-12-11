@@ -1,0 +1,5 @@
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\publish\KartriderLibrary.dll
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\publish\KartriderLibrary.deps.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\publish\KartriderLibrary.pdb
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\publish\Newtonsoft.Json.dll
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\publish\Zlib.Portable.dll

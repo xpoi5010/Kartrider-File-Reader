@@ -1,0 +1,17 @@
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\Lang\en-us.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\Lang\zh-cn.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\Lang\zh-tw.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\PRO_VERSION.txt
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\avcodec-58.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\avfilter-7.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\avformat-58.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\avutil-56.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\bass.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\bass_fx.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\bassmix.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\swscale-5.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\SDL2.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\stbi.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\stbi.lib
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\KartriderLibrary.pdb
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\publish\Release\net6.0-windows\win-x64\RhoLoader.exe

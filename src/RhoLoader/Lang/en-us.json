@@ -1,0 +1,172 @@
+{
+  "LanguageName": "en-us",
+  "DisplayName": "English",
+  "Author": "eP Studio",
+  "Font": [ "Segoe UI Variable Display Semib", "Segoe UI" ],
+  "StringBags": [
+    {
+      "Name": "title",
+      "Value": "Rho Loader"
+    },
+    {
+      "Name": "menu_file",
+      "Value": "File"
+    },
+    {
+      "Name": "menu_open",
+      "Value": "Open"
+    },
+    {
+      "Name": "menu_openFolder",
+      "Value": "Open Data Folder"
+    },
+    {
+      "Name": "menu_exit",
+      "Value": "Exit"
+    },
+    {
+      "Name": "menu_extract",
+      "Value": "Extract"
+    },
+    {
+      "Name": "menu_extract_all",
+      "Value": "Extract All"
+    },
+    {
+      "Name": "menu_extract_current",
+      "Value": "Extract This Folder"
+    },
+    {
+      "Name": "menu_Languages",
+      "Value": "Languages"
+    },
+    {
+      "Name": "menu_about",
+      "Value": "About"
+    },
+    {
+      "Name": "col_name",
+      "Value": "Name"
+    },
+    {
+      "Name": "col_size",
+      "Value": "Size"
+    },
+    {
+      "Name": "col_type",
+      "Value": "Type"
+    },
+    {
+      "Name": "listview_item2_file",
+      "Value": "File"
+    },
+    {
+      "Name": "listview_item2_folder",
+      "Value": "Folder"
+    },
+    {
+      "Name": "filemenu_extractfile",
+      "Value": "Extract This File"
+    },
+    {
+      "Name": "filemenu_extract_selected",
+      "Value": "Extract Selected Items"
+    },
+    {
+      "Name": "filemenu_convertPng",
+      "Value": "Convert this file to PNG File"
+    },
+    {
+      "Name": "filemenu_convertXML",
+      "Value": "Convert this file to XML Format File"
+    },
+    {
+      "Name": "ksv_Contesttype",
+      "Value": "Game Type"
+    },
+    {
+      "Name": "ksv_RecordingDate",
+      "Value": "Recording Date"
+    },
+    {
+      "Name": "ksv_Region",
+      "Value": "Region"
+    },
+    {
+      "Name": "ksv_TrackName",
+      "Value": "Track"
+    },
+    {
+      "Name": "ksv_SpeedIndividual",
+      "Value": "Individual Speed Game"
+    },
+    {
+      "Name": "ksv_ItemIndividual",
+      "Value": "Individual Item Game"
+    },
+    {
+      "Name": "ksv_SpeedTeam",
+      "Value": "Team Speed Game"
+    },
+    {
+      "Name": "ksv_ItemTeam",
+      "Value": "Team Item Game"
+    },
+    {
+      "Name": "about_NewVersion",
+      "Value": "A new version has been released. Click to download."
+    },
+    {
+      "Name": "about_NoInternet",
+      "Value": "No network connection. Make sure your computer is connected to the Internet."
+    },
+    {
+      "Name": "about_UpToDate",
+      "Value": "Up to date"
+    },
+    {
+      "Name": "about_Checking",
+      "Value": "Checking the update"
+    },
+    {
+      "Name": "about_UnknowError",
+      "Value": "Unknown Error! Please try again."
+    },
+    {
+      "Name": "msg_PlzOpenRhoFileFirst",
+      "Value": "Before doing this operation, please open Rho File."
+    },
+    {
+      "Name": "msg_cancelExtract",
+      "Value": "Do you want to cancel extract?\r\nPress [Yes] to cancel\r\nPress [No] to continue."
+    },
+    {
+      "Name": "msg_newVersionReleased",
+      "Value": "New Version ({0}) has been released.\r\nDo you want to download it now?"
+    },
+    {
+      "Name": "msg_open_plz",
+      "Value": "You must open a Rho file or open \"Data\" folder before doing this operation."
+    },
+    {
+      "Name": "msg_cancel_operation",
+      "Value": "This operation has been canceled by the user."
+    },
+    {
+      "Name": "msg_level_error",
+      "Value": "Error"
+    },
+    {
+      "Name": "msg_level_warning",
+      "Value": "Warning"
+    },
+    {
+      "Name": "msg_level_info",
+      "Value": "Information"
+    },
+    {
+      "Name": "msg_level_question",
+      "Value": "Question"
+    }
+  ]
+}

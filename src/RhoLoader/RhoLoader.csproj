@@ -1,0 +1,146 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Version>23.1.31.0</Version>
+    <SignAssembly>False</SignAssembly>
+    <AssemblyOriginatorKeyFile>C:\Users\xpoi5\Downloads\epstudio_cc\epstudio_cc.crt</AssemblyOriginatorKeyFile>
+    <StartupObject>RhoLoader.Program</StartupObject>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
+    <BaseOutputPath>..\..\out_pool\RhoLoader</BaseOutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <Optimize>False</Optimize>
+    <FileAlignment>1024</FileAlignment>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DebugType>none</DebugType>
+    <FileAlignment>1024</FileAlignment>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Controls\DarkTreeView\Icons\collapsed.png" />
+    <None Remove="Controls\DarkTreeView\Icons\collapsed_white.png" />
+    <None Remove="Controls\DarkTreeView\Icons\expanded.png" />
+    <None Remove="Controls\DarkTreeView\Icons\expanded_white.png" />
+    <None Remove="Controls\DarkTreeView\Icons\file_image.png" />
+    <None Remove="Controls\DarkTreeView\Icons\file_ksv.png" />
+    <None Remove="Controls\DarkTreeView\Icons\file_music.png" />
+    <None Remove="Controls\DarkTreeView\Icons\file_xml.png" />
+    <None Remove="Controls\DarkTreeView\Icons\folder_close.png" />
+    <None Remove="Controls\DarkTreeView\Icons\folder_open.png" />
+    <None Remove="Controls\DarkTreeView\Icons\object_unknown.png" />
+    <None Remove="Controls\DarkTreeView\Icons\relement_base.png" />
+    <None Remove="Controls\DarkTreeView\Icons\relement_recamera.png" />
+    <None Remove="Resources\baseline_arrow_left_black_18dp.png" />
+    <None Remove="Resources\baseline_folder_black_18dp.png" />
+    <None Remove="Resources\baseline_insert_drive_file_black_18dp.png" />
+    <None Remove="Resources\ic_fluent_arrow_hook_up_left_24_filled.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Pfim" Version="0.10.2" />
+    <PackageReference Include="SharpZipLib" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Dialog\About\AboutMe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialog\PreviewWindow\BmlViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialog\Extract\ExtractFolder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Dialog\PreviewWindow\KSVPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Update="Dialog\PreviewWindow\TgaDDsViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\KartriderLibrary\KartriderLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\collapsed_white.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\expanded.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\collapsed.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\expanded_white.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\file_image.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\file_ksv.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\file_xml.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\folder_close.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\folder_open.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\object_unknown.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\relement_base.png" />
+    <EmbeddedResource Include="Controls\DarkTreeView\Icons\relement_recamera.png" />
+    <Resource Include="Resources\baseline_arrow_left_black_18dp.png" />
+    <Resource Include="Resources\baseline_folder_black_18dp.png" />
+    <Resource Include="Resources\baseline_insert_drive_file_black_18dp.png" />
+	  <Resource Include="Resources\baseline_insert_drive_file_black_18dp.png" />
+    <Resource Include="Resources\ic_fluent_arrow_hook_up_left_24_filled.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Lang\en-us.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Lang\ko-kr.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Lang\zh-bo.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Lang\zh-cn.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Lang\zh-tw.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="Setting.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Update\" />
+  </ItemGroup>
+
+</Project>

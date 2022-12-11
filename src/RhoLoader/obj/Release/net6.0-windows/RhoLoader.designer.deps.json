@@ -1,0 +1,1131 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "FFmpeg.AutoGen/4.3.0.1": {
+        "runtime": {
+          "lib/netstandard2.1/FFmpeg.AutoGen.dll": {
+            "assemblyVersion": "4.3.0.1",
+            "fileVersion": "4.3.0.1"
+          }
+        }
+      },
+      "HidSharpCore/1.2.1.1": {
+        "runtime": {
+          "lib/net5.0/HidSharpCore.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
+      "JetBrains.Annotations/2021.3.0": {
+        "runtime": {
+          "lib/netstandard2.0/JetBrains.Annotations.dll": {
+            "assemblyVersion": "2021.3.0.0",
+            "fileVersion": "2021.3.0.0"
+          }
+        }
+      },
+      "managed-midi/1.9.14": {
+        "runtime": {
+          "lib/netcoreapp2.1/Commons.Music.Midi.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          },
+          "lib/netcoreapp2.1/alsa-sharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "ManagedBass/3.1.0": {
+        "runtime": {
+          "lib/netstandard1.4/ManagedBass.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "ManagedBass.Fx/3.1.0": {
+        "dependencies": {
+          "ManagedBass": "3.1.0",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.4/ManagedBass.Fx.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "ManagedBass.Mix/3.1.0": {
+        "dependencies": {
+          "ManagedBass": "3.1.0",
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.4/ManagedBass.Mix.dll": {
+            "assemblyVersion": "3.1.0.0",
+            "fileVersion": "3.1.0.0"
+          }
+        }
+      },
+      "Markdig/0.23.0": {
+        "runtime": {
+          "lib/netcoreapp3.1/Markdig.dll": {
+            "assemblyVersion": "0.23.0.0",
+            "fileVersion": "0.23.0.0"
+          }
+        }
+      },
+      "Microsoft.Diagnostics.NETCore.Client/0.2.61701": {
+        "runtime": {
+          "lib/netcoreapp2.1/Microsoft.Diagnostics.NETCore.Client.dll": {
+            "assemblyVersion": "0.2.1.11701",
+            "fileVersion": "0.2.1.11701"
+          }
+        }
+      },
+      "Microsoft.Diagnostics.Runtime/2.0.161401": {
+        "dependencies": {
+          "Microsoft.Diagnostics.NETCore.Client": "0.2.61701",
+          "System.Buffers": "4.5.1",
+          "System.Collections.Immutable": "1.7.1",
+          "System.Memory": "4.5.4",
+          "System.Reflection.Metadata": "1.8.1",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0-rc.1.21451.13"
+        },
+        "runtime": {
+          "lib/net5.0/Microsoft.Diagnostics.Runtime.dll": {
+            "assemblyVersion": "2.0.3.11401",
+            "fileVersion": "2.0.3.11401"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection/6.0.0-rc.1.21451.13": {
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0-rc.1.21451.13",
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0-rc.1.21451.13"
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.45113"
+          }
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0-rc.1.21451.13": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.45113"
+          }
+        }
+      },
+      "Microsoft.Extensions.ObjectPool/5.0.11": {
+        "runtime": {
+          "lib/net5.0/Microsoft.Extensions.ObjectPool.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.1121.47605"
+          }
+        }
+      },
+      "Microsoft.NETCore.Platforms/5.0.0": {},
+      "NETStandard.Library/2.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        }
+      },
+      "Newtonsoft.Json/13.0.1": {
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {
+            "assemblyVersion": "13.0.0.0",
+            "fileVersion": "13.0.1.25517"
+          }
+        }
+      },
+      "NuGet.Common/5.11.0": {
+        "dependencies": {
+          "NuGet.Frameworks": "5.11.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NuGet.Common.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.Configuration/5.11.0": {
+        "dependencies": {
+          "NuGet.Common": "5.11.0",
+          "System.Security.Cryptography.ProtectedData": "4.4.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NuGet.Configuration.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.DependencyResolver.Core/5.11.0": {
+        "dependencies": {
+          "NuGet.LibraryModel": "5.11.0",
+          "NuGet.Protocol": "5.11.0"
+        },
+        "runtime": {
+          "lib/net5.0/NuGet.DependencyResolver.Core.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.Frameworks/5.11.0": {
+        "runtime": {
+          "lib/netstandard2.0/NuGet.Frameworks.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.LibraryModel/5.11.0": {
+        "dependencies": {
+          "NuGet.Common": "5.11.0",
+          "NuGet.Versioning": "5.11.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/NuGet.LibraryModel.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.Packaging/5.11.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "NuGet.Configuration": "5.11.0",
+          "NuGet.Versioning": "5.11.0",
+          "System.Security.Cryptography.Cng": "5.0.0",
+          "System.Security.Cryptography.Pkcs": "5.0.0"
+        },
+        "runtime": {
+          "lib/net5.0/NuGet.Packaging.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.ProjectModel/5.11.0": {
+        "dependencies": {
+          "NuGet.DependencyResolver.Core": "5.11.0"
+        },
+        "runtime": {
+          "lib/net5.0/NuGet.ProjectModel.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.Protocol/5.11.0": {
+        "dependencies": {
+          "NuGet.Packaging": "5.11.0"
+        },
+        "runtime": {
+          "lib/net5.0/NuGet.Protocol.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NuGet.Versioning/5.11.0": {
+        "runtime": {
+          "lib/netstandard2.0/NuGet.Versioning.dll": {
+            "assemblyVersion": "5.11.0.10",
+            "fileVersion": "5.11.0.10"
+          }
+        }
+      },
+      "NUnit/3.13.2": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/nunit.framework.dll": {
+            "assemblyVersion": "3.13.2.0",
+            "fileVersion": "3.13.2.0"
+          }
+        }
+      },
+      "OpenTabletDriver/0.6.0.2": {
+        "dependencies": {
+          "HidSharpCore": "1.2.1.1",
+          "Microsoft.Extensions.DependencyInjection": "6.0.0-rc.1.21451.13",
+          "Newtonsoft.Json": "13.0.1",
+          "OpenTabletDriver.Configurations": "0.6.0.2",
+          "OpenTabletDriver.Native": "0.6.0.2",
+          "OpenTabletDriver.Plugin": "0.6.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/OpenTabletDriver.dll": {
+            "assemblyVersion": "0.6.0.2",
+            "fileVersion": "0.6.0.2"
+          }
+        }
+      },
+      "OpenTabletDriver.Configurations/0.6.0.2": {
+        "dependencies": {
+          "Newtonsoft.Json": "13.0.1",
+          "OpenTabletDriver.Plugin": "0.6.0.2"
+        },
+        "runtime": {
+          "lib/net6.0/OpenTabletDriver.Configurations.dll": {
+            "assemblyVersion": "0.6.0.2",
+            "fileVersion": "0.6.0.2"
+          }
+        }
+      },
+      "OpenTabletDriver.Native/0.6.0.2": {
+        "runtime": {
+          "lib/net6.0/OpenTabletDriver.Native.dll": {
+            "assemblyVersion": "0.6.0.2",
+            "fileVersion": "0.6.0.2"
+          }
+        }
+      },
+      "OpenTabletDriver.Plugin/0.6.0.2": {
+        "runtime": {
+          "lib/net6.0/OpenTabletDriver.Plugin.dll": {
+            "assemblyVersion": "0.6.0.2",
+            "fileVersion": "0.6.0.2"
+          }
+        }
+      },
+      "Pfim/0.10.2": {
+        "runtime": {
+          "lib/netstandard2.0/Pfim.dll": {
+            "assemblyVersion": "0.10.2.0",
+            "fileVersion": "0.10.2.0"
+          }
+        }
+      },
+      "ppy.osu.Framework/2022.604.0": {
+        "dependencies": {
+          "FFmpeg.AutoGen": "4.3.0.1",
+          "JetBrains.Annotations": "2021.3.0",
+          "ManagedBass": "3.1.0",
+          "ManagedBass.Fx": "3.1.0",
+          "ManagedBass.Mix": "3.1.0",
+          "Markdig": "0.23.0",
+          "Microsoft.Diagnostics.Runtime": "2.0.161401",
+          "Microsoft.Extensions.ObjectPool": "5.0.11",
+          "NUnit": "3.13.2",
+          "Newtonsoft.Json": "13.0.1",
+          "NuGet.ProjectModel": "5.11.0",
+          "OpenTabletDriver": "0.6.0.2",
+          "SharpFNT": "2.0.0",
+          "SixLabors.ImageSharp": "2.1.0",
+          "StbiSharp": "1.1.0",
+          "managed-midi": "1.9.14",
+          "ppy.SDL2-CS": "1.0.563-alpha",
+          "ppy.osu.Framework.NativeLibs": "2022.525.0",
+          "ppy.osuTK.NS20": "1.0.187"
+        },
+        "runtime": {
+          "lib/net6.0/osu.Framework.dll": {
+            "assemblyVersion": "2022.604.0.0",
+            "fileVersion": "2022.604.0.0"
+          }
+        }
+      },
+      "ppy.osu.Framework.NativeLibs/2022.525.0": {
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libavcodec.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libavfilter.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libavformat.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libavutil.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libbass.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libbass_fx.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libbassmix.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x64/native/libswscale.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x86/native/libbass.so": {
+            "rid": "linux-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x86/native/libbass_fx.so": {
+            "rid": "linux-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x86/native/libbassmix.so": {
+            "rid": "linux-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libavcodec.58.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libavfilter.7.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libavformat.58.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libavutil.56.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libbass.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libbass_fx.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libbassmix.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libswscale.5.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/avcodec-58.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "58.91.100.0"
+          },
+          "runtimes/win-arm64/native/avfilter-7.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "7.85.100.0"
+          },
+          "runtimes/win-arm64/native/avformat-58.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "58.45.100.0"
+          },
+          "runtimes/win-arm64/native/avutil-56.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "56.51.100.0"
+          },
+          "runtimes/win-arm64/native/bass.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "2.4.16.4"
+          },
+          "runtimes/win-arm64/native/bass_fx.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "2.4.12.6"
+          },
+          "runtimes/win-arm64/native/bassmix.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "2.4.10.8"
+          },
+          "runtimes/win-arm64/native/swscale-5.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "5.7.100.0"
+          },
+          "runtimes/win-x64/native/avcodec-58.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "58.91.100.0"
+          },
+          "runtimes/win-x64/native/avfilter-7.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "7.85.100.0"
+          },
+          "runtimes/win-x64/native/avformat-58.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "58.45.100.0"
+          },
+          "runtimes/win-x64/native/avutil-56.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "56.51.100.0"
+          },
+          "runtimes/win-x64/native/bass.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "2.4.16.7"
+          },
+          "runtimes/win-x64/native/bass_fx.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "2.4.12.6"
+          },
+          "runtimes/win-x64/native/bassmix.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "2.4.11.1"
+          },
+          "runtimes/win-x64/native/swscale-5.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "5.7.100.0"
+          },
+          "runtimes/win-x86/native/avcodec-58.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "58.91.100.0"
+          },
+          "runtimes/win-x86/native/avfilter-7.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "7.85.100.0"
+          },
+          "runtimes/win-x86/native/avformat-58.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "58.45.100.0"
+          },
+          "runtimes/win-x86/native/avutil-56.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "56.51.100.0"
+          },
+          "runtimes/win-x86/native/bass.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "2.4.16.7"
+          },
+          "runtimes/win-x86/native/bass_fx.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "2.4.12.6"
+          },
+          "runtimes/win-x86/native/bassmix.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "2.4.11.1"
+          },
+          "runtimes/win-x86/native/swscale-5.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "5.7.100.0"
+          }
+        }
+      },
+      "ppy.osuTK.NS20/1.0.187": {
+        "runtime": {
+          "lib/netstandard2.0/osuTK.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "ppy.SDL2-CS/1.0.563-alpha": {
+        "runtime": {
+          "lib/netstandard2.0/SDL2-CS.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libSDL2.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/linux-x86/native/libSDL2.so": {
+            "rid": "linux-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/libSDL2.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/libSDL2.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/SDL2.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "2.23.0.0"
+          },
+          "runtimes/win-x64/native/SDL2.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "2.23.0.0"
+          },
+          "runtimes/win-x86/native/SDL2.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "2.23.0.0"
+          }
+        }
+      },
+      "SharpFNT/2.0.0": {
+        "dependencies": {
+          "NETStandard.Library": "2.0.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/SharpFNT.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "SixLabors.ImageSharp/2.1.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0-rc.1.21451.13",
+          "System.Text.Encoding.CodePages": "5.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/SixLabors.ImageSharp.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.1.0.0"
+          }
+        }
+      },
+      "StbiSharp/1.1.0": {
+        "runtime": {
+          "lib/netcoreapp3.0/StbiSharp.dll": {
+            "assemblyVersion": "1.1.0.0",
+            "fileVersion": "1.1.0.0"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libstbi.so": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/libstbi.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/stbi.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/stbi.lib": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "System.Buffers/4.5.1": {},
+      "System.Collections.Immutable/1.7.1": {
+        "runtime": {
+          "lib/netstandard2.0/System.Collections.Immutable.dll": {
+            "assemblyVersion": "1.2.5.0",
+            "fileVersion": "4.700.20.21406"
+          }
+        }
+      },
+      "System.Formats.Asn1/5.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Formats.Asn1.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Memory/4.5.4": {},
+      "System.Reflection.Metadata/1.8.1": {
+        "runtime": {
+          "lib/netstandard2.0/System.Reflection.Metadata.dll": {
+            "assemblyVersion": "1.4.5.0",
+            "fileVersion": "4.700.20.21406"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0-rc.1.21451.13": {
+        "runtime": {
+          "lib/net6.0/System.Runtime.CompilerServices.Unsafe.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.45113"
+          }
+        }
+      },
+      "System.Security.Cryptography.Cng/5.0.0": {
+        "dependencies": {
+          "System.Formats.Asn1": "5.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Security.Cryptography.Cng.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp3.0/System.Security.Cryptography.Cng.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Security.Cryptography.Pkcs/5.0.0": {
+        "dependencies": {
+          "System.Formats.Asn1": "5.0.0",
+          "System.Security.Cryptography.Cng": "5.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Security.Cryptography.Pkcs.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp3.0/System.Security.Cryptography.Pkcs.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "System.Security.Cryptography.ProtectedData/4.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netstandard2.0/System.Security.Cryptography.ProtectedData.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.2.0",
+            "fileVersion": "4.6.25519.3"
+          }
+        }
+      },
+      "System.Text.Encoding.CodePages/5.0.0": {
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "5.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/System.Text.Encoding.CodePages.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp2.0/System.Text.Encoding.CodePages.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.0.20.51904"
+          }
+        }
+      },
+      "Zlib.Portable.Signed/1.11.0": {
+        "runtime": {
+          "lib/portable-net4+sl5+wp8+win8+wpa81+MonoTouch+MonoAndroid/Zlib.Portable.dll": {
+            "assemblyVersion": "1.11.0.0",
+            "fileVersion": "1.11.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "FFmpeg.AutoGen/4.3.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-koM5zqdZZHGAVK0faNZgi9HjCrHrMRGaTqmTEbvMSx3YeNIZBd62JQMZjAE0HlQ3NsLnRvXigVJtwRidOnosUw==",
+      "path": "ffmpeg.autogen/4.3.0.1",
+      "hashPath": "ffmpeg.autogen.4.3.0.1.nupkg.sha512"
+    },
+    "HidSharpCore/1.2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NJOXoNiMby/DQn1mttFWp88LXLITs6swXpLtFUFTMTJJEFgCDs0UbcpxH8Oc1N1N/pgduaiG2TC9OYOCEEgv/A==",
+      "path": "hidsharpcore/1.2.1.1",
+      "hashPath": "hidsharpcore.1.2.1.1.nupkg.sha512"
+    },
+    "JetBrains.Annotations/2021.3.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Ddxjs5RRjf+c8m9m++WvhW1lz1bqNhsTjWvCLbQN9bvKbkJeR9MhtfNwKgBRRdG2yLHcXFr5Lf7fsvvkiPaDRg==",
+      "path": "jetbrains.annotations/2021.3.0",
+      "hashPath": "jetbrains.annotations.2021.3.0.nupkg.sha512"
+    },
+    "managed-midi/1.9.14": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-m5hB1cxnSeNMxxbe0Jb6Gm0JmSZbrXINJFyhPXL6P94hdtP/+cCYPEsFiDOH3i0qjGrq4JfU+wSkRfQHFvlsYQ==",
+      "path": "managed-midi/1.9.14",
+      "hashPath": "managed-midi.1.9.14.nupkg.sha512"
+    },
+    "ManagedBass/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-K5Zuo0SGvG1SWG18PCG60mJhZBhDb28Ih3w0qotCClomOdPDTMi7UEafEv+brKopUtMXo8vG+OoGlqMEWJ6i7g==",
+      "path": "managedbass/3.1.0",
+      "hashPath": "managedbass.3.1.0.nupkg.sha512"
+    },
+    "ManagedBass.Fx/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-r9soKHgGnDrkW3w8nj2ykTm5ifVvKrq7ASproWlV7H5/oDHDDQ8e6JFh5egVOIXduhEmdJtMldKX2nWkkjoSfw==",
+      "path": "managedbass.fx/3.1.0",
+      "hashPath": "managedbass.fx.3.1.0.nupkg.sha512"
+    },
+    "ManagedBass.Mix/3.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-01otNn7mwq/49LNxxvE5TywN/g6q0AH3oGsA4jHVRYm3ssRtIHVzmOTWCggfMMWki9WBkuBOm9qE048kpmD16Q==",
+      "path": "managedbass.mix/3.1.0",
+      "hashPath": "managedbass.mix.3.1.0.nupkg.sha512"
+    },
+    "Markdig/0.23.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jPPcnHGSDSedPvwZ6jiMJpvK3iJGA2djU6TFmEr6XK2BiYK1ier2lTHVwDt41XLxDbfGu5Dn42hKDzwqs049PA==",
+      "path": "markdig/0.23.0",
+      "hashPath": "markdig.0.23.0.nupkg.sha512"
+    },
+    "Microsoft.Diagnostics.NETCore.Client/0.2.61701": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/whUqXLkTiUvG+vfSFd77DHHsLZW2HztZt+ACOpuvGyLKoGGN86M8cR1aYfRW6fxXF3SVGMKMswcL485SQEDuQ==",
+      "path": "microsoft.diagnostics.netcore.client/0.2.61701",
+      "hashPath": "microsoft.diagnostics.netcore.client.0.2.61701.nupkg.sha512"
+    },
+    "Microsoft.Diagnostics.Runtime/2.0.161401": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nNmtpo0LC265E66GyoftYZ3TSyptF+i3so/wc9AAtKK0w85Nrkz2EiF0oOzJgBXVw5grrbusxoiPOEpZoVkSSg==",
+      "path": "microsoft.diagnostics.runtime/2.0.161401",
+      "hashPath": "microsoft.diagnostics.runtime.2.0.161401.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection/6.0.0-rc.1.21451.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-AzaHBfCQnUzcb0HkAiHQ+AgmzUyCpgx9Oi9nsFQOadbRnlCZZ5y4ax9iDC87HIXTMDDpnZcgBtNNZGFIJXsfMw==",
+      "path": "microsoft.extensions.dependencyinjection/6.0.0-rc.1.21451.13",
+      "hashPath": "microsoft.extensions.dependencyinjection.6.0.0-rc.1.21451.13.nupkg.sha512"
+    },
+    "Microsoft.Extensions.DependencyInjection.Abstractions/6.0.0-rc.1.21451.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wdfdTQe1RQ2tu+oGqk8xKPir/GDI2hc6CtL+gdQVqQxvDskfWjxvMKKwZUv2WKFdxsvGCQyt6QNBVYjkDSDjzw==",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/6.0.0-rc.1.21451.13",
+      "hashPath": "microsoft.extensions.dependencyinjection.abstractions.6.0.0-rc.1.21451.13.nupkg.sha512"
+    },
+    "Microsoft.Extensions.ObjectPool/5.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wrnbqdJ90oMzaw0kPssjhbP9zQGxU0ch3zS4WTmVy+g/qIRUEyxgOA2jeeNrJilpm1Pz3tHGBU8tvK2GR+dw2A==",
+      "path": "microsoft.extensions.objectpool/5.0.11",
+      "hashPath": "microsoft.extensions.objectpool.5.0.11.nupkg.sha512"
+    },
+    "Microsoft.NETCore.Platforms/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-VyPlqzH2wavqquTcYpkIIAQ6WdenuKoFN0BdYBbCWsclXacSOHNQn66Gt4z5NBqEYW0FAPm5rlvki9ZiCij5xQ==",
+      "path": "microsoft.netcore.platforms/5.0.0",
+      "hashPath": "microsoft.netcore.platforms.5.0.0.nupkg.sha512"
+    },
+    "NETStandard.Library/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7jnbRU+L08FXKMxqUflxEXtVymWvNOrS8yHgu9s6EM8Anr6T/wIX4nZ08j/u3Asz+tCufp3YVwFSEvFTPYmBPA==",
+      "path": "netstandard.library/2.0.0",
+      "hashPath": "netstandard.library.2.0.0.nupkg.sha512"
+    },
+    "Newtonsoft.Json/13.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-ppPFpBcvxdsfUonNcvITKqLl3bqxWbDCZIzDWHzjpdAHRFfZe0Dw9HmA0+za13IdyrgJwpkDTDA9fHaxOrt20A==",
+      "path": "newtonsoft.json/13.0.1",
+      "hashPath": "newtonsoft.json.13.0.1.nupkg.sha512"
+    },
+    "NuGet.Common/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-WCHexQBfSqBDRqP3PSDSUw7YM+PwuvMHGAkT/sXI5UHze4T41yLE+VB/km2Fe0z9y3m2mudcr2djFZezivjMJw==",
+      "path": "nuget.common/5.11.0",
+      "hashPath": "nuget.common.5.11.0.nupkg.sha512"
+    },
+    "NuGet.Configuration/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NqsQe198CTHoo7NMrKQL8utd6n9yVb9CPgJmpyF6kpEsLFo/9r0wqGL3ln8Mtcz8yuJpOPWFQEoOlzDzu3LfUg==",
+      "path": "nuget.configuration/5.11.0",
+      "hashPath": "nuget.configuration.5.11.0.nupkg.sha512"
+    },
+    "NuGet.DependencyResolver.Core/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kkWhU0msuCRyiIJeoL95j6bXUQMc1mTk8wZ3mMxl+0VzOf39eXSObmxKuJ7eh+6zOMQyzd0TAXU5u5aQSxOVSg==",
+      "path": "nuget.dependencyresolver.core/5.11.0",
+      "hashPath": "nuget.dependencyresolver.core.5.11.0.nupkg.sha512"
+    },
+    "NuGet.Frameworks/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eaiXkUjC4NPcquGWzAGMXjuxvLwc6XGKMptSyOGQeT0X70BUZObuybJFZLA0OfTdueLd3US23NBPTBb6iF3V1Q==",
+      "path": "nuget.frameworks/5.11.0",
+      "hashPath": "nuget.frameworks.5.11.0.nupkg.sha512"
+    },
+    "NuGet.LibraryModel/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Iq0tbX3Rsl4837VlWy90fliA7T2+g2FPdz/s/lK6H9g/5RCta/7AZADV0l/A/f0HDCDlMxBN2ha1hsmgxe1sGQ==",
+      "path": "nuget.librarymodel/5.11.0",
+      "hashPath": "nuget.librarymodel.5.11.0.nupkg.sha512"
+    },
+    "NuGet.Packaging/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-knlpQuqTL8BEXUHTdZ9Wlz3pjck5nv0OYsCpSkaQAukl7fFcX4apAs8cwJgxHiEZjfWNG1npZOzpYdHG59v5xQ==",
+      "path": "nuget.packaging/5.11.0",
+      "hashPath": "nuget.packaging.5.11.0.nupkg.sha512"
+    },
+    "NuGet.ProjectModel/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-8q7mAwHHP1/Ua1r3FQDg+kXcFvRgBmCCXQeqTkTVQoO5t3G/AwxzJVt7Jii0eNrM17Wzm975U0gnkNqlp+gdsw==",
+      "path": "nuget.projectmodel/5.11.0",
+      "hashPath": "nuget.projectmodel.5.11.0.nupkg.sha512"
+    },
+    "NuGet.Protocol/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eS/sJLqMzPz6gonD1zaXIcpDME/1DuKqv0Hlag8RuJcboZJliA15qjfg7UvuQB8/ineOleaEvrTzMjpKE0FdbQ==",
+      "path": "nuget.protocol/5.11.0",
+      "hashPath": "nuget.protocol.5.11.0.nupkg.sha512"
+    },
+    "NuGet.Versioning/5.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-mCv/GzvMk5iatWoZY41PoIShEbwVxq9CDCc1fV/uqPFKZ4DD/1JuKZ5AL/FJJRsTanvMR3EOXKYCLdQ7PFYn8Q==",
+      "path": "nuget.versioning/5.11.0",
+      "hashPath": "nuget.versioning.5.11.0.nupkg.sha512"
+    },
+    "NUnit/3.13.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u+fz/lXyR4vlamySNAEMrXvh+GhAQiB6/aVZtU5WjivR5zF26Ui0tfteDtWqT90k9D8y6g8rFKYQC97Z7d195w==",
+      "path": "nunit/3.13.2",
+      "hashPath": "nunit.3.13.2.nupkg.sha512"
+    },
+    "OpenTabletDriver/0.6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dLr2Owi+fPGcOrwTbNMoqG5mcPipXhWeRhkqjpkededmsvLdqQSUA+S6MJibaF/Fifu5JupHkALSUC8yC5K1qg==",
+      "path": "opentabletdriver/0.6.0.2",
+      "hashPath": "opentabletdriver.0.6.0.2.nupkg.sha512"
+    },
+    "OpenTabletDriver.Configurations/0.6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vBmGn5/UWbrrJpcjhM5iEKtePhwM8Is4bJxUpDqzdOYm1uIIQ/P2kvF4hT/woyT+NrPFSbWdN7rWWqIcMv8AdQ==",
+      "path": "opentabletdriver.configurations/0.6.0.2",
+      "hashPath": "opentabletdriver.configurations.0.6.0.2.nupkg.sha512"
+    },
+    "OpenTabletDriver.Native/0.6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gav4iScLJbxeqVX10QMOpArtAKOVy4Ou8qIYDvXcIdeTNbVo8JDaD1zFRVswx14YeC+85Ubw23TZM8aBnvq37Q==",
+      "path": "opentabletdriver.native/0.6.0.2",
+      "hashPath": "opentabletdriver.native.0.6.0.2.nupkg.sha512"
+    },
+    "OpenTabletDriver.Plugin/0.6.0.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Gl/8IQJwL9AXg9B0Hrdkha6U0tyq4t1S59/3uvIyuBswV2y9z0t4tWIc1DxzxBmBp2sJ+lMGDVw/oQrpiO+Jtg==",
+      "path": "opentabletdriver.plugin/0.6.0.2",
+      "hashPath": "opentabletdriver.plugin.0.6.0.2.nupkg.sha512"
+    },
+    "Pfim/0.10.2": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kJr39C0EOy9Mynjf6JvHFC4aXTj6XWCOc4RaO4Hv+K7tOJFNzh71vg4VRTdCynqDZGxPZrDl19hsVqT1H3ll3w==",
+      "path": "pfim/0.10.2",
+      "hashPath": "pfim.0.10.2.nupkg.sha512"
+    },
+    "ppy.osu.Framework/2022.604.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RbpXkPX37N5QYJxGo9xiyKxkYzr4N9yjgxsJmuE4udR3yv53ZMnvMHLfU2XPJp+hqhMqElotMB096l6TsgiHPg==",
+      "path": "ppy.osu.framework/2022.604.0",
+      "hashPath": "ppy.osu.framework.2022.604.0.nupkg.sha512"
+    },
+    "ppy.osu.Framework.NativeLibs/2022.525.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-dfD8RobSU9wkpKLhs6dh3BZUxwvFQkPyyRA5I/ereIV3bqKQ1xWGq9j/3XVBAboQsciIQm2WF1ew86M+scC1Hw==",
+      "path": "ppy.osu.framework.nativelibs/2022.525.0",
+      "hashPath": "ppy.osu.framework.nativelibs.2022.525.0.nupkg.sha512"
+    },
+    "ppy.osuTK.NS20/1.0.187": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-gyidQx5WKFFv1vP3B+HQT+POJwEz+lZCCaJF5f5d6VaoNBMx2tQP1mJh+je9XM0vW91Z38VdApase1uDnsFpEQ==",
+      "path": "ppy.osutk.ns20/1.0.187",
+      "hashPath": "ppy.osutk.ns20.1.0.187.nupkg.sha512"
+    },
+    "ppy.SDL2-CS/1.0.563-alpha": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Yeya/YYeJKjMEnc3BCb+9SM7JEZcQjA+fzMuu7P2oFwiX2BudwkRW9it4LkmypkS76Ds0aQvH4cIm+u7vnuUFQ==",
+      "path": "ppy.sdl2-cs/1.0.563-alpha",
+      "hashPath": "ppy.sdl2-cs.1.0.563-alpha.nupkg.sha512"
+    },
+    "SharpFNT/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-V+3yfhfbncNFZKnqUmUI+zsTI+SMxB47va4NE9Gxs8yfZfbOYI1T/jz99JZ+ZwpJzPryzm7J9cY9RJU3vTHAUA==",
+      "path": "sharpfnt/2.0.0",
+      "hashPath": "sharpfnt.2.0.0.nupkg.sha512"
+    },
+    "SixLabors.ImageSharp/2.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-H8npUDq3VRagzRsJVxaNoUSMmD+kjAs7sR1Ip85eWbN5c0O1medMw/FiQ32dSNfWz/gVrc+xHs3es9SFlAiNBw==",
+      "path": "sixlabors.imagesharp/2.1.0",
+      "hashPath": "sixlabors.imagesharp.2.1.0.nupkg.sha512"
+    },
+    "StbiSharp/1.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4xHXYrSztnfDtDGX/sgbZtOXQ4K+0VSQoRPW6Ts2pWOZgXCEAtn3hc0CwwMMLzBLf8kc9KF/AcanIP3Vqgd0mw==",
+      "path": "stbisharp/1.1.0",
+      "hashPath": "stbisharp.1.1.0.nupkg.sha512"
+    },
+    "System.Buffers/4.5.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Rw7ijyl1qqRS0YQD/WycNst8hUUMgrMH4FCn1nNm27M4VxchZ1js3fVjQaANHO5f3sN4isvP4a+Met9Y4YomAg==",
+      "path": "system.buffers/4.5.1",
+      "hashPath": "system.buffers.4.5.1.nupkg.sha512"
+    },
+    "System.Collections.Immutable/1.7.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-B43Zsz5EfMwyEbnObwRxW5u85fzJma3lrDeGcSAV1qkhSRTNY5uXAByTn9h9ddNdhM+4/YoLc/CI43umjwIl9Q==",
+      "path": "system.collections.immutable/1.7.1",
+      "hashPath": "system.collections.immutable.1.7.1.nupkg.sha512"
+    },
+    "System.Formats.Asn1/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MTvUIktmemNB+El0Fgw9egyqT9AYSIk6DTJeoDSpc3GIHxHCMo8COqkWT1mptX5tZ1SlQ6HJZ0OsSvMth1c12w==",
+      "path": "system.formats.asn1/5.0.0",
+      "hashPath": "system.formats.asn1.5.0.0.nupkg.sha512"
+    },
+    "System.Memory/4.5.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1MbJTHS1lZ4bS4FmsJjnuGJOu88ZzTT2rLvrhW7Ygic+pC0NWA+3hgAen0HRdsocuQXCkUTdFn9yHJJhsijDXw==",
+      "path": "system.memory/4.5.4",
+      "hashPath": "system.memory.4.5.4.nupkg.sha512"
+    },
+    "System.Reflection.Metadata/1.8.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1wrPLtYQFUGTsl9OqPzdzmMRdQvo3PRK38y+4rCHG0f6iyvSYwNXVr0orMvsu2orOIiVbk6MMckINI1g54ZvfA==",
+      "path": "system.reflection.metadata/1.8.1",
+      "hashPath": "system.reflection.metadata.1.8.1.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0-rc.1.21451.13": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-B4MhG+nG2BX3Z0WR6MRG0YHCZKTskVEcP1M2Al3vWmMRgPuZgvAQ/bGP4gZqoVBWxJqzjgK5rs5o6i5XSfg2Jg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0-rc.1.21451.13",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0-rc.1.21451.13.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Cng/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jIMXsKn94T9JY7PvPq/tMfqa6GAaHpElRDpmG+SuL+D3+sTw2M8VhnibKnN8Tq+4JqbPJ/f+BwtLeDMEnzAvRg==",
+      "path": "system.security.cryptography.cng/5.0.0",
+      "hashPath": "system.security.cryptography.cng.5.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.Pkcs/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-9TPLGjBCGKmNvG8pjwPeuYy0SMVmGZRwlTZvyPHDbYv/DRkoeumJdfumaaDNQzVGMEmbWtg07zUpSW9q70IlDQ==",
+      "path": "system.security.cryptography.pkcs/5.0.0",
+      "hashPath": "system.security.cryptography.pkcs.5.0.0.nupkg.sha512"
+    },
+    "System.Security.Cryptography.ProtectedData/4.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-cJV7ScGW7EhatRsjehfvvYVBvtiSMKgN8bOVI0bQhnF5bU7vnHVIsH49Kva7i7GWaWYvmEzkYVk1TC+gZYBEog==",
+      "path": "system.security.cryptography.protecteddata/4.4.0",
+      "hashPath": "system.security.cryptography.protecteddata.4.4.0.nupkg.sha512"
+    },
+    "System.Text.Encoding.CodePages/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NyscU59xX6Uo91qvhOs2Ccho3AR2TnZPomo1Z0K6YpyztBPM/A5VbkzOO19sy3A3i1TtEnTxA7bCe3Us+r5MWg==",
+      "path": "system.text.encoding.codepages/5.0.0",
+      "hashPath": "system.text.encoding.codepages.5.0.0.nupkg.sha512"
+    },
+    "Zlib.Portable.Signed/1.11.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1f4itCxlSBxU8kf85qUmx1+d0iHKLeZK8S7ilb4w0t+uV+/xtOUUVOEAnFMG5uHVBc7L+ycZjWQoA+a1GZKYjg==",
+      "path": "zlib.portable.signed/1.11.0",
+      "hashPath": "zlib.portable.signed.1.11.0.nupkg.sha512"
+    }
+  }
+}

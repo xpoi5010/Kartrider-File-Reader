@@ -1,0 +1,172 @@
+{
+  "LanguageName": "ko-kr",
+  "DisplayName": "한국어",
+  "Author": "moremi-kr, Papago Translator, KartRider String Bag",
+  "Font": [ "Malgun Gothic" ],
+  "StringBags": [
+    {
+      "Name": "title",
+      "Value": "Rho Loader"
+    },
+    {
+      "Name": "menu_file",
+      "Value": "파일"
+    },
+    {
+      "Name": "menu_open",
+      "Value": "열기"
+    },
+    {
+      "Name": "menu_openFolder",
+      "Value": "폴더 열기"
+    },
+    {
+      "Name": "menu_exit",
+      "Value": "나가기"
+    },
+    {
+      "Name": "menu_extract",
+      "Value": "추출하기"
+    },
+    {
+      "Name": "menu_extract_all",
+      "Value": "모두 추출"
+    },
+    {
+      "Name": "menu_extract_current",
+      "Value": "이 폴더 추출하기"
+    },
+    {
+      "Name": "menu_Languages",
+      "Value": "언어"
+    },
+    {
+      "Name": "menu_about",
+      "Value": "소개"
+    },
+    {
+      "Name": "col_name",
+      "Value": "파일 이름"
+    },
+    {
+      "Name": "col_size",
+      "Value": "파일 크기"
+    },
+    {
+      "Name": "col_type",
+      "Value": "타입"
+    },
+    {
+      "Name": "listview_item2_file",
+      "Value": "파일"
+    },
+    {
+      "Name": "listview_item2_folder",
+      "Value": "폴더"
+    },
+    {
+      "Name": "filemenu_extractfile",
+      "Value": "이 파일 추출하기"
+    },
+    {
+      "Name": "filemenu_extract_selected",
+      "Value": "선택한 항목 추출"
+    },
+    {
+      "Name": "filemenu_convertPng",
+      "Value": "이 파일을 Png파일로 추출하기"
+    },
+    {
+      "Name": "filemenu_convertXML",
+      "Value": "이 파일을 XML 형식 파일로 변환"
+    },
+    {
+      "Name": "ksv_Contesttype",
+      "Value": "게임 유형"
+    },
+    {
+      "Name": "ksv_RecordingDate",
+      "Value": "녹화 날짜"
+    },
+    {
+      "Name": "ksv_Region",
+      "Value": "지역"
+    },
+    {
+      "Name": "ksv_TrackName",
+      "Value": "트랙"
+    },
+    {
+      "Name": "ksv_SpeedIndividual",
+      "Value": "스피드 개인전"
+    },
+    {
+      "Name": "ksv_ItemIndividual",
+      "Value": "아이템 개인전"
+    },
+    {
+      "Name": "ksv_SpeedTeam",
+      "Value": "스피드 팀전"
+    },
+    {
+      "Name": "ksv_ItemTeam",
+      "Value": "아이템 팀전"
+    },
+    {
+      "Name": "about_NewVersion",
+      "Value": "새 버전이 출시되었습니다. 다운로드하려면 클릭하십시오."
+    },
+    {
+      "Name": "about_NoInternet",
+      "Value": "네트워크 연결이 없습니다. 컴퓨터가 인터넷에 연결되었는지 확인하십시오."
+    },
+    {
+      "Name": "about_UpToDate",
+      "Value": "벌써 최신 버전이에요"
+    },
+    {
+      "Name": "about_Checking",
+      "Value": "업데이트 확인"
+    },
+    {
+      "Name": "about_UnknowError",
+      "Value": "알 수 없는 오류! 다시 시도하십시오."
+    },
+    {
+      "Name": "msg_PlzOpenRhoFileFirst",
+      "Value": "이 작업을 수행하기 전에 Rho 파일을 여십시오."
+    },
+    {
+      "Name": "msg_cancelExtract",
+      "Value": "내보내기를 취소하시겠습니까?\r\n취소하려면 [예]를 누르십시오.\r\n계속하려면 [아니오]를 누르십시오."
+    },
+    {
+      "Name": "msg_newVersionReleased",
+      "Value": "새 버전({0})이 릴리스되었습니다.\r\n지금 다운로드하시겠습니까?"
+    },
+    {
+      "Name": "msg_open_plz",
+      "Value": "이 작업을 수행하기 전에 Rho 파일을 열거나 \"Data\" 폴더를 열어야 합니다."
+    },
+    {
+      "Name": "msg_cancel_operation",
+      "Value": "사용자가 이 작업을 취소했습니다."
+    },
+    {
+      "Name": "msg_level_error",
+      "Value": "Error"
+    },
+    {
+      "Name": "msg_level_warning",
+      "Value": "Warning"
+    },
+    {
+      "Name": "msg_level_info",
+      "Value": "Information"
+    },
+    {
+      "Name": "msg_level_question",
+      "Value": "Question"
+    }
+  ]
+}

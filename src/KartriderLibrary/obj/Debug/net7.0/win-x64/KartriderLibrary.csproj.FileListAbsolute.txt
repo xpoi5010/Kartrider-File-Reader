@@ -1,0 +1,12 @@
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\win-x64\KartriderLibrary.deps.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\win-x64\KartriderLibrary.dll
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\bin\Debug\net7.0\win-x64\KartriderLibrary.pdb
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\KartriderLibrary.csproj.AssemblyReference.cache
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\KartriderLibrary.GeneratedMSBuildEditorConfig.editorconfig
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\KartriderLibrary.AssemblyInfoInputs.cache
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\KartriderLibrary.AssemblyInfo.cs
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\KartriderLibrary.csproj.CoreCompileInputs.cache
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\KartriderLibrary.dll
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\refint\KartriderLibrary.dll
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\KartriderLibrary.pdb
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\KartriderLibrary\obj\Debug\net7.0\win-x64\ref\KartriderLibrary.dll

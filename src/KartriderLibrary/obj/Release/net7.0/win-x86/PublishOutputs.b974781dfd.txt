@@ -1,0 +1,4 @@
+D:\source_code_bk_\NewRhoReader\KartriderLibrary\bin\Publish\net7.0\x86\KartriderLibrary.dll
+D:\source_code_bk_\NewRhoReader\KartriderLibrary\bin\Publish\net7.0\x86\KartriderLibrary.deps.json
+D:\source_code_bk_\NewRhoReader\KartriderLibrary\bin\Publish\net7.0\x86\Newtonsoft.Json.dll
+D:\source_code_bk_\NewRhoReader\KartriderLibrary\bin\Publish\net7.0\x86\Zlib.Portable.dll

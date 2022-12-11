@@ -1,0 +1,172 @@
+{
+  "LanguageName": "zh-cn",
+  "DisplayName": "简体中文",
+  "Author": ["eP Studio", "yoaan"],
+  "Font": [ "Microsoft YaHei UI" ],
+  "StringBags": [
+    {
+      "Name": "title",
+      "Value": "Rho载入器"
+    },
+    {
+      "Name": "menu_file",
+      "Value": "文件"
+    },
+    {
+      "Name": "menu_open",
+      "Value": "开启"
+    },
+    {
+      "Name": "menu_openFolder",
+      "Value": "开启Data文件夾"
+    },
+    {
+      "Name": "menu_exit",
+      "Value": "离开"
+    },
+    {
+      "Name": "menu_extract",
+      "Value": "导出"
+    },
+    {
+      "Name": "menu_extract_all",
+      "Value": "导出全部文件"
+    },
+    {
+      "Name": "menu_extract_current",
+      "Value": "导出这个文件夹"
+    },
+    {
+      "Name": "menu_Languages",
+      "Value": "语言"
+    },
+    {
+      "Name": "menu_about",
+      "Value": "关于"
+    },
+    {
+      "Name": "col_name",
+      "Value": "名称"
+    },
+    {
+      "Name": "col_size",
+      "Value": "文件大小"
+    },
+    {
+      "Name": "col_type",
+      "Value": "类型"
+    },
+    {
+      "Name": "listview_item2_file",
+      "Value": "文件"
+    },
+    {
+      "Name": "listview_item2_folder",
+      "Value": "文件夹"
+    },
+    {
+      "Name": "filemenu_extract_selected",
+      "Value": "导出所选项目"
+    },
+    {
+      "Name": "filemenu_extractfile",
+      "Value": "导出这个文件"
+    },
+    {
+      "Name": "filemenu_convertPng",
+      "Value": "转换此文件至PNG文件"
+    },
+    {
+      "Name": "filemenu_convertXML",
+      "Value": "转换此文件至XML格式文件"
+    },
+    {
+      "Name": "ksv_Contesttype",
+      "Value": "比赛类型"
+    },
+    {
+      "Name": "ksv_RecordingDate",
+      "Value": "录制日期"
+    },
+    {
+      "Name": "ksv_Region",
+      "Value": "地区"
+    },
+    {
+      "Name": "ksv_TrackName",
+      "Value": "赛道"
+    },
+    {
+      "Name": "ksv_SpeedIndividual",
+      "Value": "个人竞速赛"
+    },
+    {
+      "Name": "ksv_ItemIndividual",
+      "Value": "个人道具赛"
+    },
+    {
+      "Name": "ksv_SpeedTeam",
+      "Value": "组队竞速赛"
+    },
+    {
+      "Name": "ksv_ItemTeam",
+      "Value": "组队道具赛"
+    },
+    {
+      "Name": "about_NewVersion",
+      "Value": "新版本已经发布，点击这里就可以更新了。"
+    },
+    {
+      "Name": "about_NoInternet",
+      "Value": "无网路连线，请确认你的电脑是否已连上网路线。"
+    },
+    {
+      "Name": "about_UpToDate",
+      "Value": "已经是最新版本了"
+    },
+    {
+      "Name": "about_Checking",
+      "Value": "检查更新中..."
+    },
+    {
+      "Name": "about_UnknowError",
+      "Value": "发生错误了，请稍后再试。"
+    },
+    {
+      "Name": "msg_PlzOpenRhoFileFirst",
+      "Value": "请先开启Rho文件，才可进行此操作"
+    },
+    {
+      "Name": "msg_cancelExtract",
+      "Value": "您确定要取消导出吗??\r\n按[是] 以取消。\r\n按[否]以继续。"
+    },
+    {
+      "Name": "msg_newVersionReleased",
+      "Value": "新版本 ({0}) 已发布。\r\n您想要现在下载吗?"
+    },
+    {
+      "Name": "msg_open_plz",
+      "Value": "在执行此操作之前，你必须打开Rho文件或打开Data文件夹。"
+    },
+    {
+      "Name": "msg_cancel_operation",
+      "Value": "使用者取消此操作了。"
+    },
+    {
+      "Name": "msg_level_error",
+      "Value": "Error"
+    },
+    {
+      "Name": "msg_level_warning",
+      "Value": "Warning"
+    },
+    {
+      "Name": "msg_level_info",
+      "Value": "Information"
+    },
+    {
+      "Name": "msg_level_question",
+      "Value": "Question"
+    }
+  ]
+}

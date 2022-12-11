@@ -1,0 +1,172 @@
+{
+  "LanguageName": "zh-tw",
+  "DisplayName": "正體中文",
+  "Author": "eP Studio",
+  "Font": [ "Microsoft JhengHei UI" ],
+  "StringBags": [
+    {
+      "Name": "title",
+      "Value": "Rho載入器"
+    },
+    {
+      "Name": "menu_file",
+      "Value": "檔案"
+    },
+    {
+      "Name": "menu_open",
+      "Value": "開啟"
+    },
+    {
+      "Name": "menu_openFolder",
+      "Value": "開啟整個Data資料夾"
+    },
+    {
+      "Name": "menu_exit",
+      "Value": "離開"
+    },
+    {
+      "Name": "menu_extract",
+      "Value": "匯出"
+    },
+    {
+      "Name": "menu_extract_all",
+      "Value": "匯出全部檔案"
+    },
+    {
+      "Name": "menu_extract_current",
+      "Value": "輸出這個資料夾"
+    },
+    {
+      "Name": "menu_Languages",
+      "Value": "語言"
+    },
+    {
+      "Name": "menu_about",
+      "Value": "關於"
+    },
+    {
+      "Name": "col_name",
+      "Value": "名稱"
+    },
+    {
+      "Name": "col_size",
+      "Value": "檔案大小"
+    },
+    {
+      "Name": "col_type",
+      "Value": "類型"
+    },
+    {
+      "Name": "listview_item2_file",
+      "Value": "檔案"
+    },
+    {
+      "Name": "listview_item2_folder",
+      "Value": "資料夾"
+    },
+    {
+      "Name": "filemenu_extractfile",
+      "Value": "匯出這個文件"
+    },
+    {
+      "Name": "filemenu_extract_selected",
+      "Value": "匯出選取的項目"
+    },
+    {
+      "Name": "filemenu_convertPng",
+      "Value": "轉換此文件至PNG檔案"
+    },
+    {
+      "Name": "filemenu_convertXML",
+      "Value": "轉換此文件至XML檔案"
+    },
+    {
+      "Name": "ksv_Contesttype",
+      "Value": "比賽類型"
+    },
+    {
+      "Name": "ksv_RecordingDate",
+      "Value": "錄製日期"
+    },
+    {
+      "Name": "ksv_Region",
+      "Value": "地區"
+    },
+    {
+      "Name": "ksv_TrackName",
+      "Value": "賽道"
+    },
+    {
+      "Name": "ksv_SpeedIndividual",
+      "Value": "個人競速 "
+    },
+    {
+      "Name": "ksv_ItemIndividual",
+      "Value": "個人道具"
+    },
+    {
+      "Name": "ksv_SpeedTeam",
+      "Value": "團體競速"
+    },
+    {
+      "Name": "ksv_ItemTeam",
+      "Value": "團體道具"
+    },
+    {
+      "Name": "about_NewVersion",
+      "Value": "新版本已經釋出，點此即可下載。"
+    },
+    {
+      "Name": "about_NoInternet",
+      "Value": "無網路連線，請確認你的電腦是否已連線。"
+    },
+    {
+      "Name": "about_UpToDate",
+      "Value": "已經是最新版本了"
+    },
+    {
+      "Name": "about_Checking",
+      "Value": "檢查更新中..."
+    },
+    {
+      "Name": "about_UnknowError",
+      "Value": "發生錯誤，請稍後再試。"
+    },
+    {
+      "Name": "msg_PlzOpenRhoFileFirst",
+      "Value": "請先開啟Rho檔案，方可進行本操作。"
+    },
+    {
+      "Name": "msg_cancelExtract",
+      "Value": "您確定要取消匯出嗎?\r\n按[是] 以取消。\r\n按[否]以繼續。"
+    },
+    {
+      "Name": "msg_newVersionReleased",
+      "Value": "新版本 ({0}) 已發布。\r\n您想要現在下載嗎?"
+    },
+    {
+      "Name": "msg_open_plz",
+      "Value": "在進行此操作前，請先開啟Rho文件或是開啟整個Data資料夾。"
+    },
+    {
+      "Name": "msg_cancel_operation",
+      "Value": "使用者取消此操作了。"
+    },
+    {
+      "Name": "msg_level_error",
+      "Value": "Error"
+    },
+    {
+      "Name": "msg_level_warning",
+      "Value": "Warning"
+    },
+    {
+      "Name": "msg_level_info",
+      "Value": "Information"
+    },
+    {
+      "Name": "msg_level_question",
+      "Value": "Question"
+    }
+  ]
+}

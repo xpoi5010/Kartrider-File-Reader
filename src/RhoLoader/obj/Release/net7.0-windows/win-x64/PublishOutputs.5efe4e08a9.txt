@@ -1,0 +1,7 @@
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\Publish\RhoLoader\Lang\en-us.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\Publish\RhoLoader\Lang\ko-kr.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\Publish\RhoLoader\Lang\zh-bo.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\Publish\RhoLoader\Lang\zh-cn.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\Publish\RhoLoader\Lang\zh-tw.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\Publish\RhoLoader\Setting.json
+D:\source_code_bk_\RhoLoader_OpenSourcePool\src\Publish\RhoLoader\RhoLoader.exe

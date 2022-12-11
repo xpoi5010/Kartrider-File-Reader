@@ -1,0 +1,13 @@
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\Lang\en-us.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\Lang\zh-cn.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\Lang\zh-tw.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\RhoLoader.exe
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\RhoLoader.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\RhoLoader.deps.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\RhoLoader.runtimeconfig.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\RhoLoader.pdb
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\Newtonsoft.Json.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\Pfim.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\Zlib.Portable.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\KartriderLibrary.dll
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net6.0-windows\publish\KartriderLibrary.pdb

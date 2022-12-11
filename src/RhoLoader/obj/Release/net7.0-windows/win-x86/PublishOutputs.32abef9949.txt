@@ -1,0 +1,7 @@
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net7.0-windows\publish\Lang\en-us.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net7.0-windows\publish\Lang\ko-kr.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net7.0-windows\publish\Lang\zh-bo.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net7.0-windows\publish\Lang\zh-cn.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net7.0-windows\publish\Lang\zh-tw.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net7.0-windows\publish\Setting.json
+D:\source_code_bk_\NewRhoReader\RhoLoader\bin\Release\net7.0-windows\publish\RhoLoader.exe

@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\KartriderLibrary\KartLibrary.csproj">
+      <Aliases></Aliases>
+    </ProjectReference>
+    <ProjectReference Include="..\KartCityStudio.Resources\KartCityStudio.Resources.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ppy.osu.Framework" Version="2023.1219.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Graphics\Sprites\" />
+    <Folder Include="Platform\Windows\" />
+  </ItemGroup>
+</Project>

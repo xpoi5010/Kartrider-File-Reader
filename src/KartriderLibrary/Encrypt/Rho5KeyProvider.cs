@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using System.Runtime.Intrinsics.X86;
 
-namespace KartRider.Encrypt
+namespace KartLibrary.Encrypt
 {
     public class Rho5KeyProvider
     {
@@ -477,7 +477,7 @@ namespace KartRider.Encrypt
             }
             return output;
         }
-        private byte[] getInitFileInfoArr(string filename, string anotherData)
+        private byte[] getInitFilesInfoArr(string filename, string anotherData)
         {
             filename = filename.ToLower();
             string newStr = $"{filename}{anotherData}";
@@ -708,9 +708,9 @@ namespace KartRider.Encrypt
             this.curSubPos = 0x10;
             */
         }
-        public void InitFileInfoKey(string filename, string anotherData)
+        public void InitFilesInfoKey(string filename, string anotherData)
         {
-            InitFromKey(getInitFileInfoArr(filename, anotherData));
+            InitFromKey(getInitFilesInfoArr(filename, anotherData));
         }
         private uint getConst03(uint number)
         {

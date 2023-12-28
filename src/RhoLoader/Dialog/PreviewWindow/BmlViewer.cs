@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KartRider.Xml;
+using KartLibrary.Xml;
 using System.IO;
 using System.Diagnostics;
 using RhoLoader.XML;

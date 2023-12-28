@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KartRider.IO
+namespace KartLibrary.IO
 {
     public unsafe class BytesReader
     {

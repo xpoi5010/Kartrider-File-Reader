@@ -18,23 +18,23 @@ namespace RhoLoader.Controls
         public DarkTreeView() : base()
         {
             base.DrawMode = TreeViewDrawMode.OwnerDrawAll;
-            base.DrawNode += DarkTreeView_DrawNode;
-            base.BeforeExpand += DarkTreeView_BeforeExpand;
-            base.BeforeCollapse += DarkTreeView_BeforeCollapse;
-            
-            base.ShowPlusMinus = false;
-            base.ItemHeight = 20;
-            base.FullRowSelect = true;
+            DrawNode += DarkTreeView_DrawNode;
+            BeforeExpand += DarkTreeView_BeforeExpand;
+            BeforeCollapse += DarkTreeView_BeforeCollapse;
+
+            ShowPlusMinus = false;
+            ItemHeight = 20;
+            FullRowSelect = true;
         }
         //Reference from https://stackoverflow.com/questions/10362988/treeview-flickering
         //To solve treeview flickering issue.
         [DllImport("User32.dll")]
-        private static extern IntPtr SendMessage(IntPtr hWnd, int msg, IntPtr wp, IntPtr lp);
+        private static extern nint SendMessage(nint hWnd, int msg, nint wp, nint lp);
         private const int TVM_SETEXTENDEDSTYLE = 0x1100 + 44;
         private const int TVS_EX_DOUBLEBUFFER = 0x0004;
         protected override void OnHandleCreated(EventArgs e)
         {
-            SendMessage(this.Handle, TVM_SETEXTENDEDSTYLE, (IntPtr)TVS_EX_DOUBLEBUFFER, (IntPtr)TVS_EX_DOUBLEBUFFER);
+            SendMessage(Handle, TVM_SETEXTENDEDSTYLE, TVS_EX_DOUBLEBUFFER, TVS_EX_DOUBLEBUFFER);
             base.OnHandleCreated(e);
         }
 
@@ -46,7 +46,7 @@ namespace RhoLoader.Controls
 
         private void DarkTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-            if(!expandByCustom)
+            if (!expandByCustom)
                 e.Cancel = true;
         }
 
@@ -68,10 +68,10 @@ namespace RhoLoader.Controls
             }
             if ((e.State & TreeNodeStates.Selected) != 0)
             {
-                if (this.Focused)
+                if (Focused)
                 {
                     //2B4865
-                    baseGraph.FillRectangle(new SolidBrush(Color.FromArgb(36, 36, 36)), baseRectangle.X , baseRectangle.Y, baseRectangle.Width, baseRectangle.Height);// Border
+                    baseGraph.FillRectangle(new SolidBrush(Color.FromArgb(36, 36, 36)), baseRectangle.X, baseRectangle.Y, baseRectangle.Width, baseRectangle.Height);// Border
                     baseGraph.FillRectangle(new SolidBrush(Color.FromArgb(0x2B, 0x48, 0x65)), baseRectangle.X + 1, baseRectangle.Y + 1, baseRectangle.Width - 2, baseRectangle.Height - 2);// Background
                     strBrush = Brushes.White;
                     whiteIcon = true;
@@ -85,9 +85,9 @@ namespace RhoLoader.Controls
             }
             else
             {
-                baseGraph.FillRectangle(new SolidBrush(this.BackColor), e.Bounds.X , e.Bounds.Y , e.Bounds.Width, e.Bounds.Height);
+                baseGraph.FillRectangle(new SolidBrush(BackColor), e.Bounds.X, e.Bounds.Y, e.Bounds.Width, e.Bounds.Height);
             }
-            if(e.Node.Tag is NodeInfoContainer infoContainer)
+            if (e.Node.Tag is NodeInfoContainer infoContainer)
                 switch (infoContainer.NodeType)
                 {
                     case NodeType.Folder:
@@ -114,8 +114,8 @@ namespace RhoLoader.Controls
                 }
             else
                 DrawNodeIcon(baseGraph, baseX + 38, baseRectangle.Y, "object_unknown.png");
-            baseGraph.DrawString(e.Node.Text, baseTreeView.Font, strBrush, new Point(baseX +60, baseRectangle.Y + 1));
-            if(e.Node.Nodes.Count > 0)
+            baseGraph.DrawString(e.Node.Text, baseTreeView.Font, strBrush, new Point(baseX + 60, baseRectangle.Y + 1));
+            if (e.Node.Nodes.Count > 0)
                 if (e.Node.IsExpanded)
                     DrawExpand(baseGraph, baseIconRange, whiteIcon);
                 else
@@ -125,12 +125,12 @@ namespace RhoLoader.Controls
         private bool expandByCustom = false;
         protected override void OnMouseDown(MouseEventArgs e)
         {
-            TreeNode clickNode = this.GetNodeAt(e.X, e.Y);
+            TreeNode clickNode = GetNodeAt(e.X, e.Y);
             if (clickNode is not null)
             {
                 if (clickNode.Nodes.Count > 0)
                 {
-                    Rectangle baseRange = GetExpandIconRange(clickNode, this.Bounds.X);
+                    Rectangle baseRange = GetExpandIconRange(clickNode, Bounds.X);
                     if (baseRange.Contains(e.X, e.Y))
                     {
                         expandByCustom = true;
@@ -141,13 +141,13 @@ namespace RhoLoader.Controls
                         expandByCustom = false;
                     }
                     else
-                        this.SelectedNode = clickNode;
+                        SelectedNode = clickNode;
                 }
                 else
-                    this.SelectedNode = clickNode;
+                    SelectedNode = clickNode;
             }
             else
-                this.SelectedNode = clickNode;
+                SelectedNode = clickNode;
             base.OnMouseDown(e);
         }
 
@@ -169,7 +169,7 @@ namespace RhoLoader.Controls
             }
         }
 
-        private void DrawCollapsed(Graphics graphics, Rectangle range, bool white=false)
+        private void DrawCollapsed(Graphics graphics, Rectangle range, bool white = false)
         {
             using (Stream stream = LoadResource($"RhoLoader.Controls.DarkTreeView.Icons.collapsed{(white ? "_white" : "")}.png"))
             {
@@ -179,12 +179,12 @@ namespace RhoLoader.Controls
             }
         }
 
-        private void DrawNodeIcon(Graphics graphics, int baseX, int baseY ,string IconName)
+        private void DrawNodeIcon(Graphics graphics, int baseX, int baseY, string IconName)
         {
             using (Stream stream = LoadResource($"RhoLoader.Controls.DarkTreeView.Icons.{IconName}"))
             {
                 Bitmap bmp = new Bitmap(stream);
-                Rectangle range = new Rectangle(baseX + ((18 - bmp.Width)>> 1), baseY + ((this.ItemHeight - bmp.Height) >>1), bmp.Width, 14);
+                Rectangle range = new Rectangle(baseX + (18 - bmp.Width >> 1), baseY + (ItemHeight - bmp.Height >> 1), bmp.Width, 14);
                 graphics.DrawImage(bmp, range);
                 bmp.Dispose();
             }
@@ -193,7 +193,7 @@ namespace RhoLoader.Controls
         private Rectangle GetExpandIconRange(TreeNode node, int offsetX)
         {
             int baseX = node.Level * 18 + node.Bounds.X - (node.Level * 19 + 22);
-            return new Rectangle(baseX + 20, node.Bounds.Y + ((this.ItemHeight - 8) >> 1), 8, 8);
+            return new Rectangle(baseX + 20, node.Bounds.Y + (ItemHeight - 8 >> 1), 8, 8);
         }
     }
 }

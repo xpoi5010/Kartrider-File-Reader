@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KartRider.Encrypt
+namespace KartLibrary.Encrypt
 {
     public enum DecryptStreamSeekMode
     {

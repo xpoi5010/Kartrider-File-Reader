@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ionic.Zlib;
 using System.IO;
-using KartRider.File;
+using KartLibrary.IO;
+using System.Reflection;
+using KartLibrary.File;
 
-namespace KartRider.Encrypt
+namespace KartLibrary.Encrypt
 {
     public static class RhoKey
     {
@@ -158,14 +159,27 @@ namespace KartRider.Encrypt
             return Adler.Adler32(0, stringData, 0, stringData.Length) - 0xa6ee7565;
         }
 
+        public static uint GetJmdKey(string FileName)
+        {
+            byte[] stringData = Encoding.GetEncoding("UTF-16").GetBytes(FileName);
+            return Adler.Adler32(0, stringData, 0, stringData.Length) + 0x3de90dc3;
+        }
+
         public static uint GetBlockFirstKey(uint RhoKey)
         {
             return RhoKey ^ 0x3A9213AC;
         }
 
+
+
         public static uint GetDirectoryDataKey(uint RhoKey)
         {
             return RhoKey + 0x2593A9F1;
+        }
+
+        public static uint GetJmdDirectoryDataKey(uint RhoKey)
+        {
+            return RhoKey - 0x41014EBF;
         }
 
         public static uint GetDataKey(uint RhoKey,RhoFileInfo fileInfo)
@@ -174,6 +188,24 @@ namespace KartRider.Encrypt
             uint key = Adler.Adler32(0, strData, 0, strData.Length);
             key += (uint)fileInfo.ExtNum;
             key += (RhoKey - 0x756DE654);
+            return key;
+        }
+
+        public static uint GetFileKey(uint RhoKey, string fileName, uint extNum)
+        {
+            byte[] strData = Encoding.GetEncoding("UTF-16").GetBytes(fileName);
+            uint key = Adler.Adler32(0, strData, 0, strData.Length);
+            key += extNum;
+            key += (RhoKey - 0x756DE654);
+            return key;
+        }
+
+        public static uint GetJmdDataKey(uint RhoKey, RhoFileInfo fileInfo)
+        {
+            byte[] strData = Encoding.GetEncoding("UTF-16").GetBytes(fileInfo.Name);
+            uint key = Adler.Adler32(0, strData, 0, strData.Length);
+            key += (uint)fileInfo.ExtNum;
+            key += (RhoKey - 0x7E2AF33D);
             return key;
         }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KartRider.File
+namespace KartLibrary.File
 {
     /*
     public class PackedFileStream:Stream

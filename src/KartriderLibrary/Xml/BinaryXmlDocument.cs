@@ -4,14 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using KartRider.IO;
+using KartLibrary.IO;
 using System.Xml;
 
-namespace KartRider.Xml
+namespace KartLibrary.Xml
 {
     public class BinaryXmlDocument
     {
-        public BinaryXmlTag RootTag { get; set; }
+        private BinaryXmlTag _rootTag;
+
+        public BinaryXmlTag RootTag => _rootTag;
+
+        public BinaryXmlDocument()
+        {
+            _rootTag = new BinaryXmlTag();
+        }
 
         public void Read(Encoding encoding,byte[] array)
         {
@@ -19,23 +26,33 @@ namespace KartRider.Xml
             using(MemoryStream ms = new MemoryStream(array))
             {
                 BinaryReader br = new BinaryReader(ms);
-                RootTag = br.ReadBinaryXmlTag(encoding);
+                _rootTag = br.ReadBinaryXmlTag(encoding);
             }
         }
 
         public void ReadFromXml(string XML)
         {
-            XmlDocument xd = new XmlDocument();
-            xd.LoadXml(XML);
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.LoadXml(XML);
+            if (xmlDoc.ChildNodes.Count < 1)
+                throw new Exception("there are no any nodes in this XML document.");
+            if (xmlDoc.ChildNodes.Count > 1)
+                throw new Exception("there are more than one root nodes in this XML document.");
+            _rootTag = (BinaryXmlTag)(xmlDoc.ChildNodes[0] ?? throw new Exception(""));
         }
+
         public void ReadFromXml(byte[] EncodedXML)
         {
-            XmlDocument xd = new XmlDocument();
+            XmlDocument xmlDoc = new XmlDocument();
             using(MemoryStream ms = new MemoryStream(EncodedXML))
             {
-                xd.Load(ms);
+                xmlDoc.Load(ms);
+                if (xmlDoc.ChildNodes.Count < 1)
+                    throw new Exception("there are no any nodes in this XML document.");
+                if (xmlDoc.ChildNodes.Count > 1)
+                    throw new Exception("there are more than one root nodes in this XML document.");
+                _rootTag = (BinaryXmlTag)(xmlDoc.ChildNodes[0] ?? throw new Exception(""));
             }
-            
         }
     }
 }

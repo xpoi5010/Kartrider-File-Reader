@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using KartLibrary.Text;
 
-namespace KartRider.Text
+namespace RhoLoader.Text
 {
     public class RichTextFormater
     {
@@ -63,18 +64,18 @@ namespace KartRider.Text
         private string escapeNonAsciiChar(string input)
         {
             StringBuilder sb = new StringBuilder();
-            foreach(char c in input)
+            foreach (char c in input)
             {
-                if (Char.IsAscii(c))
+                if (char.IsAscii(c))
                 {
                     sb.Append(c);
                 }
                 else
                 {
                     byte[] utf8_converted = Encoding.UTF8.GetBytes(new char[] { c });
-                    foreach(byte b in utf8_converted)
+                    foreach (byte b in utf8_converted)
                     {
-                        sb.Append($@"\'{Convert.ToString(b,16).PadLeft(2,'0')}");
+                        sb.Append($@"\'{Convert.ToString(b, 16).PadLeft(2, '0')}");
                     }
                 }
             }
@@ -82,7 +83,7 @@ namespace KartRider.Text
         }
         public enum FormatTextCommand
         {
-            EscapeText,EscapeArgument,NormalText,PaddingState
+            EscapeText, EscapeArgument, NormalText, PaddingState
         }
     }
 }

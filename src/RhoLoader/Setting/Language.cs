@@ -9,7 +9,7 @@ using System.Xml.Linq;
 using Newtonsoft.Json;
 using System.Text.Json.Nodes;
 
-namespace RhoLoader
+namespace RhoLoader.Setting
 {
     public static class LanguageManager
     {
@@ -25,8 +25,8 @@ namespace RhoLoader
         {
             return langs.ToArray();
         }
-        
-        public static bool SetLanguage(string DisplayName = "",string LanguageName = "")
+
+        public static bool SetLanguage(string DisplayName = "", string LanguageName = "")
         {
             Predicate<Language> compareFunc;
             if (DisplayName != "" && LanguageName != "")
@@ -50,14 +50,14 @@ namespace RhoLoader
                 return null;
             return langs.Find(compareFunc);
         }
-        
+
         public static void LoadLang()
         {
             DirectoryInfo di = new DirectoryInfo("lang\\");
             if (!di.Exists)
                 return;
             FileInfo[] fis = di.GetFiles();
-            foreach(FileInfo fi in fis)
+            foreach (FileInfo fi in fis)
             {
                 if (fi.Extension != ".json")
                     continue;
@@ -86,12 +86,12 @@ namespace RhoLoader
         }
 
 
-        
+
         private static string sb(string name)
         {
             if (nowLang is null)
                 return $"!sb({name})";
-            if(!nowLang.ContainStringBag(name))
+            if (!nowLang.ContainStringBag(name))
                 return $"!sb({name})";
             return nowLang.GetStringBag(name);
         }
@@ -120,7 +120,7 @@ namespace RhoLoader
         public string DisplayName = "";
 
         public string[] Font = new string[0];
-        
+
         public StringBag[] StringBags;
 
         public bool ContainStringBag(string Name)
@@ -139,7 +139,7 @@ namespace RhoLoader
         public string GetFontName()
         {
             string outFont = "";
-            foreach(string sub_font in Font)
+            foreach (string sub_font in Font)
             {
                 try
                 {
@@ -157,7 +157,7 @@ namespace RhoLoader
 
         public Font GetLangFontWithBase(Font base_font)
         {
-            string Font_name =this.GetFontName();
+            string Font_name = GetFontName();
             if (Font_name == "")
                 return base_font;
             FontFamily fm = new FontFamily(Font_name);

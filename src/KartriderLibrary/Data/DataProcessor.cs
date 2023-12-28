@@ -3,19 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Ionic.Zlib;
 using System.IO;
-using KartRider.Encrypt;
+using KartLibrary.Encrypt;
 using System.Xml.Linq;
+using KartLibrary.IO;
+using System.IO.Compression;
 
-namespace KartRider
+namespace KartLibrary.Data
 {
     // KR is means "KartRider and Raycity".
     public static class DataProcessor
     {
         public static byte[] EncodeKRData(byte[] Data, bool Encrypted, bool Compressed, uint EncryptKey = 0)
         {
-            using(MemoryStream ms = new MemoryStream(Data.Length))
+            using (MemoryStream ms = new MemoryStream(Data.Length))
             {
                 BinaryWriter bw = new BinaryWriter(ms);
                 long initialPos = bw.BaseStream.Position;
@@ -26,12 +27,11 @@ namespace KartRider
                 byte[] processedData = Data;
                 if (Compressed)
                 {
-                    using (MemoryStream mss = new MemoryStream(processedData))
+                    using (MemoryStream mss = new MemoryStream())
                     {
-                        processedData = new byte[DecompressSize];
-                        ZlibStream zs = new ZlibStream(mss, Ionic.Zlib.CompressionMode.Compress);
-                        zs.Read(processedData, 0, processedData.Length);
-                        Array.Resize(ref processedData, (int)zs.TotalOut);
+                        ZLibStream zs = new ZLibStream(mss, CompressionMode.Compress);
+                        zs.Write(processedData, 0, processedData.Length);
+                        processedData = ms.ToArray();
                     }
                 }
                 if (Encrypted)
@@ -75,7 +75,7 @@ namespace KartRider
                     using (MemoryStream mss = new MemoryStream(processedData))
                     {
                         processedData = new byte[DecompressSize];
-                        ZlibStream zs = new ZlibStream(mss, Ionic.Zlib.CompressionMode.Decompress);
+                        ZLibStream zs = new ZLibStream(mss, CompressionMode.Decompress);
                         zs.Read(processedData, 0, processedData.Length);
                     }
                 }
@@ -87,7 +87,7 @@ namespace KartRider
         }
 
         // Extensions
-        public static byte[] ReadKRData(this BinaryReader br,int TotalLength)
+        public static byte[] ReadKRData(this BinaryReader br, int TotalLength)
         {
             long initialPos = br.BaseStream.Position;
             byte checkCode = br.ReadByte();
@@ -110,7 +110,7 @@ namespace KartRider
                 using (MemoryStream ms = new MemoryStream(processedData))
                 {
                     processedData = new byte[DecompressSize];
-                    ZlibStream zs = new ZlibStream(ms, Ionic.Zlib.CompressionMode.Decompress);
+                    Ionic.Zlib.ZlibStream zs = new Ionic.Zlib.ZlibStream(ms, Ionic.Zlib.CompressionMode.Decompress);
                     zs.Read(processedData, 0, processedData.Length);
                 }
             }
@@ -120,7 +120,7 @@ namespace KartRider
             return processedData;
         }
 
-        public static int WriteKRData(this BinaryWriter bw,byte[] Data,bool Encrypted,bool Compressed,uint EncryptKey = 0)
+        public static int WriteKRData(this BinaryWriter bw, byte[] Data, bool Encrypted, bool Compressed, uint EncryptKey = 0)
         {
             long initialPos = bw.BaseStream.Position;
             const byte checkCode = 0x53;
@@ -130,12 +130,11 @@ namespace KartRider
             byte[] processedData = Data;
             if (Compressed)
             {
-                using (MemoryStream ms = new MemoryStream(processedData))
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    processedData = new byte[DecompressSize];
-                    ZlibStream zs = new ZlibStream(ms, Ionic.Zlib.CompressionMode.Compress);
-                    zs.Read(processedData, 0, processedData.Length);
-                    Array.Resize(ref processedData, (int)zs.TotalOut);
+                    ZLibStream zs = new ZLibStream(ms, CompressionMode.Compress);
+                    zs.Write(processedData, 0, processedData.Length);
+                    processedData = ms.ToArray();
                 }
             }
             if (Encrypted)

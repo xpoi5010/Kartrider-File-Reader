@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 
-namespace KartRider.Encrypt
+namespace KartLibrary.Encrypt
 {
     public class RhoDecryptStream : Stream
     {

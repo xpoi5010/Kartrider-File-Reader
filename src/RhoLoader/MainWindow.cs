@@ -10,24 +10,24 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
 using System.Resources;
-
-using KartRider.File;
-using KartRider.Xml;
-using KartRider.IO;
+using KartLibrary.Xml;
+using KartLibrary.IO;
+using KartLibrary.File;
 
 using RhoLoader.PreviewWindow;
-using RhoLoader.Controls;
 using RhoLoader.Setting;
 using System.Reflection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Security.Cryptography;
+
+using RhoLoader.Controls;
 
 namespace RhoLoader
 {
     public partial class MainWindow : Form
     {
         private SettingLoader BaseSettingLoader = new SettingLoader();
-        
+
         private PackFolderManager BaseFolderManager = new PackFolderManager();
 
         private PackFolderInfo _root_folder;
@@ -58,6 +58,7 @@ namespace RhoLoader
             this.menu.Text = ((string)this.menu.Tag).GetStringBag();
             this.menu_file.Text = ((string)this.menu_file.Tag).GetStringBag();
             this.menu_file_open.Text = ((string)this.menu_file_open.Tag).GetStringBag();
+            this.menu_file_openFiles.Text = ((string)this.menu_file_openFiles.Tag).GetStringBag();
             this.menu_file_openFolder.Text = ((string)this.menu_file_openFolder.Tag).GetStringBag();
             this.menu_file_exit.Text = ((string)this.menu_file_exit.Tag).GetStringBag();
             this.menu_extract.Text = ((string)this.menu_extract.Tag).GetStringBag();
@@ -101,6 +102,7 @@ namespace RhoLoader
             this.menu.Font = LanguageManager.GetLangFontWithBase(this.menu.Font);
             this.menu_file.Font = LanguageManager.GetLangFontWithBase(this.menu_file.Font);
             this.menu_file_open.Font = LanguageManager.GetLangFontWithBase(this.menu_file_open.Font);
+            this.menu_file_openFiles.Font = LanguageManager.GetLangFontWithBase(this.menu_file_openFiles.Font);
             this.menu_file_openFolder.Font = LanguageManager.GetLangFontWithBase(this.menu_file_openFolder.Font);
             this.menu_file_exit.Font = LanguageManager.GetLangFontWithBase(this.menu_file_exit.Font);
             this.menu_extract.Font = LanguageManager.GetLangFontWithBase(this.menu_extract.Font);
@@ -147,7 +149,7 @@ namespace RhoLoader
                 else
                 {
                     CloseCurrentFile();
-                    BaseFolderManager.Initization($"{fbd.SelectedPath}\\aaa.pk");
+                    BaseFolderManager.OpenDataFolder($"{fbd.SelectedPath}\\aaa.pk");
                     Queue<PackFolderInfo> folderQueue = new Queue<PackFolderInfo>();
                     Queue<TreeNode> nodeQueue = new Queue<TreeNode>();
                     PackFolderInfo[] rootFolders = BaseFolderManager.GetDirectories("");
@@ -178,7 +180,7 @@ namespace RhoLoader
                             nodeQueue.Enqueue(subnode);
                         }
                     }
-                    _cur_folder = _root_folder =  BaseFolderManager.GetRootFolder();
+                    _cur_folder = _root_folder = BaseFolderManager.GetRootFolder();
                     //PathStack.Push("");
                     UpdateUIFolder();
                 }
@@ -186,7 +188,8 @@ namespace RhoLoader
         }
         private void action_open(object sender, EventArgs e)
         {
-            if(dialog_singleFile.ShowDialog() == DialogResult.OK)
+            dialog_multiFile.InitialDirectory = dialog_singleFile.InitialDirectory;
+            if (dialog_singleFile.ShowDialog() == DialogResult.OK)
             {
                 CloseCurrentFile();
                 BaseFolderManager.OpenSingleFile(dialog_singleFile.FileName);
@@ -225,11 +228,53 @@ namespace RhoLoader
                 UpdateUIFolder();
             }
         }
+        private void action_open_files(object sender, EventArgs e)
+        {
+            dialog_singleFile.InitialDirectory = dialog_multiFile.InitialDirectory;
+            if (dialog_multiFile.ShowDialog() == DialogResult.OK)
+            {
+                CloseCurrentFile();
+                BaseFolderManager.OpenMultipleFiles(dialog_multiFile.FileNames);
+                Queue<PackFolderInfo> folderQueue = new Queue<PackFolderInfo>();
+                Queue<TreeNode> nodeQueue = new Queue<TreeNode>();
+                PackFolderInfo[] rootFolders = BaseFolderManager.GetDirectories("");
+                foreach (PackFolderInfo folder in rootFolders)
+                {
+                    folderQueue.Enqueue(folder);
+                    TreeNode rootNode = new TreeNode()
+                    {
+                        Text = folder.FolderName,
+                        Tag = new NodeInfoContainer(NodeType.Folder, folder)
+                    };
+                    nodeQueue.Enqueue(rootNode);
+                    treeview_explorer.Nodes.Add(rootNode);
+                }
+                while (folderQueue.Count > 0 && nodeQueue.Count > 0)
+                {
+                    TreeNode node = nodeQueue.Dequeue();
+                    PackFolderInfo packFolderInfo = folderQueue.Dequeue();
+                    foreach (PackFolderInfo folder in packFolderInfo.GetFoldersInfo())
+                    {
+                        TreeNode subnode = new TreeNode()
+                        {
+                            Text = folder.FolderName,
+                            Tag = new NodeInfoContainer(NodeType.Folder, folder)
+                        };
+                        node.Nodes.Add(subnode);
+                        folderQueue.Enqueue(folder);
+                        nodeQueue.Enqueue(subnode);
+                    }
+                }
+                _cur_folder = _root_folder = BaseFolderManager.GetRootFolder();
+                //PathStack.Push(rootFolders[0].FullName);
+                UpdateUIFolder();
+            }
+        }
         private void action_aboutWindow(object sender, EventArgs e)
         {
             AboutMe aboutDialog = new AboutMe();
             aboutDialog.ShowDialog();
-        } 
+        }
         private void action_exit(object sender, EventArgs e)
         {
             Application.Exit();
@@ -260,18 +305,18 @@ namespace RhoLoader
             if (e.Button != MouseButtons.Left || listview_main.SelectedItems.Count == 0)
                 return;
             ListViewItem sel_item = listview_main.SelectedItems[0];
-            if(sel_item.Tag is PackFileInfo sel_file)
+            if (sel_item.Tag is PackFileInfo sel_file)
             {
                 string FileName = sel_item.Text;
                 string ext = sel_file.FullName[^3..^0];
-                if(ext == "dds" || ext == "tga")
+                if (ext == "dds" || ext == "tga")
                 {
                     TgaDDsViewer tdv = new TgaDDsViewer();
                     tdv.Data = sel_file.GetData();
                     tdv.Type = ext == "dds" ? TgaDDsViewer.FileType.dds : ext == "tga" ? TgaDDsViewer.FileType.tga : throw new Exception();
                     tdv.ShowBox();
                 }
-                else if(ext == "bml")
+                else if (ext == "bml")
                 {
                     byte[] bmlData = sel_file.GetData();
                     bmlViewer bv = new bmlViewer(bmlData, sel_file.FullName);
@@ -285,10 +330,10 @@ namespace RhoLoader
                         "ko-kr" => "kr",
                         "zh-cn" => "cn",
                         "zh-tw" => "tw",
-                        _=> "kr"
+                        _ => "kr"
                     };
                     PackFileInfo? track_info = BaseFolderManager.GetFile($"track_/common/trackLocale@{region_str}.bml");
-                    if(track_info is not null)
+                    if (track_info is not null)
                     {
                         byte[] data = track_info.GetData();
                         BinaryXmlDocument bmlDoc = new BinaryXmlDocument();
@@ -319,7 +364,7 @@ namespace RhoLoader
                     ps.Start();
                 }
             }
-            else if(sel_item.Tag is PackFolderInfo sel_folder)
+            else if (sel_item.Tag is PackFolderInfo sel_folder)
             {
                 _cur_folder = sel_folder;
                 UpdateUIFolder();
@@ -327,7 +372,7 @@ namespace RhoLoader
         }
         private void action_back(object sender, EventArgs e)
         {
-            if(_cur_folder != _root_folder)
+            if (_cur_folder != _root_folder)
             {
                 _cur_folder = _cur_folder.ParentFolder == null ? _root_folder : _cur_folder.ParentFolder;
                 UpdateUIFolder();
@@ -494,7 +539,7 @@ namespace RhoLoader
         }
         private void UpdateUIFolder()
         {
-            if(_cur_folder is null)
+            if (_cur_folder is null)
             {
                 return;
             }

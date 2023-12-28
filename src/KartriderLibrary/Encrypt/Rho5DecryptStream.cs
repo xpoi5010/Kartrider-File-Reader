@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace KartRider.Encrypt
+namespace KartLibrary.Encrypt
 {
     public class Rho5DecryptStream : Stream
     {
@@ -64,16 +64,21 @@ namespace KartRider.Encrypt
 
         public override int Read(byte[] buffer, int offset, int count)
         {
-            for(int i = 0; i < count; i++)
+            int readCount = count;
+            int writePos = offset;
+            while(readCount > 0)
             {
                 if (bufPos >= bufferCount)
                 {
                     bool result = refreshBuffer();
                     if (!result)
-                        return i;
+                        return count - readCount;
                 }
-                buffer[i] = this.Buffer[bufPos];
-                bufPos++;
+                int copyLen = Math.Min(bufferCount - bufPos, readCount);
+                Array.Copy(Buffer, bufPos, buffer, writePos, copyLen);
+                bufPos += copyLen;
+                writePos += copyLen;
+                readCount -= copyLen;
             }
             return count;
         }
@@ -123,9 +128,9 @@ namespace KartRider.Encrypt
             KeyProvider.InitHeaderKey(fileName, anotherData);
         }
 
-        public void SetToFileInfoKey(string fileName, string anotherData)
+        public void SetToFilesInfoKey(string fileName, string anotherData)
         {
-            KeyProvider.InitFileInfoKey(fileName, anotherData);
+            KeyProvider.InitFilesInfoKey(fileName, anotherData);
         }
 
         ~Rho5DecryptStream()

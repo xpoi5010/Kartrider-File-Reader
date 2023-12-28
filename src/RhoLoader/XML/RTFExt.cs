@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using KartRider.Xml;
-using KartRider.Text;
+using KartLibrary.Xml;
+using KartLibrary.Text;
+using RhoLoader.Text;
 
 namespace RhoLoader.XML
 {
@@ -23,7 +24,7 @@ namespace RhoLoader.XML
         {
             bool HaveText = bxt.Text != null && bxt.Text != "";
             bool HaveAttributes = bxt.Attributes.Count > 0;
-            bool HaveSubTag = bxt.SubTags.Count > 0;
+            bool HaveSubTag = bxt.Children.Count > 0;
             string Start = "";
             string Att = "";
             string End = "";
@@ -57,7 +58,7 @@ namespace RhoLoader.XML
             else
             {
                 formater.AddString(nowLevel, TextAlign.Top, $"{Start}\\cf3 {bxt.Text.Replace("\\", "\\\\").Replace("\"", "&quot;") ?? ""}");
-                foreach (BinaryXmlTag sub in bxt.SubTags)
+                foreach (BinaryXmlTag sub in bxt.Children)
                 {
                     sub.ApplyToRichText(formater, nowLevel + 1);
                 }

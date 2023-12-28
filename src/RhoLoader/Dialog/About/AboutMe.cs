@@ -14,6 +14,7 @@ using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Linq;
 using System.Diagnostics;
 using RhoLoader.Update;
+using RhoLoader.Setting;
 
 namespace RhoLoader
 {

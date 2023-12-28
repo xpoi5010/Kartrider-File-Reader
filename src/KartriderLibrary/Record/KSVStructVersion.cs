@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KartLibrary.IO;
 using System.Threading.Tasks;
-using Ionic.Zlib;
 
-namespace KartRider.Record
+namespace KartLibrary.Record
 {
     public static class KSVStructVersion
     {

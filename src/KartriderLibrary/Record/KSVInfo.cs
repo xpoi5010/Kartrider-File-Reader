@@ -1,17 +1,18 @@
-﻿using System;
+﻿using KartLibrary.Consts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KartRider.Record
+namespace KartLibrary.Record
 {
     public class KSVInfo
     {
 
         public int RecordHeaderVersion { get; set; }
         public string RecordTitle { get; set; } = "";
-        public RegionCode RegionCode { get; set; }
+        public CountryCode RegionCode { get; set; }
         public byte Unknown1_1 { get; set; }
         public ContestType ContestType { get; set; } //byte
         public uint PlayerNameHash { get; set; }

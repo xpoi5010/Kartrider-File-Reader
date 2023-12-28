@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using KartRider.Xml;
-using KartRider.Record;
-using Ionic.Zlib;
+using KartLibrary.Xml;
+using KartLibrary.Record;
 
-namespace KartRider.IO
+namespace KartLibrary.IO
 {
     public static class BinaryWriterExt
     {
@@ -22,6 +21,22 @@ namespace KartRider.IO
         {
             br.WriteString(encoding, Key);
             br.WriteString(encoding,Value);
+        }
+
+        public static void WriteNullTerminatedText(this BinaryWriter br, string text, bool wideString)
+        {
+            if (!wideString)
+            {
+                byte[] encData = Encoding.ASCII.GetBytes(text);
+                br.Write(encData);
+                br.Write((byte)0x00);
+            }
+            else
+            {
+                byte[] encData = Encoding.Unicode.GetBytes(text);
+                br.Write(encData);
+                br.Write((short)0x00);
+            }
         }
     }
 

@@ -2,15 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using KartRider.Xml;
-using KartRider.Record;
-using Ionic.Zlib;
+using KartLibrary.Xml;
+using KartLibrary.Record;
+using KartLibrary.Consts;
+using System.Numerics;
+using KartLibrary.Game.Engine;
 
-namespace KartRider.IO
+namespace KartLibrary.IO
 {
     public static class BinaryReaderExt
     {
-        public static string ReadText(this BinaryReader br,Encoding encoding,int Count)
+        public static string ReadText(this BinaryReader reader)
+        {
+            int count = reader.ReadInt32() << 1;
+            byte[] data = reader.ReadBytes(count);
+            return Encoding.Unicode.GetString(data);
+        }
+
+        public static string ReadText(this BinaryReader br, Encoding encoding, int Count)
         {
             byte[] data = br.ReadBytes(Count);
             return encoding.GetString(data);
@@ -32,12 +41,61 @@ namespace KartRider.IO
             //Attributes
             int attCount = br.ReadInt32();
             for (int i = 0; i < attCount; i++)
-                tag.Attributes.Add(br.ReadText(encoding), br.ReadText(encoding));
+                tag.SetAttribute(br.ReadText(encoding), br.ReadText(encoding));
             //SubTags
             int SubCount = br.ReadInt32();
             for (int i = 0; i < SubCount; i++)
-                tag.SubTags.Add(br.ReadBinaryXmlTag(encoding));
+                tag.Children.Add(br.ReadBinaryXmlTag(encoding));
             return tag;
+        }
+
+        public static string ReadNullTerminatedText(this BinaryReader br, bool wideString)
+        {
+            StringBuilder stringBuilder = new StringBuilder(16);
+            if (wideString)
+            {
+                char ch;
+                while((ch = (char)br.ReadInt16()) != '\0')
+                    stringBuilder.Append(ch);
+            }
+            else
+            {
+                char ch;
+                while ((ch = (char)br.ReadByte()) != '\0')
+                    stringBuilder.Append(ch);
+            }
+            return stringBuilder.ToString();
+        }
+
+        public static Vector2 ReadVector2(this BinaryReader br)
+        {
+            float x = br.ReadSingle();
+            float y = br.ReadSingle();
+            return new Vector2(x, y);
+        }
+
+        public static Vector3 ReadVector3(this BinaryReader br)
+        {
+            float x = br.ReadSingle();
+            float y = br.ReadSingle();
+            float z = br.ReadSingle();
+            return new Vector3(x, y, z);
+        }
+
+        public static Vector4 ReadVector4(this BinaryReader br)
+        {
+            float x = br.ReadSingle();
+            float y = br.ReadSingle();
+            float z = br.ReadSingle();
+            float w = br.ReadSingle();
+            return new Vector4(x, y, z, w);
+        }
+
+        public static BoundingBox ReadBoundBox(this BinaryReader br)
+        {
+            Vector3 minPos = br.ReadVector3();
+            Vector3 maxPos = br.ReadVector3();
+            return new BoundingBox(minPos, maxPos);
         }
     }
 
@@ -65,7 +123,7 @@ namespace KartRider.IO
             uint headerClassIdentifier = br.ReadUInt32();
             ki.RecordHeaderVersion = KSVStructVersion.GetHeaderVersion(headerClassIdentifier);
             ki.RecordTitle = br.ReadKRString();
-            ki.RegionCode = (RegionCode)br.ReadInt16();
+            ki.RegionCode = (CountryCode)br.ReadInt16();
             ki.Unknown1_1 = br.ReadByte();
             ki.ContestType = (ContestType)br.ReadByte();
             ki.PlayerNameHash = br.ReadUInt32();
@@ -172,4 +230,109 @@ namespace KartRider.IO
             return rs;
         }
     }
+
+    public static class KartObjectExt
+    {
+        public static KartObject? ReadKartObject(this BinaryReader br, Dictionary<short, KartObject>? decodedObjectMap, Dictionary<short, object>? decodedFieldMap)
+        {
+            uint classStamp;
+            KartObject output;
+            if (decodedObjectMap is not null)
+            {
+                int isnull = br.ReadUInt16();
+                if(isnull == 0x47BB)
+                {
+                    short objIndex = br.ReadInt16();
+                    if (!decodedObjectMap.ContainsKey(objIndex))
+                        throw new IndexOutOfRangeException();
+                    output = decodedObjectMap[objIndex];
+                }
+                else
+                {
+                    classStamp = br.ReadUInt32();
+                    short objIndex = br.ReadInt16();
+                    output = KartObjectManager.CreateObject(classStamp);
+                    output?.DecodeObject(br, decodedObjectMap, decodedFieldMap);
+                    decodedObjectMap.Add(objIndex, output);
+                }
+            }
+            else
+            {
+                classStamp = br.ReadUInt32();
+                output = KartObjectManager.CreateObject(classStamp);
+                output?.DecodeObject(br, decodedObjectMap, decodedFieldMap);
+            }
+            return output;
+        }
+
+        public static TBase ReadKartObject<TBase>(this BinaryReader br, Dictionary<short, KartObject>? decodedObjectMap, Dictionary<short, object>? decodedFieldMap) where TBase : KartObject, new()
+        {
+            uint classStamp;
+            TBase output;
+            if (decodedObjectMap is not null)
+            {
+                int isnull = br.ReadUInt16();
+                if (isnull == 0x47BB)
+                {
+                    short objIndex = br.ReadInt16();
+                    if (!decodedObjectMap.ContainsKey(objIndex))
+                        throw new IndexOutOfRangeException();
+                    if(decodedObjectMap[objIndex] is TBase decTBase)
+                        output = decTBase;
+                    else
+                        throw new InvalidCastException();
+                }
+                else
+                {
+                    classStamp = br.ReadUInt32();
+                    short objIndex = br.ReadInt16();
+                    output = KartObjectManager.CreateObject<TBase>(classStamp);
+                    output?.DecodeObject(br, decodedObjectMap, decodedFieldMap);
+                    decodedObjectMap.Add(objIndex, output);
+                }
+            }
+            else
+            {
+                classStamp = br.ReadUInt32();
+                output = KartObjectManager.CreateObject<TBase>(classStamp);
+                output?.DecodeObject(br, decodedObjectMap, decodedFieldMap);
+            }
+            return output;
+        }
+
+        // AA27 BB27
+        public static T ReadField<T>(this BinaryReader br, Dictionary<short, KartObject>? decodedObjectMap, Dictionary<short, object>? decodedFieldMap, DecodeFieldFunc<T> decodeFieldFunc)
+        {
+            if(decodedFieldMap is not null)
+            {
+                ushort token = br.ReadUInt16();
+                if (token == 0x27AA)
+                {
+                    short fieldObjIndex = br.ReadInt16();
+                    T decodedField = decodeFieldFunc(br, decodedObjectMap, decodedFieldMap);
+                    decodedFieldMap.Add(fieldObjIndex, decodedField);
+                    return decodedField;
+                }
+                else if (token == 0x27BB)
+                {
+                    short fieldObjIndex = br.ReadInt16();
+                    if (decodedFieldMap.ContainsKey(fieldObjIndex))
+                        if (decodedFieldMap[fieldObjIndex] is T outField)
+                            return outField;
+                        else
+                            throw new InvalidCastException();
+                    else
+                        throw new IndexOutOfRangeException();
+                }
+                else
+                    throw new Exception();
+            }
+            else
+            {
+                return decodeFieldFunc(br, decodedObjectMap, decodedFieldMap);
+            }
+        }
+    }
+
+    public delegate T DecodeFieldFunc<T>(BinaryReader reader, Dictionary<short, KartObject>? decodedObjectMap, Dictionary<short, object>? decodedFieldMap);
 }

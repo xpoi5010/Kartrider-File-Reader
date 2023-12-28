@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KartRider.File;
 using System.IO;
 using Pfim;
 using System.Runtime.InteropServices;
 using System.Drawing.Imaging;
 using System.Diagnostics;
+using RhoLoader.Setting;
+
+using KartLibrary.File;
 
 namespace RhoLoader
 {
@@ -71,9 +73,9 @@ namespace RhoLoader
 
             public static byte[] BMLConverter(byte[] inputData)
             {
-                KartRider.Xml.BinaryXmlDocument bxd = new KartRider.Xml.BinaryXmlDocument();
+                KartLibrary.Xml.BinaryXmlDocument bxd = new KartLibrary.Xml.BinaryXmlDocument();
                 bxd.Read(Encoding.GetEncoding("UTF-16"), inputData);
-                KartRider.Xml.BinaryXmlTag bxt = bxd.RootTag;
+                KartLibrary.Xml.BinaryXmlTag bxt = bxd.RootTag;
                 string xmlData = bxt.ToString();
                 byte[] output = Encoding.UTF8.GetBytes(xmlData);
                 return output;
@@ -125,9 +127,7 @@ namespace RhoLoader
                 }
                 (string relative_path, PackFolderInfo folder) cur_proc_obj = extend_queue.Dequeue();
                 string out_path = $"{_extract_path}{cur_proc_obj.relative_path}";
-                if(!Directory.Exists(out_path))
-                    Directory.CreateDirectory(out_path);
-                foreach(PackFolderInfo sub_folder in cur_proc_obj.folder.GetFoldersInfo())
+                foreach (PackFolderInfo sub_folder in cur_proc_obj.folder.GetFoldersInfo())
                 {
                     extend_queue.Enqueue(($"{cur_proc_obj.relative_path}\\{sub_folder.FolderName}", sub_folder));
                 }
@@ -176,7 +176,23 @@ namespace RhoLoader
                 }
                 ExtractInfo extract_info = file_queue.Dequeue();
                 ReportProgress(extract_info.FileInfo.FullName, _totalFiles - file_queue.Count);
-                FileStream out_fs = new FileStream($"{_extract_path}{extract_info.RelativePath}\\{extract_info.Out_filename}", FileMode.Create);
+                string filePath = extract_info.FileInfo.PackFileType == PackFileType.RhoFile
+                    ? $"_rhoOut{extract_info.RelativePath}"
+                    : $"_rho5Out{extract_info.RelativePath}";
+                filePath = filePath.Replace("/", "\\");
+                string[] pathSp = filePath.Split('\\');
+                string tmpStr = "";
+                for(int i = 0; i < pathSp.Length; i++)
+                {
+                    tmpStr += pathSp[i] + "\\";
+                    if (!Directory.Exists($"{_extract_path}\\{tmpStr}"))
+                        Directory.CreateDirectory($"{_extract_path}\\{tmpStr}");
+                }
+                FileStream out_fs = new FileStream(
+                    extract_info.FileInfo.PackFileType == PackFileType.RhoFile 
+                    ? $"{_extract_path}\\_rhoOut{extract_info.RelativePath}\\{extract_info.Out_filename}"
+                    : $"{_extract_path}\\_rho5Out{extract_info.RelativePath}\\{extract_info.Out_filename}"
+                    , FileMode.Create);
                 byte[] file_data = extract_info.FileInfo.GetData();
                 try
                 {

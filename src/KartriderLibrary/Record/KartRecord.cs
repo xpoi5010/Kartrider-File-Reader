@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using KartRider.IO;
+using KartLibrary.IO;
+using KartLibrary.Data;
 
-namespace KartRider.Record
+namespace KartLibrary.Record
 {
     public static class KartRecord
     {

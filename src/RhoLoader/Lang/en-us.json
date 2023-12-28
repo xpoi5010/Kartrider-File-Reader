@@ -17,6 +17,10 @@
       "Value": "Open"
     },
     {
+      "Name": "menu_openFiles",
+      "Value": "Open Files"
+    },
+    {
       "Name": "menu_openFolder",
       "Value": "Open Data Folder"
     },
@@ -167,6 +171,36 @@
     {
       "Name": "msg_level_question",
       "Value": "Question"
+    },
+
+    {
+      "Name": "menu_mode_singleFile",
+      "Value": "{0}"
+    },
+    {
+      "Name": "menu_mode_multipleFiles",
+      "Value": "Multiple Files"
+    },
+    {
+      "Name": "menu_mode_dataFolder",
+      "Value": ""
+    },
+
+    {
+      "Name": "region_china",
+      "Value": "China"
+    },
+    {
+      "Name": "region_korea",
+      "Value": "Korea"
+    },
+    {
+      "Name": "region_taiwan",
+      "Value": "Taiwan"
+    },
+    {
+      "Name": "msg_saveRhoWithoutAAA",
+      "Value":  "Do you want to save this Rho file without writing new information of this file into \"aaa.pk\"?"
     }
   ]
 }

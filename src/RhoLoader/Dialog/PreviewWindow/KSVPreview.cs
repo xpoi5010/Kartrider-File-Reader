@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using KartRider;
-using KartRider.Record;
-using KartRider.Xml;
+using KartLibrary;
+using KartLibrary.Record;
+using KartLibrary.Xml;
+using RhoLoader.Setting;
 
 namespace RhoLoader.PreviewWindow
 {
@@ -75,7 +76,7 @@ namespace RhoLoader.PreviewWindow
         {
             if (LocaleData is null)
                 return track_name;
-            BinaryXmlTag? found_tag = LocaleData.SubTags.Find(x=>x.GetAttribute("id") == track_name);
+            BinaryXmlTag? found_tag = LocaleData.Children.Find(x=>x.GetAttribute("id") == track_name);
             if(found_tag is not null)
                 return found_tag.GetAttribute("name");
             else

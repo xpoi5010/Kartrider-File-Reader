@@ -1,0 +1,11 @@
+﻿{
+  "solution": {
+    "path": "KartCityStudio.sln",
+    "projects": [
+      "KartCityStudio.Desktop\\KartCityStudio.Desktop.csproj",
+      "KartCityStudio.Game\\KartCityStudio.Game.csproj",
+      "KartCityStudio.Game.Tests\\KartCityStudio.Game.Tests.csproj",
+      "KartCityStudio.Resources\\KartCityStudio.Resources.csproj"
+    ]
+  }
+}

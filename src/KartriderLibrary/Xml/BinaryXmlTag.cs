@@ -4,50 +4,96 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using KartRider.Text;
-using KartRider.IO;
+using KartLibrary.Text;
+using KartLibrary.IO;
+using System.Xml;
 
-namespace KartRider.Xml
+namespace KartLibrary.Xml
 {
     public class BinaryXmlTag
     {
-        public string Name { get; set; }
+        #region Members
+        private string _name;
+        private string _text;
+        private Dictionary<string, string> _attributes;
+        private List<BinaryXmlTag> _children;
+        #endregion
 
-        public string Text { get; set; }
+        #region Properties
+        public string Name
+        {
+            get => _name; 
+            set => _name = value;
+        }
 
-        public Dictionary<string,string> Attributes = new Dictionary<string, string>();
+        public string Text
+        {
+            get => _text;
+            set => _text = value;
+        }
 
-        public List<BinaryXmlTag> SubTags = new List<BinaryXmlTag>();
+        public IReadOnlyDictionary<string,string> Attributes => _attributes;
+
+        public List<BinaryXmlTag> Children => _children;
 
         public BinaryXmlTag this[string t]
         {
             get
             {
-                return SubTags.Find(x => x.Name == t);
+                return _children.Find(x => x.Name == t);
             }
             set
             {
-                int index = SubTags.FindIndex(x => x.Name == t);
+                int index = Children.FindIndex(x => x.Name == t);
                 if (index == -1)
-                    SubTags.Add(value);
+                    Children.Add(value);
                 else
-                    SubTags[index] = value;
+                    Children[index] = value;
             }
         }
+        
+        #endregion
 
-        public string GetAttribute(string Attribute)
+        #region Constructor
+        public BinaryXmlTag()
+        {
+            _children = new List<BinaryXmlTag>();
+            _attributes = new Dictionary<string, string>();
+            _name = "";
+            _text = "";
+        }
+
+        public BinaryXmlTag(string name): this()
+        {
+            _name = name;
+        }
+
+        public BinaryXmlTag(string name, string text): this()
+        {
+            _name = name;
+            _text = text;
+        }
+
+        public BinaryXmlTag(string name, params BinaryXmlTag[] children): this()
+        {
+            _name = name;
+            _children.AddRange(children);
+        }
+        #endregion
+
+        public string? GetAttribute(string Attribute)
         {
             if (!Attributes.ContainsKey(Attribute))
                 return null;
             return Attributes[Attribute];
         }
 
-        public void SetAttribute(string Attribute,string Value)
+        public void SetAttribute(string name,string value)
         {
-            if (!Attributes.ContainsKey(Attribute))
-                Attributes.Add(Attribute, Value);
+            if (!Attributes.ContainsKey(name))
+                _attributes.Add(name, value);
             else
-                Attributes[Attribute] = Value;
+                _attributes[name] = value;
         }
 
         public byte[] ToBinary(Encoding encoding)
@@ -64,14 +110,14 @@ namespace KartRider.Xml
                 foreach (KeyValuePair<string, string> key in Attributes)
                     bw.Write(encoding, key.Key, key.Value);
                 //SubTags
-                bw.Write(SubTags.Count);
-                foreach (BinaryXmlTag sub in SubTags)
+                bw.Write(Children.Count);
+                foreach (BinaryXmlTag sub in Children)
                     bw.Write(sub.ToBinary(encoding));
                 return ms.ToArray();
             }
         }
 
-        public new string ToString()
+        public override string ToString()
         {
             TextFormater tf = new TextFormater()
             {
@@ -81,13 +127,11 @@ namespace KartRider.Xml
             return tf.StartFormat();
         }
 
-        
-
         public void ToString(ref TextFormater formater,int nowLevel)
         {
             bool HaveText = Text != null && Text != "";
             bool HaveAttributes = Attributes.Count > 0;
-            bool HaveSubTag = SubTags.Count > 0;
+            bool HaveSubTag = Children.Count > 0;
             string Start = "";
             string Att = "";
             string End = "";
@@ -121,7 +165,7 @@ namespace KartRider.Xml
             else
             {
                 formater.AddString(nowLevel, TextAlign.Top, $"{Start}{Text ?? ""}");
-                foreach (BinaryXmlTag sub in SubTags)
+                foreach (BinaryXmlTag sub in Children)
                 {
                     sub.ToString(ref formater, nowLevel + 1);
                 }
@@ -130,6 +174,26 @@ namespace KartRider.Xml
 
         }
 
-        
+        public static explicit operator BinaryXmlTag(XmlNode node)
+        {
+            if (node.NodeType != XmlNodeType.Element)
+                throw new InvalidOperationException();
+            BinaryXmlTag output = new BinaryXmlTag();
+            output.Name = node.Name;
+            output.Text = node.InnerText;
+            foreach (XmlAttribute xmlAttribute in node.Attributes)
+            {
+                output._attributes.Add(xmlAttribute.Name, xmlAttribute.Value);
+            }
+            foreach (XmlNode xmlNode in node.ChildNodes)
+            {
+                if (xmlNode.NodeType == XmlNodeType.Element)
+                {
+                    output.Children.Add((BinaryXmlTag)xmlNode);
+                }
+            }
+            return output;
+        }
+
     }
 }

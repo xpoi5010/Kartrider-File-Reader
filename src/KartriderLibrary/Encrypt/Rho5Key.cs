@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Intrinsics;
 using System.Runtime.Intrinsics.X86;
 
-namespace KartRider.Encrypt
+namespace KartLibrary.Encrypt
 {
     public static class Rho5Key
     {
@@ -544,7 +544,7 @@ namespace KartRider.Encrypt
         //4B9FD0, arg1: key, arg2: u1
         //function 4B9DF0(unsigned char *key, double u2)
         //4C19A0 1.23516 ver
-        public unsafe static byte[] GetPackedFileKey(byte[] Key, int u1, string FileName)
+        public unsafe static byte[] GetPackedFileKey(byte[] fileChksum, int u1, string FileName)
         {
             if (!Sse2.IsSupported)
                 throw new NotSupportedException("Your computer is not support SSE2.");
@@ -579,7 +579,7 @@ namespace KartRider.Encrypt
                 if (c < 0)
                     c = ((c - 1) | -10) + 1;
                 int outByte = ((b + i) % 5);//ecx at 4BA0BC
-                outByte = (sbyte)((outByte + Key[c] + a )&0xFF);
+                outByte = (sbyte)((outByte + fileChksum[c] + a )&0xFF);
                 outByte *= (sbyte)fileNameData[(i % FileName.Length) << 1];
                 outByte += i;
                 output[i] = (byte)outByte;

@@ -86,7 +86,7 @@ namespace KartLibrary.File
                 using (MemoryStream ms = new MemoryStream(BlockData))
                 {
                     BlockData = new byte[BlockInfo.UncompressedSize];
-                    ZLibStream ds = new ZLibStream(ms, CompressionMode.Decompress);
+                    Ionic.Zlib.ZlibStream ds = new Ionic.Zlib.ZlibStream(ms, Ionic.Zlib.CompressionMode.Decompress);
                     ds.Read(BlockData, 0, BlockData.Length);
                 }
             }

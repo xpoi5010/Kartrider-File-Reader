@@ -17,6 +17,8 @@ namespace KartLibrary.File
 
         string Name { get; set; }
 
+        string FullName { get; }
+
         IModifiableRhoFile? GetFile(string path);
 
         IModifiableRhoFolder? GetFolder(string path);

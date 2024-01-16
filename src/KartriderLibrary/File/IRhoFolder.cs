@@ -16,6 +16,8 @@ namespace KartLibrary.File
 
         string Name { get; }
 
+        string FullName { get; }
+
         IRhoFile? GetFile(string path);
 
         IRhoFolder? GetFolder(string path);

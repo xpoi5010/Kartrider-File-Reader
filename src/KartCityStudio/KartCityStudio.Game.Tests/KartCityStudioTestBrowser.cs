@@ -31,7 +31,7 @@ namespace KartCityStudio.Game.Tests
                     .UseRho()
                     .UseRho5()
                     //.UsePackFolderListFile()
-                    .SetDataPath(@"H:/game/KartRider/Data")
+                    .SetDataPath(@"F:/game/KartRider/Data")
                     .SetClientRegion(CountryCode.KR)
                     .Build();
 

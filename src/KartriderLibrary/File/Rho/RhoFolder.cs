@@ -100,7 +100,8 @@ namespace KartLibrary.File
             _addedFolders.Count > 0 ||
             _removedFiles.Count > 0 ||
             _removedFolders.Count > 0 ||
-            _originalName != _name;
+            _originalName != _name ||
+            checkIfFilesModified();
         #endregion
 
         #region Constructors
@@ -527,6 +528,13 @@ namespace KartLibrary.File
             _removedFolders.Clear();
         }
 
+        private bool checkIfFilesModified()
+        {
+            foreach (RhoFile file in _files.Values)
+                if (file.IsModified)
+                    return true;
+            return false;
+        }
         #endregion
     }
 }

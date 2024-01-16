@@ -57,7 +57,7 @@ namespace KartLibrary.Tests
         {
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach(Assembly assembly in assemblies)
-                foreach(Type type in assembly.GetTypes().Select(x=> x).Where(x=> x.IsSubclassOf(typeof(TestStage)) && x != typeof(TestProgram)))
+                foreach(Type type in assembly.GetTypes().Select(x=> x).Where(x=> x.IsSubclassOf(typeof(TestStage)) && x != typeof(TestProgram) && !x.IsAbstract))
                 {
                     ConstructorInfo? constructorInfo = type.GetConstructor(new Type[0]);
                     if(constructorInfo is not null)

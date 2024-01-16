@@ -94,7 +94,7 @@ namespace KartCityStudio.Game.Graphics.UserInterface
                 {
                     RelativePositionAxes = Axes.None,
                     Position = new osuTK.Vector2(38, 30),
-                    Text = "刀劍無雙",
+                    Text = "城堡戰鬥舞步",
                     Font = KCSFont.Default.With(size: 55f),
                     Colour = Colour4.White,
                     Alpha = 0f,
@@ -103,7 +103,7 @@ namespace KartCityStudio.Game.Graphics.UserInterface
                 {
                     RelativePositionAxes = Axes.None,
                     Position = new osuTK.Vector2(38, 83),
-                    Text = "sword_01.ogg",
+                    Text = "castle_01_re.ogg",
                     Font = KCSFont.Default.With(size: 18f),
                     Colour = Colour4.FromHex("FFFFFF"),
                     Alpha = 0f
@@ -194,7 +194,7 @@ namespace KartCityStudio.Game.Graphics.UserInterface
             KartStorageResourceStore kartResource = new KartStorageResourceStore(storageSystem);
 
             ITrackStore trackStore = audioManager.GetTrackStore(kartResource);
-            track = trackStore.Get("sound_/bgm/sword/sword_01.ogg");
+            track = trackStore.Get("sound_/bgm/castle2/castle_01_re.ogg");
             drawableTrack = new DrawableTrack(track);
             drawableTrack.Completed += onDrawableTrackCompleted;
             drawableTrack.Start();

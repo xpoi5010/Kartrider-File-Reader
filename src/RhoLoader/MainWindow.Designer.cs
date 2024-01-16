@@ -240,7 +240,7 @@ namespace RhoLoader
             // 
             // dialog_singleFile
             // 
-            dialog_singleFile.Filter = "RhoFile|*.Rho|JMDFile|*.jmd";
+            dialog_singleFile.Filter = "RhoFile|*.Rho|Nho|*.nho";
             // 
             // dialog_multiFile
             // 

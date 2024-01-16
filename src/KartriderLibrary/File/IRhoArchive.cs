@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KartLibrary.File
 {
-    public interface IRhoArchive<TFile, TFolder> : IDisposable where TFile : IRhoFile where TFolder : IRhoFolder<TFolder, TFile>
+    public interface IRhoArchive<TFolder, TFile> : IDisposable where TFile : IRhoFile where TFolder : IRhoFolder<TFolder, TFile>
     {
         TFolder RootFolder { get; }
     }

@@ -16,7 +16,7 @@ namespace KartLibrary.File
     /// <summary>
     /// Rho5Archive represent a set of same data pack Rho5 files. 
     /// </summary>
-    public class Rho5Archive : IRhoArchive<Rho5File, Rho5Folder>
+    public class Rho5Archive : IRhoArchive<Rho5Folder, Rho5File>
     {
         #region Members
         private Rho5Folder _rootFolder;
@@ -51,7 +51,7 @@ namespace KartLibrary.File
             DirectoryInfo dataPackDir = new DirectoryInfo(dataPackPath);
             foreach (FileInfo fileInfo in dataPackDir.GetFiles())
             {
-                Regex parrern = new Regex($@"^{dataPackName}_(\d{{5}})\.rho5");
+                Regex parrern = new Regex($@"^{dataPackName}_(\d{{5}})\.rho5$");
                 Match match = parrern.Match(fileInfo.Name);
                 if (match.Success)
                 {
@@ -59,6 +59,54 @@ namespace KartLibrary.File
                     int dataPackID = Convert.ToInt32(dataPackIDStr);
                     openSingleFile(dataPackID, fileInfo.FullName, region);
                 }
+            }
+        }
+
+        public void Save(string dataPackPath, string dataPackName, CountryCode region, SavePattern savePattern = SavePattern.Auto)
+        {
+            int maxOpenedPartID = _rho5Streams.Count == 0 ? -1 : _rho5Streams.Select(x => x.Key).Max();
+            string mixingStr = getMixingString(region);
+            Dictionary<int, bool> isPartModified = new Dictionary<int, bool>();
+            Dictionary<int, Queue<Rho5File>> oldFilesQueues = new Dictionary<int, Queue<Rho5File>>();
+            Queue<Rho5File> newFilesQueue = new Queue<Rho5File>();
+            Dictionary<int, int> approxiPartSize = new Dictionary<int, int>();
+            for (int i = 0; i <= maxOpenedPartID; i++)
+            {
+                isPartModified.Add(i, false);
+                oldFilesQueues.Add(i, new Queue<Rho5File>());
+                approxiPartSize.Add(i, 0);
+            }
+            Queue<Rho5Folder> folderQueue = new Queue<Rho5Folder>();
+            folderQueue.Enqueue(_rootFolder);
+            while(folderQueue.Count > 0)
+            {
+                Rho5Folder curFolder = folderQueue.Dequeue();
+                foreach(Rho5Folder subFolder in curFolder.Folders)
+                    folderQueue.Enqueue(subFolder);
+                foreach(Rho5File file in curFolder.Files)
+                {
+                    if(file.IsModified && file._dataPackID >= 0)
+                    {
+                        isPartModified[file._dataPackID] = true;
+                    }
+                    if(file._dataPackID < 0)
+                        newFilesQueue.Enqueue(file);
+                    else
+                        oldFilesQueues[file._dataPackID].Enqueue(file);
+                }
+            }
+
+            for(int i = 0; i <= maxOpenedPartID; i++)
+            {
+                if(savePattern == SavePattern.AlwaysRegeneration || (savePattern == SavePattern.GenerateIfModified && isPartModified[i]))
+                {
+                    saveSingleFileTo(dataPackPath, $"{dataPackName}", i, mixingStr, oldFilesQueues[i], int.MaxValue);
+                }
+            }
+
+            for(int i = maxOpenedPartID + 1; newFilesQueue.Count > 0; i++)
+            {
+                saveSingleFileTo(dataPackPath, $"{dataPackName}", i, mixingStr, newFilesQueue, 10485760);
             }
         }
 
@@ -142,7 +190,7 @@ namespace KartLibrary.File
 
         }
 
-        private void saveSingleFileTo(string dataPackPath, string dataPackName, int dataPackID, string mixingStr, Queue<Rho5File> fileQueue)
+        private void saveSingleFileTo(string dataPackPath, string dataPackName, int dataPackID, string mixingStr, Queue<Rho5File> fileQueue, int maxSize)
         {
             string fullName = $"{Path.GetFullPath(dataPackPath)}\\{dataPackName}_{dataPackID:00000}.rho5";
             string fullDirName = Path.GetDirectoryName(fullName) ?? "";
@@ -159,21 +207,31 @@ namespace KartLibrary.File
             BufferedStream tmpBUfferedStream = new BufferedStream(tmpOutStream, 0x1000000);
             Rho5EncryptStream outEncryptStream = new Rho5EncryptStream(tmpBUfferedStream);
             BinaryWriter outEncryptWriter = new BinaryWriter(outEncryptStream);
-            outEncryptStream.SetToHeaderKey(outFileName, mixingStr);
-
+            
             int headerOffset = getHeaderOffset(outFileName);
             int filesInfoOffset = headerOffset + getFilesInfoOffset(outFileName);
 
+            outEncryptStream.SetLength(headerOffset);
+            outEncryptStream.Seek(headerOffset, SeekOrigin.Begin);
+            outEncryptStream.SetToHeaderKey(outFileName, mixingStr);
+            int headerCrc = 2 + fileQueue.Count;
+            outEncryptWriter.Write(headerCrc);
+            outEncryptWriter.Write((byte)2);
+            outEncryptWriter.Write(fileQueue.Count);
+            
             // Enqueue all files
             int filesInfoDataLen = 0;
+            foreach (Rho5File file in fileQueue)
+                filesInfoDataLen += (0x28) + (file.FullName.Length << 1);
             MemoryStream filesInfoStream = new MemoryStream(filesInfoDataLen);
             BinaryWriter filesInfoWriter = new BinaryWriter(filesInfoStream);
 
             int dataBeginOffset = filesInfoOffset + filesInfoDataLen + 0x3FF & 0x7FFFFC00;
             int dataOffset = dataBeginOffset;
             outEncryptStream.SetLength(dataBeginOffset);
-            foreach (Rho5File file in fileQueue)
+            while (fileQueue.Count > 0 && tmpOutStream.Length <= maxSize)
             {
+                Rho5File file = fileQueue.Dequeue();
                 if (file.DataSource is null)
                     throw new Exception();
                 byte[] data = file.DataSource.GetBytes();
@@ -221,12 +279,6 @@ namespace KartLibrary.File
                 _fileHandlers.Add(fileHandler);
             }
 
-            outEncryptStream.Seek(headerOffset, SeekOrigin.Begin);
-            outEncryptStream.SetToHeaderKey(outFileName, mixingStr);
-            int headerCrc = 2 + fileQueue.Count;
-            outEncryptWriter.Write(headerCrc);
-            outEncryptWriter.Write((byte)2);
-            outEncryptWriter.Write(fileQueue.Count);
 
             outEncryptStream.Seek(filesInfoOffset, SeekOrigin.Begin);
             outEncryptStream.SetToFilesInfoKey(outFileName, mixingStr);

@@ -21,7 +21,7 @@ namespace KartLibrary.File
     /// <summary lang="zh-tw">
     /// <see cref="RhoFile"/>用來表示一個Rho檔案。你能藉此類型來開啟及儲存Rho類型檔案.
     /// </summary>
-    public partial class RhoArchive : IRhoArchive<RhoFile, RhoFolder>
+    public partial class RhoArchive : IRhoArchive<RhoFolder, RhoFile>
     {
         #region Members
         private int _layerVersion; // 1.0 = 0, 1.1 = 1
@@ -33,12 +33,11 @@ namespace KartLibrary.File
         private Dictionary<uint, RhoFileHandler> _fileHandlers;
 
         private uint _rhoKey;
+
         private uint _dataChecksum;
 
         private bool _disposed;
-
         private bool _closed;
-
         private bool _locked; // if this instance is locked, calling any methods of this instance is not allowed.
         #endregion
 

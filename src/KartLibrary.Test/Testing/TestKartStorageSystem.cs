@@ -280,12 +280,12 @@ namespace KartLibrary.Tests.Testing
             KartStorageFile? file = _currentFolder.GetFile(fileName);
             if (file is null)
                 return new CommandExecuteResult(ResultType.Failure, $"Cannot found file: {fileName}.");
-            if(file.DataSource is null)
+            if(!file.HasDataSource)
                 return new CommandExecuteResult(ResultType.Failure, $"file: {fileName} has no any data source.");
             string tmpFileName = $"{Path.GetTempFileName()}_{file.Name}";
             using (FileStream outFileStream = new FileStream(tmpFileName, FileMode.Create))
             {
-                file?.DataSource?.WriteTo(outFileStream);
+                file?.WriteTo(outFileStream);
             }
             if (OperatingSystem.IsWindows())
             {
@@ -361,9 +361,9 @@ namespace KartLibrary.Tests.Testing
             KartStorageFile? file = trackFolder.GetFile($"{track}/track.1s");
             if (file is null)
                 return new CommandExecuteResult(ResultType.Failure, $"Cannot found track: {track}.");
-            if (file.DataSource is null)
+            if (!file.HasDataSource)
                 return new CommandExecuteResult(ResultType.Failure, $"file: {file.FullName} has no any data source.");
-            using (Stream stream = file.DataSource.CreateStream())
+            using (Stream stream = file.CreateStream())
             {
                 BinaryReader reader = new BinaryReader(stream);
                 Dictionary<short, KartObject> decodedKartObjectMap = new Dictionary<short, KartObject>();
@@ -435,9 +435,9 @@ namespace KartLibrary.Tests.Testing
             KartStorageFile? file = trackFolder.GetFile($"{kart}/model.1s");
             if (file is null)
                 return new CommandExecuteResult(ResultType.Failure, $"Cannot found kart: {kart}.");
-            if (file.DataSource is null)
+            if (!file.HasDataSource)
                 return new CommandExecuteResult(ResultType.Failure, $"file: {file.FullName} has no any data source.");
-            using (Stream stream = file.DataSource.CreateStream())
+            using (Stream stream = file.CreateStream())
             {
                 BinaryReader reader = new BinaryReader(stream);
                 Dictionary<short, KartObject> decodedKartObjectMap = new Dictionary<short, KartObject>();
@@ -614,7 +614,7 @@ namespace KartLibrary.Tests.Testing
                                 texFile = file;
                                 break;
                             }
-                    if(texFile is null || texFile.DataSource is null)
+                    if(texFile is null || !texFile.HasDataSource)
                     {
                         mtlBuilder.AppendLine($"# cannot found: {obj.Merterial.TextureName}");
                     }
@@ -622,7 +622,7 @@ namespace KartLibrary.Tests.Testing
                     {
                         using (FileStream outStream = new FileStream($"{path}\\textures\\{texFile.Name}", FileMode.Create))
                         {
-                            texFile.DataSource.WriteTo(outStream);
+                            texFile.WriteTo(outStream);
                         }
                         mtlBuilder.AppendLine($"map_Ka textures/{texFile.Name}");
                         mtlBuilder.AppendLine($"map_Kd textures/{texFile.Name}");
@@ -670,7 +670,7 @@ namespace KartLibrary.Tests.Testing
                         texFile = file;
                         break;
                     }
-            if (texFile is null || texFile.DataSource is null)
+            if (texFile is null || !texFile.HasDataSource)
             {
                 mtlBuilder.AppendLine($"# cannot found: 0");
             }
@@ -678,7 +678,7 @@ namespace KartLibrary.Tests.Testing
             {
                 using (FileStream outStream = new FileStream($"{path}\\textures\\{texFile.Name}", FileMode.Create))
                 {
-                    texFile.DataSource.WriteTo(outStream);
+                    texFile.WriteTo(outStream);
                 }
                 mtlBuilder.AppendLine($"map_Ka textures/{texFile.Name}");
                 mtlBuilder.AppendLine($"map_Kd textures/{texFile.Name}");

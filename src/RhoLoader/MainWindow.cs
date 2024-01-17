@@ -34,7 +34,6 @@ namespace RhoLoader
 
         private PackFolderInfo _cur_folder;
 
-
         public MainWindow()
         {
             InitializeComponent();

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>23.10.31.0</Version>
+    <Version>24.2.31.3</Version>
     <SignAssembly>False</SignAssembly>
     <AssemblyOriginatorKeyFile>C:\Users\xpoi5\Downloads\epstudio_cc\epstudio_cc.crt</AssemblyOriginatorKeyFile>
     <StartupObject>RhoLoader.Program</StartupObject>

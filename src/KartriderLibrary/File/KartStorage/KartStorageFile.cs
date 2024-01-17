@@ -1,8 +1,12 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using SharpGen.Runtime.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace KartLibrary.File
@@ -58,9 +62,10 @@ namespace KartLibrary.File
 
         public int Size => _dataSource?.Size ?? 0;
 
+        public bool HasDataSource => _sourceFile is not null ? _sourceFile.HasDataSource : _dataSource is not null;
+
         public IDataSource? DataSource
         {
-            get => _dataSource;
             set
             {
                 if (_sourceFile is not null)
@@ -85,7 +90,6 @@ namespace KartLibrary.File
         internal KartStorageFile(IModifiableRhoFile sourceFile) : this()
         {
             _sourceFile = sourceFile;
-            _dataSource = sourceFile.DataSource;
             Name = sourceFile.Name;
         }
         #endregion
@@ -93,9 +97,93 @@ namespace KartLibrary.File
         #region Methods
         public Stream CreateStream()
         {
-            if (_dataSource is null)
-                throw new InvalidOperationException("DataSource is null.");
-            return _dataSource.CreateStream();
+            if (_sourceFile is not null)
+                return _sourceFile.CreateStream();
+            else
+            {
+                if (_dataSource is null)
+                    throw new InvalidOperationException("There are no any data source.");
+                else
+                    return _dataSource.CreateStream();
+            }
+        }
+
+        public void WriteTo(Stream stream)
+        {
+            if (_sourceFile is not null)
+                _sourceFile.WriteTo(stream);
+            else
+            {
+                if (_dataSource is null)
+                    throw new InvalidOperationException("There are no any data source.");
+                else
+                   _dataSource.WriteTo(stream);
+            }
+        }
+
+        public async Task WriteToAsync(Stream stream, CancellationToken cancellationToken = default)
+        {
+            if (_sourceFile is not null)
+                await _sourceFile.WriteToAsync(stream, cancellationToken);
+            else
+            {
+                if (_dataSource is null)
+                    throw new InvalidOperationException("There are no any data source.");
+                else
+                    await _dataSource.WriteToAsync(stream, cancellationToken);
+            }
+        }
+
+        public void WriteTo(byte[] array, int offset, int count)
+        {
+            if (_sourceFile is not null)
+                _sourceFile.WriteTo(array, offset, count);
+            else
+            {
+                if (_dataSource is null)
+                    throw new InvalidOperationException("There are no any data source.");
+                else
+                    _dataSource.WriteTo(array, offset, count);
+            }
+        }
+
+        public async Task WriteToAsync(byte[] array, int offset, int count, CancellationToken cancellationToken = default)
+        {
+            if (_sourceFile is not null)
+                await _sourceFile.WriteToAsync(array, offset, count, cancellationToken);
+            else
+            {
+                if (_dataSource is null)
+                    throw new InvalidOperationException("There are no any data source.");
+                else
+                    await _dataSource.WriteToAsync(array, offset, count, cancellationToken);
+            }
+        }
+
+        public byte[] GetBytes()
+        {
+            if (_sourceFile is not null)
+                return _sourceFile.GetBytes();
+            else
+            {
+                if (_dataSource is null)
+                    throw new InvalidOperationException("There are no any data source.");
+                else
+                    return _dataSource.GetBytes();
+            }
+        }
+
+        public async Task<byte[]> GetBytesAsync(CancellationToken cancellationToken = default)
+        {
+            if (_sourceFile is not null)
+                return await _sourceFile.GetBytesAsync(cancellationToken);
+            else
+            {
+                if (_dataSource is null)
+                    throw new InvalidOperationException("There are no any data source.");
+                else
+                    return await _dataSource.GetBytesAsync(cancellationToken);
+            }
         }
 
         public void Dispose()

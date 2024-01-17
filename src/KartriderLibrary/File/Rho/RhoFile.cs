@@ -67,7 +67,7 @@ namespace KartLibrary.File
 
         public IDataSource? DataSource
         {
-            get => _dataSource;
+            internal get => _dataSource;
             set => _dataSource = value;
         }
 
@@ -77,7 +77,9 @@ namespace KartLibrary.File
             set => _fileProperty = value;
         }
 
-        public bool IsModified => _originalName != _name || _originalSource != _dataSource;
+        public bool HasDataSource => _dataSource is not null;
+
+        internal bool IsModified => _originalName != _name || _originalSource != _dataSource;
         #endregion
 
         #region Constructors
@@ -97,8 +99,50 @@ namespace KartLibrary.File
         public Stream CreateStream()
         {
             if (_dataSource is null)
-                throw new InvalidOperationException("DataSource is null.");
+                throw new InvalidOperationException("There are no any data source.");
             return _dataSource.CreateStream();
+        }
+
+        public void WriteTo(Stream stream)
+        {
+            if (_dataSource is null)
+                throw new InvalidOperationException("There are no any data source.");
+            _dataSource.WriteTo(stream);
+        }
+
+        public async Task WriteToAsync(Stream stream, CancellationToken cancellationToken = default)
+        {
+            if (_dataSource is null)
+                throw new InvalidOperationException("There are no any data source.");
+            await _dataSource.WriteToAsync(stream, cancellationToken);
+        }
+
+        public void WriteTo(byte[] array, int offset, int count)
+        {
+            if (_dataSource is null)
+                throw new InvalidOperationException("There are no any data source.");
+            WriteTo(array, offset, count);
+        }
+
+        public async Task WriteToAsync(byte[] array, int offset, int count, CancellationToken cancellationToken = default)
+        {
+            if (_dataSource is null)
+                throw new InvalidOperationException("There are no any data source.");
+            await WriteToAsync(array, offset, count, cancellationToken);
+        }
+
+        public byte[] GetBytes()
+        {
+            if (_dataSource is null)
+                throw new InvalidOperationException("There are no any data source.");
+            return _dataSource.GetBytes();
+        }
+
+        public async Task<byte[]> GetBytesAsync(CancellationToken cancellationToken = default)
+        {
+            if (_dataSource is null)
+                throw new InvalidOperationException("There are no any data source.");
+            return await _dataSource.GetBytesAsync(cancellationToken);
         }
 
         public void Dispose()

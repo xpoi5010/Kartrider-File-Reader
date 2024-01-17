@@ -132,12 +132,12 @@ namespace KartLibrary.Tests.Testing
             TFile? file = CurrentFolder.GetFile(fileName);
             if (file is null)
                 return new CommandExecuteResult(ResultType.Failure, $"Cannot found file: {fileName}.");
-            if (file.DataSource is null)
+            if (!file.HasDataSource)
                 return new CommandExecuteResult(ResultType.Failure, $"file: {fileName} has no any data source.");
             string tmpFileName = $"{Path.GetTempFileName()}_{file.Name}";
             using (FileStream outFileStream = new FileStream(tmpFileName, FileMode.Create))
             {
-                file?.DataSource?.WriteTo(outFileStream);
+                file?.WriteTo(outFileStream);
             }
             if (OperatingSystem.IsWindows())
             {
@@ -210,14 +210,14 @@ namespace KartLibrary.Tests.Testing
             TFile? file = CurrentFolder.GetFile(fileName);
             if (file is null)
                 return new CommandExecuteResult(ResultType.Failure, $"Cannot found file: {fileName}.");
-            if (file.DataSource is null)
+            if (!file.HasDataSource)
                 return new CommandExecuteResult(ResultType.Failure, $"file: {fileName} has no any data source.");
             if (!Directory.Exists(toPath))
                 return new CommandExecuteResult(ResultType.Failure, $"out path is not exist.");
             string outFileName = Path.Combine(toPath, fileName);
             using (FileStream outFileStream = new FileStream(outFileName, FileMode.Create))
             {
-                file?.DataSource?.WriteTo(outFileStream);
+                file?.WriteTo(outFileStream);
             }
             return new CommandExecuteResult(ResultType.Success, "");
         }

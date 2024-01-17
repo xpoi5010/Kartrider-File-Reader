@@ -27,13 +27,13 @@ namespace KartCityStudio.Game.IO.Stores
         public byte[] Get(string name)
         {
             KartStorageFile kartFile = storageSystem.GetFile(name);
-            return kartFile?.DataSource?.GetBytes();
+            return kartFile?.GetBytes();
         }
 
         public async Task<byte[]> GetAsync(string name, CancellationToken cancellationToken = default)
         {
             KartStorageFile kartFile = storageSystem.GetFile(name);
-            return await kartFile?.DataSource?.GetBytesAsync(cancellationToken);
+            return await kartFile?.GetBytesAsync(cancellationToken);
         }
 
         public IEnumerable<string> GetAvailableResources()
@@ -55,7 +55,7 @@ namespace KartCityStudio.Game.IO.Stores
         public Stream GetStream(string name)
         {
             KartStorageFile kartFile = storageSystem.GetFile(name);
-            return kartFile?.DataSource?.CreateStream();
+            return kartFile?.CreateStream();
         }
     }
 }

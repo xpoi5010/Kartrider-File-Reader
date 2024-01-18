@@ -16,7 +16,7 @@ namespace RhoLoader.Model
             
         }
 
-        public void ReportProgress(int progress, string statusText)
+        public void ReportProgress(int progress, int maxProgress, string statusText)
         {
 
         }

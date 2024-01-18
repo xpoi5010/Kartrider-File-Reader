@@ -60,7 +60,7 @@ namespace KartLibrary.File
 
         public string NameWithoutExt => _nameWithoutExt;
 
-        public int Size => _dataSource?.Size ?? 0;
+        public int Size => _sourceFile is not null ? _sourceFile.Size : _dataSource?.Size ?? 0;
 
         public bool HasDataSource => _sourceFile is not null ? _sourceFile.HasDataSource : _dataSource is not null;
 
@@ -208,7 +208,6 @@ namespace KartLibrary.File
         {
             return $"KartStorageFile:{FullName}";
         }
-
         #endregion
     }
 }

@@ -3,6 +3,7 @@ using KartLibrary.Encrypt;
 using KartLibrary.IO;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
@@ -225,7 +226,7 @@ namespace KartLibrary.File
 
         }
 
-        private void saveSingleFileTo(string dataPackPath, string dataPackName, int dataPackID, string mixingStr, Queue<Rho5File> fileQueue, int maxSize, bool reopen)
+        private void saveSingleFileTo(string dataPackPath, string dataPackName, int dataPackID, string mixingStr, Queue<Rho5File> allFileQueue, int maxSize, bool reopen)
         {
             string fullName = getDataPackFilePath(dataPackPath, dataPackName, dataPackID);
             string fullDirName = Path.GetDirectoryName(fullName) ?? "";
@@ -244,6 +245,25 @@ namespace KartLibrary.File
                 reopen = true;
             }
 
+            // Enqueue all files 
+            maxSize = (int)Math.Round(maxSize * 1.3); // dataLenSum is sum of "uncompressed data" length.
+            int filesInfoDataLen = 0;
+            int dataLenSum = 0;
+            Queue<Rho5File> fileQueue = new Queue<Rho5File>();
+            while(allFileQueue.Count > 0 && dataLenSum <= maxSize)
+            {
+                if (dataLenSum >= maxSize)
+                    break;
+                Rho5File file = allFileQueue.Dequeue();
+                filesInfoDataLen += (0x28) + (file.FullName.Length << 1);
+                if (!file.HasDataSource)
+                    throw new Exception();
+                dataLenSum += file.Size;
+                fileQueue.Enqueue(file);
+            }
+            
+            // Writes
+            
             int headerOffset = getHeaderOffset(outFileName);
             int filesInfoOffset = headerOffset + getFilesInfoOffset(outFileName);
 
@@ -254,18 +274,16 @@ namespace KartLibrary.File
             outEncryptWriter.Write(headerCrc);
             outEncryptWriter.Write((byte)2);
             outEncryptWriter.Write(fileQueue.Count);
-            
-            // Enqueue all files
-            int filesInfoDataLen = 0;
-            foreach (Rho5File file in fileQueue)
-                filesInfoDataLen += (0x28) + (file.FullName.Length << 1);
+
+            outEncryptWriter.Flush();
+
             MemoryStream filesInfoStream = new MemoryStream(filesInfoDataLen);
             BinaryWriter filesInfoWriter = new BinaryWriter(filesInfoStream);
 
-            int dataBeginOffset = filesInfoOffset + filesInfoDataLen + 0x3FF & 0x7FFFFC00;
+            int dataBeginOffset = (filesInfoOffset + filesInfoDataLen + 0x3FF) & 0x7FFFFC00;
             int dataOffset = dataBeginOffset;
             outEncryptStream.SetLength(dataBeginOffset);
-            while (fileQueue.Count > 0 && tmpMemStream.Length <= maxSize)
+            while (fileQueue.Count > 0)
             {
                 Rho5File file = fileQueue.Dequeue();
                 if (!file.HasDataSource)
@@ -350,6 +368,8 @@ namespace KartLibrary.File
                 _rho5Streams.Add(dataPackID, new FileStream(fullName, FileMode.Open, FileAccess.Read));
                 _dataBeginPoses.Add(dataPackID, dataBeginOffset);
             }
+
+            tmpMemStream.Dispose();
         }
 
         private int getHeaderOffset(string fileName)

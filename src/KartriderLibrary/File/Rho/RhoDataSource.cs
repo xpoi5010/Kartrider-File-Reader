@@ -73,18 +73,14 @@ namespace KartLibrary.File
 
         public byte[] GetBytes()
         {
-            byte[] output = new byte[_fileHandler._size];
             byte[] data = _fileHandler.getData();
-            Array.Copy(data, output, data.Length);
-            return output;
+            return data;
         }
 
         public async Task<byte[]> GetBytesAsync(CancellationToken cancellationToken = default)
         {
-            byte[] output = new byte[_fileHandler._size];
             byte[] data = _fileHandler.getData();
-            Array.Copy(data, output, data.Length);
-            return output;
+            return data;
         }
 
         public void Dispose()

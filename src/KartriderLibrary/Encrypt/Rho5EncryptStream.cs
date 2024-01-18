@@ -94,31 +94,32 @@ namespace KartLibrary.Encrypt
 
         public override void SetLength(long value)
         {
-            if(value < BaseStream.Length)
-                BaseStream.SetLength(value);
-            else if(value > BaseStream.Length)
-            {
-                BaseStream.Seek(0, SeekOrigin.End);
-                int fillLen = (int)(value - Length);
-                ulong rndNum = (ulong)Environment.TickCount64;
-                while(fillLen >= 0x08)
-                {
-                    rndNum += 0xD751EBEB91;
-                    rndNum = BitOperations.RotateRight(rndNum, (int)(rndNum & 0x3F));
-                    rndNum *= 0x63E6E248A1;
-                    Write(BitConverter.GetBytes(rndNum));
-                    fillLen -= 0x08;
-                }
-                while (fillLen > 0)
-                {
-                    rndNum += 0xD7194B89D7;
-                    rndNum = BitOperations.RotateLeft(rndNum, (int)(rndNum & 0x3F));
-                    rndNum *= 0x59799BF0CF;
-                    Write(BitConverter.GetBytes(rndNum), (int)(rndNum & 7), 1);
-                    fillLen -= 0x1;
-                }
-                Flush();
-            }
+            //if(value < BaseStream.Length)
+            //    BaseStream.SetLength(value);
+            //else if(value > BaseStream.Length)
+            //{
+            //    BaseStream.Seek(0, SeekOrigin.End);
+            //    int fillLen = (int)(value - Length);
+            //    ulong rndNum = (ulong)Environment.TickCount64;
+            //    while(fillLen >= 0x08)
+            //    {
+            //        rndNum += 0xD751EBEB91;
+            //        rndNum = BitOperations.RotateRight(rndNum, (int)(rndNum & 0x3F));
+            //        rndNum *= 0x63E6E248A1;
+            //        Write(BitConverter.GetBytes(rndNum));
+            //        fillLen -= 0x08;
+            //    }
+            //    while (fillLen > 0)
+            //    {
+            //        rndNum += 0xD7194B89D7;
+            //        rndNum = BitOperations.RotateLeft(rndNum, (int)(rndNum & 0x3F));
+            //        rndNum *= 0x59799BF0CF;
+            //        Write(BitConverter.GetBytes(rndNum), (int)(rndNum & 7), 1);
+            //        fillLen -= 0x1;
+            //    }
+            //    Flush();
+            //}
+            BaseStream.SetLength(value);
         }
 
         public override void Write(byte[] buffer, int offset, int count)

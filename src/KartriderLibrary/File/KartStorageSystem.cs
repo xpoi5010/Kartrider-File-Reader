@@ -14,6 +14,18 @@ namespace KartLibrary.File
     /// <summary>
     /// Provices 
     /// </summary>
+    /* 
+     * Saving Logic:
+     *      If a file adds to a KartStorageFolder that binds a RhoFolder only, 
+     *      this new added file will be add to a RhoFolder binded by KartStorageFolder this file add to.
+     *      
+     *      Similarly, If a file adds to a KartStorageFolder that binds a Rho5Folder only, 
+     *      this new added file will be add to a Rho5Folder binded by KartStorageFolder this file add to.
+     *      
+     *      But if a file adds to a KartStorageFolder that binds a RhoFolder and a Rho5Folder (likes kart_, track_ and so on),
+     *      this new added file will be add to a Rho5Folder binded by KartStorageFolder this file add to
+     *      because the structure of Rho5 file doesn't have a "complex" tree structure to store files and folders.
+    */
     public class KartStorageSystem : IDisposable
     {
         #region Members

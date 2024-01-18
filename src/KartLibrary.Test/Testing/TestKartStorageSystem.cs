@@ -346,6 +346,53 @@ namespace KartLibrary.Tests.Testing
             return suggestions.ToArray();
         }
 
+        [Command("try-allRho5", "")]
+        private CommandExecuteResult commandTryAllRho5(IConsole commandConsole, CommandArgumentQueue argumentQueue)
+        {
+            if (_storageSystem is null)
+                return new CommandExecuteResult(ResultType.Failure, "");
+            if (!Directory.Exists("try-allRho5"))
+                Directory.CreateDirectory("try-allRho5");
+            int dataPackNum = 1;
+            foreach(KartStorageFolder folder in _storageSystem.RootFolder.Folders)
+            {
+                Rho5Archive rho5Archive = new Rho5Archive();
+                Rho5Folder mountFolder = new Rho5Folder();
+                mountFolder.Name = folder.Name;
+                rho5Archive.RootFolder.AddFolder(mountFolder);
+                Queue<(Rho5Folder, KartStorageFolder)> queue = new Queue<(Rho5Folder, KartStorageFolder)>();
+                queue.Enqueue((mountFolder, folder));
+                while(queue.Count > 0)
+                {
+                    (Rho5Folder, KartStorageFolder) curEle = queue.Dequeue();
+                    foreach(KartStorageFolder subFolder in curEle.Item2.Folders)
+                    {
+                        Rho5Folder newSubRho5Folder = new Rho5Folder();
+                        newSubRho5Folder.Name = subFolder.Name;
+                        curEle.Item1.AddFolder(newSubRho5Folder);
+                        queue.Enqueue((newSubRho5Folder, subFolder));
+                    }
+                    foreach(KartStorageFile file in curEle.Item2.Files)
+                    {
+                        if (!file.HasDataSource)
+                            return new CommandExecuteResult(ResultType.Failure, "");
+                        byte[] data = file.GetBytes();
+                        Rho5File newRho5File = new Rho5File();
+                        newRho5File.Name = file.Name;
+                        newRho5File.DataSource = new ByteArrayDataSource(data);
+                        curEle.Item1.AddFile(newRho5File);
+                    }
+                }
+                rho5Archive.Save("try-allRho5", $"DataPack{dataPackNum}", _region, SavePattern.AlwaysRegeneration);
+                rho5Archive.Dispose();
+                rho5Archive = new Rho5Archive();
+                rho5Archive.Open("try-allRho5", $"DataPack{dataPackNum}", _region);
+                rho5Archive.Dispose();
+                dataPackNum++;
+            }
+            return new CommandExecuteResult(ResultType.Success, "");
+        }
+
         [Command("try-track", "Try to open track model.")]
         private CommandExecuteResult commandTryTrack(IConsole commandConsole, CommandArgumentQueue argumentQueue)
         {

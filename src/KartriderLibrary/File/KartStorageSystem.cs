@@ -85,7 +85,7 @@ namespace KartLibrary.File
         #endregion
 
         #region Methods
-        public async Task Initialize()
+        public void Initialize(int maxThreads = 0)
         {
             if (_disposed)
                 throw new ObjectDisposedException("Cannot initialize a disposed KartStorageSystem.");
@@ -93,9 +93,9 @@ namespace KartLibrary.File
             try
             {
                 if (_useRho)
-                    await initializeRho();
+                    initializeRho(maxThreads: maxThreads);
                 if (_useRho5)
-                    await initializeRho5();
+                    initializeRho5(maxThreads: maxThreads);
             }
             finally
             {
@@ -139,8 +139,10 @@ namespace KartLibrary.File
             dispose(true);
         }
 
-        private async Task initializeRho()
+        private void initializeRho(int maxThreads = 0)
         {
+            if (maxThreads == 0)
+                maxThreads = Environment.ProcessorCount;
             Queue<(KartStorageFolder mountFolder, FileInfo rhoFileInfo)> rhoFilesInfoQueue = new Queue<(KartStorageFolder mountFolder, FileInfo rhoFileInfo)>();
             string dataFolder = _dataPath ?? $"{_clientPath}\\Data";
             if (!Directory.Exists(dataFolder))
@@ -185,6 +187,7 @@ namespace KartLibrary.File
                                     throw new Exception();
                                 KartStorageFolder newFolder = new KartStorageFolder();
                                 newFolder.Name = curObj.parentFolder.IsRootFolder ? $"{childFolderName}_" : childFolderName;
+                                newFolder.RhoFolderStoreMode = RhoFolderStoreMode.PackFolder;
                                 curObj.parentFolder.AddFolder(newFolder);
                                 packFolderQueue.Enqueue((newFolder, child));
                             }
@@ -204,6 +207,7 @@ namespace KartLibrary.File
                                 {
                                     KartStorageFolder newFolder = new KartStorageFolder();
                                     newFolder.Name = childFolderName;
+                                    newFolder.RhoFolderStoreMode = RhoFolderStoreMode.RhoFolder;
                                     curObj.parentFolder.AddFolder(newFolder);
                                     rhoFilesInfoQueue.Enqueue((newFolder, rhoFileInfo));
                                 }
@@ -246,57 +250,54 @@ namespace KartLibrary.File
                 }
             }
 
-            // Open all rho files.
-            HashSet<Task> rhoOpenTaskSet = new HashSet<Task>();
-            while(rhoFilesInfoQueue.Count > 0)
-            {
-                var rhoFileInfo = rhoFilesInfoQueue.Dequeue();
-                RhoArchive rhoArchive = new RhoArchive();
-                Task rhoOpenTask = mountRhoAsync(rhoFileInfo.mountFolder, rhoArchive,rhoFileInfo.rhoFileInfo.FullName);
-                rhoOpenTaskSet.Add(rhoOpenTask);
-                _rhoArchives.Add(rhoArchive);
-            }
-            while(rhoOpenTaskSet.Count > 0)
-            {
-                Task finishedTask = await Task.WhenAny(rhoOpenTaskSet);
-                if (finishedTask.IsFaulted)
-                    ExceptionDispatchInfo.Capture(finishedTask.Exception.InnerException).Throw();
-                rhoOpenTaskSet.Remove(finishedTask);
-            }
-        }
+            // Mount Rho files
+            ParallelOptions parallelOptions = new ParallelOptions();
+            parallelOptions.MaxDegreeOfParallelism = maxThreads;
 
-        private async Task mountRhoAsync(KartStorageFolder mountFolder, RhoArchive rhoArchive, string fileName)
-        {
-            await Task.Run(() =>
+            Parallel.ForEach(rhoFilesInfoQueue, rhoFileInfo =>
             {
-                rhoArchive.Open(fileName);
-                Queue<(KartStorageFolder mountFolder, RhoFolder)> folderQueue = new Queue<(KartStorageFolder, RhoFolder)>();
-                folderQueue.Enqueue((mountFolder, rhoArchive.RootFolder));
-                while (folderQueue.Count > 0)
+                RhoArchive rhoArchive = new RhoArchive();
+                mountRho(rhoFileInfo.mountFolder, rhoArchive, rhoFileInfo.rhoFileInfo.FullName);
+                lock (_rhoArchives)
                 {
-                    var curObj = folderQueue.Dequeue();
-                    lock (curObj.mountFolder)
-                    {
-                        curObj.mountFolder._sourceRhoFolder = curObj.Item2;
-                        foreach (RhoFolder subFolder in curObj.Item2.Folders)
-                        {
-                            KartStorageFolder newFolder = new KartStorageFolder();
-                            newFolder.Name = subFolder.Name;
-                            folderQueue.Enqueue((newFolder, subFolder));
-                            curObj.mountFolder.AddFolder(newFolder);
-                        }
-                        foreach (RhoFile subFile in curObj.Item2.Files)
-                        {
-                            KartStorageFile newFile = new KartStorageFile(subFile);
-                            curObj.mountFolder.AddFile(newFile);
-                        }
-                    }
+                    _rhoArchives.Add(rhoArchive);
                 }
             });
+
+            rhoFilesInfoQueue.Clear();
         }
 
-        private async Task initializeRho5()
+        private void mountRho(KartStorageFolder mountFolder, RhoArchive rhoArchive, string fileName)
         {
+            rhoArchive.Open(fileName);
+            Queue<(KartStorageFolder mountFolder, RhoFolder)> folderQueue = new Queue<(KartStorageFolder, RhoFolder)>();
+            folderQueue.Enqueue((mountFolder, rhoArchive.RootFolder));
+            while (folderQueue.Count > 0)
+            {
+                var curObj = folderQueue.Dequeue();
+                lock (curObj.mountFolder)
+                {
+                    curObj.mountFolder._sourceRhoFolder = curObj.Item2;
+                    foreach (RhoFolder subFolder in curObj.Item2.Folders)
+                    {
+                        KartStorageFolder newFolder = new KartStorageFolder();
+                        newFolder.Name = subFolder.Name;
+                        folderQueue.Enqueue((newFolder, subFolder));
+                        curObj.mountFolder.AddFolder(newFolder);
+                    }
+                    foreach (RhoFile subFile in curObj.Item2.Files)
+                    {
+                        KartStorageFile newFile = new KartStorageFile(subFile);
+                        curObj.mountFolder.AddFile(newFile);
+                    }
+                }
+            }
+        }
+
+        private void initializeRho5(int maxThreads = 0)
+        {
+            if (maxThreads == 0)
+                maxThreads = Environment.ProcessorCount;
             Queue<(KartStorageFolder mountFolder, FileInfo rhoFileInfo)> rhoFilesInfoQueue = new Queue<(KartStorageFolder mountFolder, FileInfo rhoFileInfo)>();
             string dataFolder = _dataPath ?? $"{_clientPath}\\Data";
             dataFolder = Path.GetFullPath(dataFolder);
@@ -305,7 +306,6 @@ namespace KartLibrary.File
             Regex dataPackPattern = new Regex(@"^(DataPack\d+)_(\d+)\.rho5$");
             DirectoryInfo dataFolderInfo = new DirectoryInfo(dataFolder);
             HashSet<string> dataPackNames = new HashSet<string>();
-            HashSet<Task> mountTasks = new HashSet<Task>();
             foreach(FileInfo fileInfo in dataFolderInfo.GetFiles())
             {
                 Match match = dataPackPattern.Match(fileInfo.Name);
@@ -316,34 +316,35 @@ namespace KartLibrary.File
                         dataPackNames.Add(dataPackName);
                 }
             }
-            foreach(string dataPackName in dataPackNames)
+
+            // Mount rho5 files
+            ParallelOptions parallelOptions = new ParallelOptions();
+            parallelOptions.MaxDegreeOfParallelism = maxThreads;
+            Parallel.ForEach(dataPackNames, dataPackName =>
             {
                 Rho5Archive rho5Archive = new Rho5Archive();
-                Task mountTask = mountRho5Async(rho5Archive, dataFolder, dataPackName);
-                mountTasks.Add(mountTask);
-                _rho5Archives.Add(rho5Archive);
-            }
-            while(mountTasks.Count > 0)
-            {
-                Task finishedTask = await Task.WhenAny(mountTasks);
-                mountTasks.Remove(finishedTask);
-            }
+                mountRho5(rho5Archive, dataFolder, dataPackName);
+                lock (_rho5Archives)
+                {
+                    _rho5Archives.Add(rho5Archive);
+                }
+            });
         }
 
-        private async Task mountRho5Async(Rho5Archive archive, string dataPackPath, string dataPackName)
+        private void mountRho5(Rho5Archive archive, string dataPackPath, string dataPackName)
         {
-            await Task.Run(() =>
+            archive.Open(dataPackPath, dataPackName, _regionCode ?? CountryCode.None);
+            Queue<(KartStorageFolder mountFolder, Rho5Folder rho5Folder)> queue = new();
+            queue.Enqueue((_rootFolder, archive.RootFolder));
+            while (queue.Count > 0)
             {
-                archive.Open(dataPackPath, dataPackName, _regionCode ?? CountryCode.None);
-                Queue<(KartStorageFolder mountFolder, Rho5Folder rho5Folder)> queue = new();
-                queue.Enqueue((_rootFolder, archive.RootFolder));
-                while(queue.Count > 0)
+                var curObj = queue.Dequeue();
+                lock (curObj.mountFolder)
                 {
-                    var curObj = queue.Dequeue();
-                    foreach(Rho5Folder subfolder in curObj.rho5Folder.Folders)
+                    foreach (Rho5Folder subfolder in curObj.rho5Folder.Folders)
                     {
                         KartStorageFolder? folder = curObj.mountFolder.GetFolder(subfolder.Name);
-                        if(folder is null)
+                        if (folder is null)
                         {
                             folder = new KartStorageFolder(false, null, subfolder);
                             folder.Name = subfolder.Name;
@@ -351,14 +352,14 @@ namespace KartLibrary.File
                         }
                         queue.Enqueue((folder, subfolder));
                     }
-                    foreach(Rho5File file in curObj.rho5Folder.Files)
+                    foreach (Rho5File file in curObj.rho5Folder.Files)
                     {
                         KartStorageFile newFile = new KartStorageFile(file);
                         curObj.mountFolder.AddFile(newFile);
                     }
                     curObj.mountFolder.appliedChanges();
                 }
-            });
+            }
         }
 
         protected virtual void dispose(bool disposing)

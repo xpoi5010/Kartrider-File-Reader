@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RhoLoader.Services
+namespace KartLibrary.Xml
 {
-    public interface IFileManagementService: IDisposable
+    internal class BinaryXmlSerializer
     {
-        
     }
 }

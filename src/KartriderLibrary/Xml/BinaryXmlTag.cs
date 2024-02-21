@@ -7,10 +7,15 @@ using System.IO;
 using KartLibrary.Text;
 using KartLibrary.IO;
 using System.Xml;
+using System.Dynamic;
+using System.Linq.Expressions;
+using System.Numerics;
+using Vulkan;
+using System.Text.Json.Nodes;
 
 namespace KartLibrary.Xml
 {
-    public class BinaryXmlTag
+    public class BinaryXmlTag: DynamicObject
     {
         #region Members
         private string _name;
@@ -34,23 +39,9 @@ namespace KartLibrary.Xml
 
         public IReadOnlyDictionary<string,string> Attributes => _attributes;
 
-        public List<BinaryXmlTag> Children => _children;
+        public IList<BinaryXmlTag> Children => _children;
 
-        public BinaryXmlTag this[string t]
-        {
-            get
-            {
-                return _children.Find(x => x.Name == t);
-            }
-            set
-            {
-                int index = Children.FindIndex(x => x.Name == t);
-                if (index == -1)
-                    Children.Add(value);
-                else
-                    Children[index] = value;
-            }
-        }
+        public IEnumerable<BinaryXmlTag> this[string t] => _children.Where(x => x.Name == t);
         
         #endregion
 
@@ -81,11 +72,11 @@ namespace KartLibrary.Xml
         }
         #endregion
 
-        public string? GetAttribute(string Attribute)
+        public dynamic? GetAttribute(string Attribute)
         {
             if (!Attributes.ContainsKey(Attribute))
                 return null;
-            return Attributes[Attribute];
+            return new BinaryXmlAttributeValue(Attributes[Attribute]);
         }
 
         public void SetAttribute(string name,string value)
@@ -174,6 +165,31 @@ namespace KartLibrary.Xml
 
         }
 
+        public override bool TryGetMember(GetMemberBinder binder, out object? result)
+        {
+
+            string attributeName = binder.Name;
+            if(!_attributes.ContainsKey(attributeName))
+            { 
+                result = null;
+                return false; 
+            }
+            else
+            {
+                string attributeValue = _attributes[attributeName];
+                result = new BinaryXmlAttributeValue(attributeValue);
+                return true;
+            }
+        }
+
+        public override bool TrySetMember(SetMemberBinder binder, object? value)
+        {
+            string attributeName = binder.Name;
+            string attributeValue = value?.ToString() as string ?? "";
+            SetAttribute(attributeName, attributeValue);
+            return true;
+        }
+
         public static explicit operator BinaryXmlTag(XmlNode node)
         {
             if (node.NodeType != XmlNodeType.Element)
@@ -195,5 +211,101 @@ namespace KartLibrary.Xml
             return output;
         }
 
+    }
+    public sealed class BinaryXmlAttributeValue
+    {
+        private string _value;
+
+        public string BaseValue => _value;
+
+        internal BinaryXmlAttributeValue(string baseValue)
+        {
+            _value = baseValue;
+        }
+
+        public static implicit operator string(BinaryXmlAttributeValue value)
+        {
+            return value._value;
+        }
+
+        public static implicit operator sbyte(BinaryXmlAttributeValue value)
+        {
+            return sbyte.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator short(BinaryXmlAttributeValue value)
+        {
+            return short.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator int(BinaryXmlAttributeValue value)
+        {
+            return int.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator long(BinaryXmlAttributeValue value)
+        {
+            return long.Parse(value._value, System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator Int128(BinaryXmlAttributeValue value)
+        {
+            return Int128.Parse(value._value,  System.Globalization.NumberStyles.Number);
+        }
+
+        public static implicit operator byte(BinaryXmlAttributeValue value)
+        {
+            return byte.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator ushort(BinaryXmlAttributeValue value)
+        {
+            return ushort.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator uint(BinaryXmlAttributeValue value)
+        {
+            return uint.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator ulong(BinaryXmlAttributeValue value)
+        {
+            return ulong.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator UInt128(BinaryXmlAttributeValue value)
+        {
+            return UInt128.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator BigInteger(BinaryXmlAttributeValue value)
+        {
+            return BigInteger.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator float(BinaryXmlAttributeValue value)
+        {
+            return float.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator double(BinaryXmlAttributeValue value)
+        {
+            return double.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator decimal(BinaryXmlAttributeValue value)
+        {
+            return decimal.Parse(value._value,  System.Globalization.NumberStyles.Any);
+        }
+
+        public static implicit operator bool(BinaryXmlAttributeValue value)
+        {
+            return bool.Parse(value._value.ToLower());
+        }
+
+        public static implicit operator DateTime(BinaryXmlAttributeValue value)
+        {
+            return DateTime.Parse(value._value);
+        }
     }
 }

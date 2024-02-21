@@ -42,7 +42,7 @@ namespace KartCityStudio.Game.Tests
         {
             Logger.Log("Initializing KartStorageSystem.");
             DateTime beginTime = DateTime.Now;
-            await storageSystem.Initialize();
+            await Task.Run(() => storageSystem.Initialize());
             TimeSpan duration = DateTime.Now - beginTime;
             Logger.Log($"Finsh Initialize KartStorageSystem. Spends {duration.TotalMilliseconds} ms.");
 

@@ -51,7 +51,7 @@ namespace KartLibrary.Tests.Testing
             });
             addStep("Initialize KartStorageSystem", () =>
             {
-                _storageSystem.Initialize().Wait();
+                _storageSystem.Initialize();
                 _currentFolder = _storageSystem.RootFolder;
             });
             addStep("Close KartStorageSystem", () =>
@@ -60,7 +60,7 @@ namespace KartLibrary.Tests.Testing
             });
             addStep("Initialize KartStorageSystem and set current folder", () =>
             {
-                _storageSystem.Initialize().Wait();
+                _storageSystem.Initialize();
                 _currentFolder = _storageSystem.RootFolder;
             });
         }
@@ -120,16 +120,7 @@ namespace KartLibrary.Tests.Testing
                     .SetDataPath(_dataFolderPath)
                     .SetClientRegion(_region)
                     .Build();
-            Task initTask = _storageSystem.Initialize();
-            try
-            {
-                initTask.Wait();
-            }
-            catch (AggregateException ex)
-            {
-                foreach(Exception exception in ex.InnerExceptions)
-                    ExceptionDispatchInfo.Capture(exception).Throw();
-            }
+            _storageSystem.Initialize();
             _currentFolder = _storageSystem.RootFolder;
             commandConsole.WriteLine("Initialization complete.");
             return new CommandExecuteResult(ResultType.Success, "");

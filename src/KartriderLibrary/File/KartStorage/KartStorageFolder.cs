@@ -32,6 +32,8 @@ namespace KartLibrary.File
 
         internal RhoFolder? _sourceRhoFolder;
         internal Rho5Folder? _sourceRho5Folder;
+
+        private RhoFolderStoreMode _rhoStoreMode;
         #endregion
 
         #region Properties
@@ -82,6 +84,12 @@ namespace KartLibrary.File
 
         public bool IsRootFolder => _isRootFolder;
 
+        public RhoFolderStoreMode RhoFolderStoreMode
+        {
+            get => _rhoStoreMode;
+            set => _rhoStoreMode = value;
+        }
+
         IRhoFolder? IRhoFolder.Parent => Parent;
 
         IModifiableRhoFolder? IModifiableRhoFolder.Parent => Parent;
@@ -93,6 +101,7 @@ namespace KartLibrary.File
         IReadOnlyCollection<IRhoFolder> IRhoFolder.Folders => Folders;
 
         IReadOnlyCollection<IModifiableRhoFolder> IModifiableRhoFolder.Folders => Folders;
+
 
         internal bool HasModified =>
             _addedFiles.Count > 0 ||
@@ -114,6 +123,7 @@ namespace KartLibrary.File
             _addedFolders = new HashSet<KartStorageFolder>();
             _removedFiles = new HashSet<KartStorageFile>();
             _removedFolders = new HashSet<KartStorageFolder>();
+            _rhoStoreMode = RhoFolderStoreMode.RhoFolder;
             _parent = null;
             _disposed = false;
             _isRootFolder = false;

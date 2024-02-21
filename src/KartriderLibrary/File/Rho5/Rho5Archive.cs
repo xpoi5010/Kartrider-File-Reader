@@ -267,6 +267,8 @@ namespace KartLibrary.File
             int headerOffset = getHeaderOffset(outFileName);
             int filesInfoOffset = headerOffset + getFilesInfoOffset(outFileName);
 
+            Debug.Print($"{outFileName} {headerOffset} {filesInfoOffset}");
+
             outEncryptStream.SetLength(headerOffset);
             outEncryptStream.Seek(headerOffset, SeekOrigin.Begin);
             outEncryptStream.SetToHeaderKey(outFileName, mixingStr);

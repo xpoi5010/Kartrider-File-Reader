@@ -101,7 +101,6 @@
     <Resource Include="Resources\baseline_arrow_left_black_18dp.png" />
     <Resource Include="Resources\baseline_folder_black_18dp.png" />
     <Resource Include="Resources\baseline_insert_drive_file_black_18dp.png" />
-	  <Resource Include="Resources\baseline_insert_drive_file_black_18dp.png" />
     <Resource Include="Resources\ic_fluent_arrow_hook_up_left_24_filled.png" />
   </ItemGroup>
 
